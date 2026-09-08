@@ -3,92 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basement 37th Floor | 타로 & 심리 분석</title>
+    <title>b37 | 당신의 마음 가장 깊은 곳</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <style>
-        /* 기본 스타일 및 다크 테마 설정 */
-        body { 
-            font-family: 'Pretendard', -apple-system, sans-serif; 
-            background-color: #1a1a2e; /* 어두운 남색 배경 */
-            color: #eaeaea; 
-            text-align: center; 
-            margin: 0; 
-            padding: 0; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Pretendard Variable", Pretendard, sans-serif;
+            letter-spacing: -0.05em;
         }
-        header { 
-            padding: 80px 20px 40px; 
+
+        body {
+            background: radial-gradient(circle at 50% 40%, #151525 0%, #08080f 70%, #030305 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #eaeaea;
+            overflow-x: hidden;
         }
-        h1 { 
-            font-size: 3rem; 
-            margin-bottom: 15px; 
-            color: #e94560; /* 포인트 컬러 (붉은 계열) */
-            letter-spacing: 2px;
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 600px;
+            width: 100%;
+            z-index: 2;
         }
-        p { 
-            font-size: 1.1rem; 
-            color: #a9a9bc; 
-            line-height: 1.6;
+
+        /* 화면 전환용 클래스 */
+        .screen { display: none; width: 100%; animation: fadeIn 0.8s ease-in-out; }
+        .screen.active { display: flex; flex-direction: column; align-items: center; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        /* 콘텐츠 선택 영역 */
-        .container { 
-            display: flex; 
-            justify-content: center; 
-            gap: 30px; 
-            margin-top: 40px; 
-            flex-wrap: wrap; 
-            padding: 20px;
+
+        /* 공통 로고 */
+        .logo-wrapper { margin-bottom: 25px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.25)); }
+        .logo-img { width: 130px; height: auto; display: block; margin: 0 auto; }
+
+        /* --- 첫 화면(인트로) 스타일 --- */
+        .candle-wrapper { position: relative; width: 30px; height: 80px; margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; }
+        .flame { width: 14px; height: 28px; background: radial-gradient(ellipse at bottom, #fff 0%, #ffdf78 25%, #d4af37 60%, transparent 90%); border-radius: 50% 50% 20% 20%; box-shadow: 0 0 20px 6px rgba(255, 200, 100, 0.4), 0 0 45px 12px rgba(212, 175, 55, 0.2); animation: flicker 1.8s infinite ease-in-out alternate; }
+        .wick { width: 2px; height: 8px; background-color: #222; }
+        .candle-body { width: 18px; height: 45px; background: linear-gradient(to right, #1f1f2e, #3a3a4f, #1b1b26); border-radius: 3px; box-shadow: inset 0 2px 4px rgba(255,255,255,0.1); }
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-1deg); opacity: 0.9; }
+            50% { transform: scale(0.96) rotate(1.5deg); opacity: 1; }
+            100% { transform: scale(1.04) rotate(-0.5deg); opacity: 0.85; }
         }
-        .card { 
-            background-color: #16213e; 
-            padding: 50px 30px; 
-            border-radius: 15px; 
-            width: 300px; 
-            cursor: pointer; 
-            transition: all 0.3s ease; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
-            border: 1px solid #2a2a4a;
-        }
-        .card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.2); 
-            border-color: #e94560;
-        }
-        .card h2 { 
-            color: #43bccd; /* 서브 포인트 컬러 (청록색) */
-            margin-top: 0;
-            font-size: 1.8rem;
-        }
-        footer {
-            margin-top: 80px;
-            padding: 20px;
-            font-size: 0.9rem;
-            color: #555;
-        }
+        .main-title { font-size: 1.65rem; font-weight: 600; color: #f1f1f1; margin-bottom: 12px; text-shadow: 0 2px 10px rgba(0,0,0,0.7); }
+        .sub-title { font-size: 1.05rem; font-weight: 300; color: #9d9db3; margin-bottom: 45px; line-height: 1.5; }
+        .btn-start { background: linear-gradient(135deg, #c5a059, #dfba73, #a47e3b); color: #111116; font-size: 1.05rem; font-weight: 600; padding: 16px 42px; border: none; border-radius: 30px; cursor: pointer; box-shadow: 0 4px 25px rgba(212, 175, 55, 0.35); transition: all 0.3s ease; }
+        .btn-start:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(212, 175, 55, 0.55); filter: brightness(1.1); }
+
+        /* --- 테스트 화면 스타일 --- */
+        /* 텍스트 가운데 정렬 적용 (text-align: center) */
+        .story-text { font-size: 1.05rem; color: #d1d1e0; line-height: 1.7; text-align: center; background: rgba(20, 20, 30, 0.6); padding: 25px; border-radius: 12px; border: 1px solid #333; margin-bottom: 30px; word-break: keep-all; }
+        
+        /* 버튼 한 줄 정렬 (flex-wrap: nowrap, gap 조정) */
+        .number-grid { display: flex; flex-wrap: nowrap; justify-content: center; gap: 8px; margin-bottom: 30px; width: 100%; }
+        .num-btn { width: 45px; height: 45px; flex-shrink: 0; border-radius: 50%; background: #1a1a24; border: 1px solid #c5a059; color: #c5a059; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: all 0.2s; }
+        .num-btn:hover, .num-btn.selected { background: #c5a059; color: #111; box-shadow: 0 0 15px rgba(212, 175, 55, 0.5); }
+
+        /* 결과 영역 */
+        .result-area { display: none; width: 100%; background: #11111a; border: 1px solid #444; border-radius: 15px; padding: 30px 20px; margin-top: 10px; animation: fadeIn 0.5s ease; text-align: left; }
+        .result-area.active { display: block; }
+        
+        .character-img { width: 100%; max-width: 200px; height: auto; aspect-ratio: 3/4; object-fit: cover; border-radius: 8px; margin: 0 auto 20px; display: block; background-color: #222; border: 1px solid #555; }
+        .char-name { font-size: 1.4rem; color: #dfba73; margin-bottom: 20px; text-align: center; font-weight: 600; border-bottom: 1px solid #333; padding-bottom: 15px; }
+        .result-box { margin-bottom: 15px; }
+        .result-label { font-weight: bold; color: #fff; display: block; margin-bottom: 5px; font-size: 1.1rem; }
+        .result-desc { color: #aaa; line-height: 1.6; font-size: 0.95rem; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>b37</h1>
-        <p>당신의 무의식을 탐구하는 공간, 지하 37층에 오신 것을 환영합니다.<br>어떤 이야기를 나누고 싶으신가요?</p>
-    </header>
-
     <div class="container">
-        <!-- 타로 콘텐츠 이동 버튼 -->
-        <div class="card" onclick="alert('타로 리딩 페이지로 이동합니다. (준비 중)')">
-            <h2>인터랙티브 타로</h2>
-            <p>오늘의 운세와 깊은 고민에 대한<br>해답을 카드를 통해 찾아보세요.</p>
+        <!-- 1. 첫 화면 (인트로) -->
+        <div id="intro-screen" class="screen active">
+            <div class="logo-wrapper">
+                <img src="logo.png" alt="b37 Logo" class="logo-img">
+            </div>
+            <div class="candle-wrapper">
+                <div class="flame"></div>
+                <div class="wick"></div>
+                <div class="candle-body"></div>
+            </div>
+            <h1 class="main-title">당신의 마음 가장 깊은 곳, 지하 37층</h1>
+            <p class="sub-title">최신 심리학 이론을 반영한 심리테스트</p>
+            <button class="btn-start" onclick="startTest()">내 심리 확인하기</button>
         </div>
-        
-        <!-- 심리 분석 콘텐츠 이동 버튼 -->
-        <div class="card" onclick="alert('심리 분석 페이지로 이동합니다. (준비 중)')">
-            <h2>심리 분석 테스트</h2>
-            <p>간단한 문답을 통해<br>숨겨진 내면의 자아를 알아봅니다.</p>
+
+        <!-- 2. 심리테스트 질문 화면 -->
+        <div id="test-screen" class="screen">
+            <div class="logo-wrapper">
+                <img src="logo.png" alt="b37 Logo" class="logo-img">
+            </div>
+            
+            <!-- 텍스트 가운데 정렬 반영 -->
+            <p class="story-text">
+                납치범을 피해 가까스로 내려온 낯선 마을.<br><br>
+                도와달라는 나의 외침에 마을 사람들이 하나 둘 나타난다.<br>
+                한 명을 제외한 이들 모두 납치범과 가까운 관계라는 예감이 든다.<br><br>
+                <strong>오직 내가 믿을 수 있는 단 한 사람은?</strong>
+            </p>
+
+            <!-- 번호 선택 버튼 한 줄 정렬 반영 -->
+            <div class="number-grid">
+                <button class="num-btn" onclick="showResult(1, this)">1</button>
+                <button class="num-btn" onclick="showResult(2, this)">2</button>
+                <button class="num-btn" onclick="showResult(3, this)">3</button>
+                <button class="num-btn" onclick="showResult(4, this)">4</button>
+                <button class="num-btn" onclick="showResult(5, this)">5</button>
+                <button class="num-btn" onclick="showResult(6, this)">6</button>
+            </div>
+
+            <!-- 결과 노출 영역 -->
+            <div id="result-area" class="result-area">
+                <img id="res-img" src="" alt="인물 사진" class="character-img">
+                <h2 id="res-name" class="char-name"></h2>
+                
+                <div class="result-box">
+                    <span class="result-label">해석 :</span>
+                    <p id="res-interpretation" class="result-desc"></p>
+                </div>
+                
+                <div class="result-box">
+                    <span class="result-label">조언 :</span>
+                    <p id="res-advice" class="result-desc"></p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <footer>
-        &copy; 2026 Basement 37th Floor. All rights reserved.
-    </footer>
+    <script>
+        // 화면 전환 함수
+        function startTest() {
+            document.getElementById('intro-screen').classList.remove('active');
+            document.getElementById('test-screen').classList.add('active');
+        }
 
+        // 각 번호별 데이터 설정
+        const characterData = {
+            1: {
+                img: "person1.png",
+                name: "1번 마을 대지주 김영남",
+                interpretation: "당신은 위기 상황에서 강력한 권위나 힘을 가진 존재에게 의존하려는 심리가 있습니다. 외형적인 압도감이 주는 안정감을 신뢰하는 편입니다.",
+                advice: "때로는 가장 큰 힘을 가진 자가 가장 큰 위험이 될 수 있습니다. 겉으로 드러나는 권력 이면의 진의를 파악하는 이성적인 판단이 필요합니다."
+            },
+            2: {
+                img: "person2.png",
+                name: "2번 담배 피우는 모자 쓴 남자",
+                interpretation: "당신은 세상을 약간 냉소적으로 바라보며, 규칙보다는 뒷골목의 생리를 아는 실전형 인물에게 끌립니다.",
+                advice: "날카로운 직감은 좋지만, 지나친 불신은 당신을 고립시킬 수 있습니다. 최소한의 안전망은 남겨두세요."
+            },
+            3: {
+                img: "person3.png",
+                name: "3번 검은 옷의 외지인",
+                interpretation: "당신은 집단에 동화되지 않는 이질적인 존재에게 동질감을 느낍니다. 남들이 모르는 비밀을 공유하고 싶어 하는 방어 기제가 작용했습니다.",
+                advice: "나와 비슷하게 상처받은 듯한 사람이라고 해서 무조건 내 편은 아닙니다. 객관적인 거리를 유지하세요."
+            },
+            4: {
+                img: "person4.png",
+                name: "4번 붉은 체크무늬 셔츠의 여자",
+                interpretation: "평범하고 무해해 보이는 외형에 쉽게 경계를 푸는 성향입니다. 일상적인 친절함에 강한 갈증을 느끼고 있습니다.",
+                advice: "가장 평범한 얼굴이 가장 기만적일 수 있는 법입니다. 상대방의 작은 행동 패턴에 집중해 보세요."
+            },
+            5: {
+                img: "person5.png",
+                name: "5번 안경 쓴 엘리트 청년",
+                interpretation: "위기 속에서도 논리와 지성을 갖춘 전문가 집단을 신뢰합니다. 감정보다는 머리로 상황을 해결하려는 이성주의자입니다.",
+                advice: "지능적인 조력자는 상황이 불리해지면 가장 먼저 당신을 버릴 수 있는 이해타산적인 인물일 수 있습니다."
+            },
+            6: {
+                img: "person6.png",
+                name: "6번 흰색 트레이닝복의 남자",
+                interpretation: "당신은 예측 불가능하고 불안정한 요소 속에서 역설적인 돌파구를 찾는 도박사적 기질이 있습니다.",
+                advice: "통제 불가능한 변수에 운명을 걸지 마세요. 지금은 철저하게 계산되고 안전한 길이 필요한 시점입니다."
+            }
+        };
+
+        // 결과 출력 함수
+        function showResult(num, btnElement) {
+            const btns = document.querySelectorAll('.num-btn');
+            btns.forEach(btn => btn.classList.remove('selected'));
+            btnElement.classList.add('selected');
+
+            const data = characterData[num];
+            
+            document.getElementById('res-img').src = data.img; 
+            document.getElementById('res-name').innerText = data.name;
+            document.getElementById('res-interpretation').innerText = data.interpretation;
+            document.getElementById('res-advice').innerText = data.advice;
+
+            const resultArea = document.getElementById('result-area');
+            resultArea.classList.remove('active');
+            setTimeout(() => {
+                resultArea.classList.add('active');
+            }, 50);
+        }
+    </script>
 </body>
 </html>
