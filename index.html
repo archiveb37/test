@@ -131,23 +131,42 @@
         .group-image-container { position: relative; width: 100%; max-width: 500px; margin: 0 auto 40px; border-radius: 10px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.9); border: 1px solid rgba(212, 175, 55, 0.2); }
         .group-image { width: 100%; height: auto; display: block; opacity: 0.9; }
         
-        /* 이미지 위 숫자 디자인 수정 (본문 폰트, 화이트 컬러, 블랙 글로우) */
-        .number-label { 
-            position: absolute; 
-            color: #ffffff; /* 순백색 글자 */
-            font-size: 1.8rem; 
+        /* --- 공통 적용: 화이트 텍스트 & 블랙 글로우 효과 --- */
+        .glow-text-style {
+            color: #ffffff;
+            font-family: "Wanted Sans Variable", "Wanted Sans", sans-serif; 
             font-weight: 800; 
-            font-family: "Wanted Sans Variable", "Wanted Sans", sans-serif; /* 본문과 동일한 폰트 적용 */
-            transform: translate(-50%, -50%); 
             letter-spacing: 0; 
-            /* 선명한 블랙 텍스트 테두리 및 깊고 강한 블랙 글로우/그림자 효과 */
-            -webkit-text-stroke: 1px rgba(0, 0, 0, 0.6);
-            text-shadow: 0 0 10px rgba(0,0,0,1), 0 0 20px rgba(0,0,0,0.9), 0 5px 15px rgba(0,0,0,0.8); 
+            -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 30px #000;
         }
 
+        /* 이미지 위 숫자 디자인 */
+        .number-label { 
+            position: absolute; 
+            background: transparent; border: none; 
+            font-size: 2rem; 
+            transform: translate(-50%, -50%); 
+        }
+
+        /* 하단 선택 버튼 디자인 (위의 글로우 효과와 통일) */
         .number-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 40px; width: 100%; }
-        .num-btn { width: 50px; height: 50px; flex-shrink: 0; border-radius: 50%; background: linear-gradient(145deg, #181820, #0a0a0d); border: 1px solid rgba(212, 175, 55, 0.3); color: #d4af37; font-size: 1.15rem; font-weight: 500; font-family: 'Times New Roman', serif; cursor: pointer; transition: all 0.3s; box-shadow: inset 0 2px 8px rgba(255,255,255,0.05), 0 8px 20px rgba(0,0,0,0.8); letter-spacing: 0; }
-        .num-btn:hover, .num-btn.selected { background: linear-gradient(145deg, #d4af37, #966f1e); color: #0a0a0d; box-shadow: 0 0 25px rgba(212, 175, 55, 0.5); transform: scale(1.1); border-color: #fff; }
+        .num-btn { 
+            width: 55px; height: 55px; flex-shrink: 0; border-radius: 50%; 
+            background: rgba(10, 10, 15, 0.6); /* 투박한 금빛 대신 반투명 다크 글래스 배경 */
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            font-size: 1.6rem; 
+            cursor: pointer; transition: all 0.3s; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            /* glow-text-style은 HTML 클래스로 적용 예정 */
+        }
+        .num-btn:hover, .num-btn.selected { 
+            background: rgba(212, 175, 55, 0.2); 
+            border: 1px solid rgba(212, 175, 55, 0.8);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 1), 0 0 25px rgba(212, 175, 55, 0.8), 0 0 10px #000;
+            transform: scale(1.15); 
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
 
         .result-area { display: none; width: 100%; background: linear-gradient(180deg, rgba(15,15,20,0.95), rgba(5,5,10,0.98)); border-top: 1px solid rgba(212, 175, 55, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.4); padding: 50px 20px; margin-top: 10px; animation: staggerFadeUp 0.8s ease forwards; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9); }
         .result-area.active { display: block; }
@@ -224,21 +243,21 @@
             <p class="story-text">납치범을 피해 가까스로 내려온 낯선 마을.<br><br>도와달라는 나의 외침에 마을 사람들이 하나 둘 나타난다.<br>한 명을 제외한 이들 모두 납치범과 가까운 관계라는 예감이 든다.<br><br><strong>오직 내가 믿을 수 있는 단 한 사람은?</strong></p>
             <div class="group-image-container">
                 <img src="group.png" alt="마을 사람들" class="group-image">
-                <!-- 사람 얼굴을 피해서 위치 하향 조정 -->
-                <div class="number-label" style="top: 60%; left: 16%;">1</div>
-                <div class="number-label" style="top: 55%; left: 28%;">2</div>
-                <div class="number-label" style="top: 65%; left: 48%;">3</div>
-                <div class="number-label" style="top: 60%; left: 63%;">4</div>
-                <div class="number-label" style="top: 55%; left: 81%;">5</div>
-                <div class="number-label" style="top: 88%; left: 45%;">6</div>
+                <!-- 머리 위쪽으로 좌표 상향 조정 -->
+                <div class="number-label glow-text-style" style="top: 15%; left: 16%;">1</div>
+                <div class="number-label glow-text-style" style="top: 12%; left: 28%;">2</div>
+                <div class="number-label glow-text-style" style="top: 15%; left: 45%;">3</div>
+                <div class="number-label glow-text-style" style="top: 18%; left: 63%;">4</div>
+                <div class="number-label glow-text-style" style="top: 15%; left: 81%;">5</div>
+                <div class="number-label glow-text-style" style="top: 55%; left: 45%;">6</div>
             </div>
             <div class="number-grid">
-                <button class="num-btn test1-btn" onclick="showResult('test1', 1, this)">1</button>
-                <button class="num-btn test1-btn" onclick="showResult('test1', 2, this)">2</button>
-                <button class="num-btn test1-btn" onclick="showResult('test1', 3, this)">3</button>
-                <button class="num-btn test1-btn" onclick="showResult('test1', 4, this)">4</button>
-                <button class="num-btn test1-btn" onclick="showResult('test1', 5, this)">5</button>
-                <button class="num-btn test1-btn" onclick="showResult('test1', 6, this)">6</button>
+                <button class="num-btn glow-text-style test1-btn" onclick="showResult('test1', 1, this)">1</button>
+                <button class="num-btn glow-text-style test1-btn" onclick="showResult('test1', 2, this)">2</button>
+                <button class="num-btn glow-text-style test1-btn" onclick="showResult('test1', 3, this)">3</button>
+                <button class="num-btn glow-text-style test1-btn" onclick="showResult('test1', 4, this)">4</button>
+                <button class="num-btn glow-text-style test1-btn" onclick="showResult('test1', 5, this)">5</button>
+                <button class="num-btn glow-text-style test1-btn" onclick="showResult('test1', 6, this)">6</button>
             </div>
             <div id="test1-result-area" class="result-area">
                 <img id="test1-res-img" src="" alt="결과 이미지" class="character-img">
@@ -258,15 +277,15 @@
             <p class="story-text">끝없는 추격전, 발이 푹푹 빠지는 진흙탕을 지나<br>드디어 인적이 드문 외딴 숲속 공터에 도착했다.<br><br>당신의 눈앞에는 전혀 다른 형태의 세 채의 집이 있다.<br>당장 숨어들어가 <strong>도움을 요청할 집은 어디인가?</strong></p>
             <div class="group-image-container">
                 <img src="house_group.png" alt="세 채의 집" class="group-image">
-                <!-- 집의 형태를 가리지 않도록 하단으로 위치 조정 -->
-                <div class="number-label" style="top: 85%; left: 16%;">1</div>
-                <div class="number-label" style="top: 85%; left: 50%;">2</div>
-                <div class="number-label" style="top: 85%; left: 84%;">3</div>
+                <!-- 집 지붕/위쪽으로 좌표 상향 조정 -->
+                <div class="number-label glow-text-style" style="top: 15%; left: 20%;">1</div>
+                <div class="number-label glow-text-style" style="top: 15%; left: 50%;">2</div>
+                <div class="number-label glow-text-style" style="top: 15%; left: 80%;">3</div>
             </div>
             <div class="number-grid">
-                <button class="num-btn test2-btn" onclick="showResult('test2', 1, this)">1</button>
-                <button class="num-btn test2-btn" onclick="showResult('test2', 2, this)">2</button>
-                <button class="num-btn test2-btn" onclick="showResult('test2', 3, this)">3</button>
+                <button class="num-btn glow-text-style test2-btn" onclick="showResult('test2', 1, this)">1</button>
+                <button class="num-btn glow-text-style test2-btn" onclick="showResult('test2', 2, this)">2</button>
+                <button class="num-btn glow-text-style test2-btn" onclick="showResult('test2', 3, this)">3</button>
             </div>
             <div id="test2-result-area" class="result-area">
                 <img id="test2-res-img" src="" alt="결과 이미지" class="character-img">
@@ -286,17 +305,17 @@
             <p class="story-text">결정적 단서를 쥐고 있는 기묘한 분위기의 여성.<br>그녀는 당신에게 위험한 거래를 제안한다.<br><br>대화를 나누던 중, <strong>그녀의 몸에 새겨진 문신 중<br>당신의 눈길을 가장 먼저 끈 것은?</strong></p>
             <div class="group-image-container">
                 <img src="tattoo_group.png" alt="여성의 문신들" class="group-image">
-                <!-- 주요 문신을 피해 외곽 여백으로 위치 조정 -->
-                <div class="number-label" style="top: 15%; left: 25%;">1</div>
-                <div class="number-label" style="top: 35%; left: 75%;">2</div>
-                <div class="number-label" style="top: 65%; left: 35%;">3</div>
-                <div class="number-label" style="top: 85%; left: 65%;">4</div>
+                <!-- 문신 위쪽/주변으로 좌표 조정 -->
+                <div class="number-label glow-text-style" style="top: 10%; left: 30%;">1</div>
+                <div class="number-label glow-text-style" style="top: 30%; left: 70%;">2</div>
+                <div class="number-label glow-text-style" style="top: 50%; left: 40%;">3</div>
+                <div class="number-label glow-text-style" style="top: 70%; left: 60%;">4</div>
             </div>
             <div class="number-grid">
-                <button class="num-btn test3-btn" onclick="showResult('test3', 1, this)">1</button>
-                <button class="num-btn test3-btn" onclick="showResult('test3', 2, this)">2</button>
-                <button class="num-btn test3-btn" onclick="showResult('test3', 3, this)">3</button>
-                <button class="num-btn test3-btn" onclick="showResult('test3', 4, this)">4</button>
+                <button class="num-btn glow-text-style test3-btn" onclick="showResult('test3', 1, this)">1</button>
+                <button class="num-btn glow-text-style test3-btn" onclick="showResult('test3', 2, this)">2</button>
+                <button class="num-btn glow-text-style test3-btn" onclick="showResult('test3', 3, this)">3</button>
+                <button class="num-btn glow-text-style test3-btn" onclick="showResult('test3', 4, this)">4</button>
             </div>
             <div id="test3-result-area" class="result-area">
                 <img id="test3-res-img" src="" alt="결과 이미지" class="character-img">
