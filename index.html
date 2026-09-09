@@ -18,10 +18,9 @@
             color: #eaeaea; overflow-x: hidden; position: relative;
         }
 
-        /* --- 심연의 안개 효과 (150% 증가) --- */
+        /* --- 심연의 안개 효과 --- */
         .fog-layer {
             position: fixed; bottom: 0; left: 0; width: 100vw; height: 50vh;
-            /* 안개의 짙음과 높이를 살짝 키워 인지하기 쉽게 변경 */
             background: linear-gradient(to top, rgba(35, 25, 15, 0.8) 0%, rgba(20, 15, 20, 0.3) 50%, transparent 100%);
             filter: blur(20px); pointer-events: none; z-index: 0;
             animation: fogSway 8s ease-in-out infinite alternate;
@@ -31,11 +30,10 @@
             100% { transform: translateY(-25px) scale(1.08); opacity: 1; }
         }
 
-        /* --- 금빛 먼지 입자 (150% 밀도 증가) --- */
+        /* --- 금빛 먼지 입자 --- */
         .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
         .particles::before, .particles::after {
             content: ""; position: absolute; top: 0; width: 2px; height: 2px; background: transparent;
-            /* 입자 개수 및 선명도 대폭 추가 */
             box-shadow: 
                 15vw 20vh 1px rgba(212, 175, 55, 0.9), 35vw 50vh 2px rgba(212, 175, 55, 0.6), 
                 75vw 30vh 1px rgba(212, 175, 55, 0.8), 55vw 80vh 2px rgba(212, 175, 55, 0.5),
@@ -69,19 +67,17 @@
             padding: 60px 20px 80px; max-width: 600px; width: 100%; z-index: 10; position: relative;
         }
 
-        /* --- 순차적 등장 애니메이션 (Staggered Fade-in) --- */
+        /* --- 순차적 등장 애니메이션 --- */
         .screen { display: none; width: 100%; }
         .screen.active { display: flex; flex-direction: column; align-items: center; }
         
-        /* 화면 내의 큼직한 덩어리들이 순서대로 나타나게 설정 */
         .screen.active > * { opacity: 0; animation: staggerFadeUp 0.8s ease-out forwards; }
-        .screen.active > *:nth-child(1) { animation-delay: 0.1s; } /* 로고 */
-        .screen.active > *:nth-child(2) { animation-delay: 0.3s; } /* 텍스트 1 */
-        .screen.active > *:nth-child(3) { animation-delay: 0.5s; } /* 텍스트 2 or 이미지 */
-        .screen.active > *:nth-child(4) { animation-delay: 0.7s; } /* 버튼들 */
+        .screen.active > *:nth-child(1) { animation-delay: 0.1s; } 
+        .screen.active > *:nth-child(2) { animation-delay: 0.3s; } 
+        .screen.active > *:nth-child(3) { animation-delay: 0.5s; } 
+        .screen.active > *:nth-child(4) { animation-delay: 0.7s; } 
         .screen.active > *:nth-child(5) { animation-delay: 0.9s; }
         
-        /* 배너 목록 내부도 순서대로 나타나게 설정 */
         .screen.active .banner-item { opacity: 0; animation: staggerFadeUp 0.8s ease-out forwards; }
         .screen.active .banner-item:nth-child(1) { animation-delay: 0.5s; }
         .screen.active .banner-item:nth-child(2) { animation-delay: 0.7s; }
@@ -92,14 +88,15 @@
             to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
-        /* 공통 스타일 */
+        /* 공통 스타일 (로고 크기 확대) */
         .logo-wrapper { margin-bottom: 40px; filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.3)); transition: transform 0.4s; }
         .logo-wrapper:hover { transform: scale(1.05); }
-        .logo-img { width: 150px; height: auto; display: block; margin: 0 auto; }
+        .logo-img { width: 220px; height: auto; display: block; margin: 0 auto; }
         .clickable-logo { cursor: pointer; }
         
         .main-title { font-size: 1.7rem; font-weight: 500; color: #d4af37; margin-bottom: 12px; text-shadow: 0 0 25px rgba(212, 175, 55, 0.4); }
         .sub-title { font-size: 1.05rem; font-weight: 300; color: #888899; margin-bottom: 60px; line-height: 1.5; }
+        
         .btn-start { background: rgba(15, 15, 20, 0.6); color: #d4af37; font-size: 1.05rem; font-weight: 400; padding: 18px 50px; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 30px; cursor: pointer; box-shadow: 0 5px 25px rgba(0, 0, 0, 0.9), inset 0 0 15px rgba(212, 175, 55, 0.1); backdrop-filter: blur(5px); transition: all 0.4s ease; }
         .btn-start:hover { background: rgba(212, 175, 55, 0.15); box-shadow: 0 5px 30px rgba(212, 175, 55, 0.3); border-color: rgba(212, 175, 55, 0.8); }
 
@@ -122,13 +119,19 @@
         .num-btn { width: 50px; height: 50px; flex-shrink: 0; border-radius: 50%; background: linear-gradient(145deg, #181820, #0a0a0d); border: 1px solid rgba(212, 175, 55, 0.3); color: #d4af37; font-size: 1.15rem; font-weight: 500; font-family: 'Times New Roman', serif; cursor: pointer; transition: all 0.3s; box-shadow: inset 0 2px 8px rgba(255,255,255,0.05), 0 8px 20px rgba(0,0,0,0.8); letter-spacing: 0; }
         .num-btn:hover, .num-btn.selected { background: linear-gradient(145deg, #d4af37, #966f1e); color: #0a0a0d; box-shadow: 0 0 25px rgba(212, 175, 55, 0.5); transform: scale(1.1); border-color: #fff; }
 
+        /* 결과창 가운데 정렬 수정 */
         .result-area { display: none; width: 100%; background: linear-gradient(180deg, rgba(15,15,20,0.95), rgba(5,5,10,0.98)); border-top: 1px solid rgba(212, 175, 55, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.4); padding: 50px 20px; margin-top: 10px; animation: staggerFadeUp 0.8s ease forwards; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9); }
         .result-area.active { display: block; }
         .character-img { width: 100%; max-width: 220px; height: auto; aspect-ratio: 3/4; object-fit: cover; margin: 0 auto 35px; display: block; background-color: #000; border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 15px 35px rgba(0,0,0,0.9); filter: grayscale(30%) contrast(115%); border-radius: 4px; }
         .char-name { font-size: 1.4rem; color: #dfba73; margin-bottom: 30px; text-align: center; font-weight: 500; }
-        .result-box { margin-bottom: 30px; }
-        .result-label { font-weight: 500; color: #a47e3b; display: block; margin-bottom: 12px; font-size: 1.1rem; letter-spacing: 1px; }
-        .result-desc { color: #b0b0c0; line-height: 1.8; font-size: 1.05rem; font-weight: 300; }
+        
+        .result-box { margin-bottom: 30px; text-align: center; } /* 텍스트 가운데 정렬 */
+        .result-label { font-weight: 600; color: #a47e3b; display: block; margin-bottom: 12px; font-size: 1.15rem; letter-spacing: 0; text-align: center; }
+        .result-desc { color: #b0b0c0; line-height: 1.8; font-size: 1.05rem; font-weight: 300; word-break: keep-all; text-align: center; } /* 설명글 가운데 정렬 */
+
+        /* '또 다른 심리 더보기' 버튼 스타일 */
+        .btn-more { margin-top: 25px; background: rgba(15, 15, 20, 0.6); color: #d4af37; font-size: 1rem; font-weight: 400; padding: 16px 45px; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 30px; cursor: pointer; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7); transition: all 0.3s ease; width: 100%; max-width: 280px; display: inline-block; }
+        .btn-more:hover { background: rgba(212, 175, 55, 0.15); box-shadow: 0 5px 25px rgba(212, 175, 55, 0.3); border-color: rgba(212, 175, 55, 0.8); transform: translateY(-2px); }
     </style>
 </head>
 <body>
@@ -171,7 +174,7 @@
             </div>
         </div>
 
-        <!-- 3-1. 테스트 1 (낯선 마을 주민들) -->
+        <!-- 3-1. 테스트 1 -->
         <div id="test1-screen" class="screen test-screen">
             <div class="logo-wrapper clickable-logo" onclick="showScreen('list-screen')" title="목록으로 돌아가기">
                 <img src="logo.png" alt="b37 Logo" class="logo-img">
@@ -199,10 +202,11 @@
                 <h2 id="test1-res-name" class="char-name"></h2>
                 <div class="result-box"><span class="result-label">해석</span><p id="test1-res-interpretation" class="result-desc"></p></div>
                 <div class="result-box"><span class="result-label">조언</span><p id="test1-res-advice" class="result-desc"></p></div>
+                <button class="btn-more" onclick="showScreen('list-screen')">또 다른 심리 더보기</button>
             </div>
         </div>
 
-        <!-- 3-2. 테스트 2 (도움을 요청할 집) -->
+        <!-- 3-2. 테스트 2 -->
         <div id="test2-screen" class="screen test-screen">
             <div class="logo-wrapper clickable-logo" onclick="showScreen('list-screen')" title="목록으로 돌아가기">
                 <img src="logo.png" alt="b37 Logo" class="logo-img">
@@ -224,10 +228,11 @@
                 <h2 id="test2-res-name" class="char-name"></h2>
                 <div class="result-box"><span class="result-label">해석</span><p id="test2-res-interpretation" class="result-desc"></p></div>
                 <div class="result-box"><span class="result-label">조언</span><p id="test2-res-advice" class="result-desc"></p></div>
+                <button class="btn-more" onclick="showScreen('list-screen')">또 다른 심리 더보기</button>
             </div>
         </div>
 
-        <!-- 3-3. 테스트 3 (기묘한 여성의 문신) -->
+        <!-- 3-3. 테스트 3 -->
         <div id="test3-screen" class="screen test-screen">
             <div class="logo-wrapper clickable-logo" onclick="showScreen('list-screen')" title="목록으로 돌아가기">
                 <img src="logo.png" alt="b37 Logo" class="logo-img">
@@ -251,6 +256,7 @@
                 <h2 id="test3-res-name" class="char-name"></h2>
                 <div class="result-box"><span class="result-label">해석</span><p id="test3-res-interpretation" class="result-desc"></p></div>
                 <div class="result-box"><span class="result-label">조언</span><p id="test3-res-advice" class="result-desc"></p></div>
+                <button class="btn-more" onclick="showScreen('list-screen')">또 다른 심리 더보기</button>
             </div>
         </div>
 
@@ -268,23 +274,88 @@
 
         const testData = {
             'test1': {
-                1: { img: "person1.png", name: "1번 마을 대지주 김영남", interpretation: "당신은 위기 상황에서 강력한 권위나 힘을 가진 존재에게 의존하려는 심리가 있습니다.", advice: "때로는 가장 큰 힘을 가진 자가 가장 큰 위험이 될 수 있습니다." },
-                2: { img: "person2.png", name: "2번 담배 피우는 남자", interpretation: "규칙보다는 뒷골목의 생리를 아는 실전형 인물에게 끌립니다.", advice: "지나친 불신은 당신을 고립시킬 수 있습니다." },
-                3: { img: "person3.png", name: "3번 검은 옷의 외지인", interpretation: "집단에 동화되지 않는 이질적인 존재에게 동질감을 느낍니다.", advice: "나와 비슷하게 상처받은 듯한 사람이라도 무조건 내 편은 아닙니다." },
-                4: { img: "person4.png", name: "4번 체크무늬 셔츠 여자", interpretation: "평범하고 무해해 보이는 외형에 쉽게 경계를 푸는 성향입니다.", advice: "가장 평범한 얼굴이 가장 기만적일 수 있습니다." },
-                5: { img: "person5.png", name: "5번 안경 쓴 청년", interpretation: "위기 속에서도 논리와 지성을 갖춘 전문가를 신뢰합니다.", advice: "지능적인 조력자는 불리해지면 가장 먼저 당신을 버릴 수 있습니다." },
-                6: { img: "person6.png", name: "6번 트레이닝복 남자", interpretation: "예측 불가능한 요소 속에서 역설적인 돌파구를 찾는 기질이 있습니다.", advice: "통제 불가능한 변수에 운명을 걸지 마세요." }
+                1: { 
+                    img: "person1.png", 
+                    name: "1번 마을 대지주 김영남", 
+                    interpretation: "당신은 위기 상황에서 강력한 권위나 힘을 가진 존재에게 의존하려는 심리가 있습니다. 외형적으로 보여지는 압도적인 힘과 지위가 당신에게 심리적인 방어막과 안정감을 제공한다고 무의식적으로 믿고 있습니다. 혼란스러운 상황일수록 스스로 통제력을 가지기보다는 거대한 시스템이나 강자의 그늘 아래로 숨어 책임을 회피하려는 성향이 짙게 나타납니다.", 
+                    advice: "때로는 가장 큰 힘을 가진 자가 가장 큰 위험이 될 수 있습니다. 타인의 권력에 의존하는 것은 일시적인 위안일 뿐, 결국 당신의 주도권과 통제력을 완전히 빼앗기는 결과로 이어질 수 있습니다. 겉으로 드러나는 권력 이면의 진의를 파악하고, 스스로 상황을 타개할 수 있는 이성적인 판단력과 내면의 독립성을 굳건히 길러야 할 시점입니다." 
+                },
+                2: { 
+                    img: "person2.png", 
+                    name: "2번 담배 피우는 남자", 
+                    interpretation: "당신은 세상을 약간 냉소적으로 바라보며, 정해진 규칙보다는 뒷골목의 생리를 아는 실전형 인물에게 끌립니다. 사람들의 평범한 선의를 쉽게 믿지 않고 그 이면의 의도를 의심하는 뾰족한 방어 기제가 강하게 작동하고 있습니다. 거칠어 보이지만 현실적인 감각을 가진 사람만이 진정한 위기에서 살아남을 수 있다고 생각하는 편입니다.", 
+                    advice: "날카로운 직감과 현실 감각은 훌륭한 무기이지만, 지나친 불신은 결국 당신을 철저하게 고립시킬 수 있습니다. 모든 사람을 잠재적 적으로 돌려세우고 혼자만의 성벽을 쌓는 것은 장기적으로 더 큰 위험과 외로움을 초래합니다. 당신의 경계심을 조금 허물고, 주변에 최소한의 안전망과 진심을 나눌 수 있는 관계의 여지를 남겨두는 연습이 필요합니다." 
+                },
+                3: { 
+                    img: "person3.png", 
+                    name: "3번 검은 옷의 외지인", 
+                    interpretation: "당신은 집단에 쉽게 동화되지 않는 이질적인 존재에게 묘한 동질감을 느낍니다. 남들이 모르는 비밀을 공유하고 싶어 하거나, 상처받은 영혼들끼리 연대감을 느끼려는 심리적 방어 기제가 작용했습니다. 당신 내면에 자리 잡은 소외감이나 남들과 다르다는 은밀한 자의식이, 당신과 비슷한 분위기를 풍기는 미지의 대상에게 투영된 것입니다.", 
+                    advice: "나와 비슷하게 상처받은 듯한 사람이라고 해서, 무조건 내 편이거나 나를 이해해 줄 것이라는 착각을 경계해야 합니다. 때로는 나와 가장 닮은 그림자가 나를 가장 깊은 어둠으로 끌고 들어갈 수도 있습니다. 타인에게 나의 상처를 투영하는 것을 멈추고, 상대방의 진짜 목적이 무엇인지 객관적이고 차분한 거리를 유지하며 지켜보세요." 
+                },
+                4: { 
+                    img: "person4.png", 
+                    name: "4번 체크무늬 셔츠 여자", 
+                    interpretation: "당신은 평범하고 무해해 보이는 외형에 쉽게 경계를 푸는 성향을 가지고 있습니다. 일상적인 친절함과 소박한 미소에 강한 심리적 갈증을 느끼고 있으며, 복잡한 상황일수록 가장 익숙하고 편안해 보이는 것을 본능적으로 선택하려 합니다. 갈등을 피하고 평화를 유지하려는 당신의 따뜻한 본성이 무방비한 상태로 노출되어 있습니다.", 
+                    advice: "가장 평범한 얼굴이 상황에 따라서는 가장 기만적인 마스크가 될 수 있는 법입니다. 일상적인 친절함 뒤에 숨겨진 서늘한 진실을 보지 못하면 한순간에 모든 것을 잃을 수 있습니다. 무조건적인 호의를 경계하고, 상대방의 작은 행동 패턴이나 찰나의 표정 변화에 집중해 보세요. 때로는 적당한 의심이 당신의 선의를 지켜주는 방패가 됩니다." 
+                },
+                5: { 
+                    img: "person5.png", 
+                    name: "5번 안경 쓴 청년", 
+                    interpretation: "당신은 위기 속에서도 논리와 지성을 갖춘 전문가 집단을 맹신하는 경향이 있습니다. 감정의 동요보다는 머리로 상황을 분석하고 통제하려는 철저한 이성주의자입니다. 체계적이고 합리적인 해결책만이 정답이라고 믿으며, 감정적인 공감보다는 정보와 데이터를 기반으로 한 차가운 계산을 통해 안도감을 얻으려는 심리가 엿보입니다.", 
+                    advice: "지능적인 조력자는 상황이 당신에게 불리해지거나 계산이 맞지 않을 경우, 가장 먼저 당신을 체스판의 말처럼 버릴 수 있는 이해타산적인 인물일 수 있습니다. 세상의 모든 위기가 논리와 이성만으로 해결되는 것은 아닙니다. 완벽한 계산 뒤에 숨겨진 인간의 비합리적인 욕망과 변수를 읽어내는, 조금 더 유연하고 직관적인 시야가 필요합니다." 
+                },
+                6: { 
+                    img: "person6.png", 
+                    name: "6번 트레이닝복 남자", 
+                    interpretation: "당신은 예측 불가능하고 불안정한 요소 속에서 오히려 역설적인 돌파구를 찾으려는 도박사적 기질이 숨어있습니다. 평범하고 안전한 길보다는 폭발적인 에너지를 가진 변수를 선택함으로써 단숨에 판을 뒤집고자 하는 충동이 강합니다. 내면에 억눌린 답답함을 파괴적인 방식으로 해소하려는 무의식적인 갈망이 작용하고 있습니다.", 
+                    advice: "통제 불가능한 변수에 당신의 모든 운명과 안전을 걸지 마세요. 일확천금과 같은 기적을 바라며 불확실성에 몸을 던지는 것은 용기가 아니라 무모함입니다. 지금 당신에게 필요한 것은 판을 뒤엎는 스릴이 아니라, 철저하게 계산되고 발 밑이 단단하게 다져진 안전한 길입니다. 감각적인 충동을 억누르고 차분하게 현실을 직시해야 할 때입니다." 
+                }
             },
             'test2': {
-                1: { img: "house1.png", name: "불이 꺼진 낡은 오두막", interpretation: "당신은 겉보기에 초라하고 소외된 공간에서 오히려 심리적 방어막을 형성합니다. 직관적인 고요함을 신뢰하는 타입입니다.", advice: "때로는 고립을 선택하는 것이 더 큰 위험을 초래할 수 있습니다. 맹목적인 도피보다는 상황을 주시하세요." },
-                2: { img: "house2.png", name: "따뜻한 불빛의 양옥집", interpretation: "극한의 상황에서도 인간의 선의와 따뜻한 유대감을 갈망합니다. 타인에게 구조받기를 바라는 내면의 연약함이 투영되어 있습니다.", advice: "빛이 밝을수록 그림자도 짙은 법입니다. 섣부른 안도감은 치명적인 약점이 될 수 있음을 명심하세요." },
-                3: { img: "house3.png", name: "굳게 닫힌 철문의 저택", interpretation: "외부와 철저히 차단된 통제된 환경을 원합니다. 감정보다는 이성적 안전장치를 선호합니다.", advice: "완벽한 요새는 결국 나 자신을 가두는 감옥이 되기도 합니다. 그 문 안에 누가 있는지 판단하는 것이 먼저입니다." }
+                1: { 
+                    img: "house1.png", 
+                    name: "불이 꺼진 낡은 오두막", 
+                    interpretation: "당신은 겉보기에 초라하고 소외된 공간에서 오히려 강력한 심리적 방어막을 형성합니다. 화려함 뒤에 숨겨진 함정이나 타인의 시선을 극도로 피하며, 아무도 관심을 가지지 않을 법한 직관적인 고요함 속에서 안도감을 느끼는 타입입니다. 사람들과 엮이면서 생기는 피로감보다 완벽한 고립이 주는 쓸쓸한 안전을 훨씬 더 선호하고 있습니다.", 
+                    advice: "때로는 스스로 선택한 완벽한 고립이 당신을 구해주기는커녕 더 큰 위험과 단절을 초래할 수 있습니다. 아무도 찾지 않는 곳에 숨는다는 것은, 당신이 진짜 위기에 처했을 때 아무도 당신을 도울 수 없다는 것을 의미하기도 합니다. 맹목적인 도피와 은둔보다는 상황의 흐름을 주시하며 최소한의 소통 창구를 열어두는 용기가 필요합니다." 
+                },
+                2: { 
+                    img: "house2.png", 
+                    name: "따뜻한 불빛의 양옥집", 
+                    interpretation: "당신은 극한의 혼란스러운 상황 속에서도 인간 본연의 선의와 따뜻한 유대감을 강렬하게 갈망하고 있습니다. 누군가 나를 환대해 주고 위로해 줄 것이라는 희망을 버리지 못하며, 타인에게 조건 없이 구조받기를 바라는 내면의 깊은 연약함이 투영되어 있습니다. 본질적으로 외로움을 많이 타며, 관계를 통한 정서적 위안을 최우선으로 삼습니다.", 
+                    advice: "어둠 속에서 빛이 유난히 밝고 따뜻해 보일수록, 그 빛이 만들어내는 그림자 또한 가장 짙고 어두운 법입니다. 누군가가 무조건적으로 내어주는 따뜻함에 섣불리 안도감을 느끼는 것은 서바이벌 상황에서 가장 치명적인 약점이 될 수 있습니다. 타인의 호의를 기대하기 전에, 스스로 일어설 수 있는 자립심과 냉정함을 먼저 장착해야만 합니다." 
+                },
+                3: { 
+                    img: "house3.png", 
+                    name: "굳게 닫힌 철문을 가진 저택", 
+                    interpretation: "당신은 외부의 불확실성을 철저히 차단할 수 있는 완벽히 통제된 환경을 원합니다. 사람의 변하기 쉬운 감정보다는 시스템이 주는 물리적인 방어력과 견고함을 훨씬 더 맹신하는 편입니다. 어설픈 타협보다는 단절을 선택하더라도 나의 영역을 완벽하게 지키려는 강박적인 이성주의와 방어 기제가 마음 깊은 곳에 굳게 자리 잡고 있습니다.", 
+                    advice: "외부의 위험을 막기 위해 세운 완벽하고 높은 요새는, 결국 당신 자신을 세상과 단절시켜 스스로를 가두는 숨 막히는 감옥이 되기도 합니다. 그 견고한 철문 안에 도대체 무엇이 기다리고 있는지, 혹은 그 문이 당신의 숨통을 조이는 장치가 아닌지 다시 한번 판단해보세요. 완벽한 안전이라는 환상에서 벗어나 유연함을 가질 필요가 있습니다." 
+                }
             },
             'test3': {
-                1: { img: "tattoo1.png", name: "목덜미의 붉은 거미", interpretation: "당신은 자신을 옭아매는 파괴적인 관계나 위험한 유혹에 끌리는 억압된 욕망이 있습니다.", advice: "독을 품은 아름다움에 매료되지 마세요. 그 거미줄의 끝은 결국 당신을 향해 있습니다." },
-                2: { img: "tattoo2.png", name: "손목을 감싼 푸른 뱀", interpretation: "당신이 현재 주변 사람들의 진실성을 강하게 의심하고 있음을 보여줍니다. 배신에 대한 트라우마가 엿보입니다.", advice: "모든 친절을 독니로 의심할 필요는 없지만, 허물을 벗는 사람의 진짜 얼굴은 경계할 필요가 있습니다." },
-                3: { img: "tattoo3.png", name: "쇄골 아래 검은 장미", interpretation: "상실과 애도에 대한 깊은 집착을 의미합니다. 당신은 과거의 상처를 오히려 훈장처럼 간직하려 합니다.", advice: "시든 상처에 계속 물을 주지 마세요. 이제는 흉터를 남겨두고 앞으로 나아가야 할 때입니다." },
-                4: { img: "tattoo4.png", name: "발목의 부서진 자물쇠", interpretation: "강압적인 억압으로부터의 탈주를 열망하는 상태입니다. 자유를 위해 무모한 행동도 불사할 수 있는 충동성이 내재되어 있습니다.", advice: "자물쇠가 부서졌다고 해서 완전히 해방된 것은 아닙니다. 진정한 탈출은 감정적 동요 없이 이루어집니다." }
+                1: { 
+                    img: "tattoo1.png", 
+                    name: "목덜미의 붉은 거미", 
+                    interpretation: "당신은 자신을 서서히 옭아매는 파괴적인 관계나 치명적이고 위험한 유혹에 불가항력적으로 끌리는 억압된 욕망을 품고 있습니다. 평범하고 안전한 일상보다는, 파멸할지도 모른다는 것을 알면서도 아슬아슬한 긴장감과 매혹적인 자극을 무의식적으로 즐기고 갈망합니다. 붉은색이 주는 금지된 충동에 대한 은밀한 호기심이 드러나 있습니다.", 
+                    advice: "독을 품은 가시 돋친 아름다움에 더 이상 무모하게 매료되지 마세요. 당신을 유혹하는 그 화려한 거미줄은 결국 당신의 생기를 빨아먹고 파괴하기 위해 정교하게 짜여진 함정일 뿐입니다. 일시적인 자극이 주는 쾌락을 경계하고, 당신의 삶을 스스로 갉아먹는 유해한 관계나 습관으로부터 단호하게 뒤돌아서서 도망쳐야 할 때입니다." 
+                },
+                2: { 
+                    img: "tattoo2.png", 
+                    name: "손목을 감싼 푸른 뱀", 
+                    interpretation: "비밀과 기만을 상징하는 차가운 뱀은, 당신이 현재 주변 사람들의 진실성을 강하게 의심하며 스스로의 마음을 꽁꽁 얼려두고 있음을 보여줍니다. 과거에 겪었던 뼈아픈 배신이나 상처에 대한 깊은 트라우마가 엿보이며, 그 누구에게도 당신의 약점을 잡히거나 진심을 온전히 내어주지 않으려는 자기방어가 극에 달해 있는 상태입니다.", 
+                    advice: "모든 친절을 독니를 품은 기만으로 의심하며 살 필요는 없지만, 상황에 따라 자신의 허물을 거침없이 벗어던지며 얼굴을 바꾸는 사람의 진짜 속내는 철저하게 경계할 필요가 있습니다. 사람을 믿지 못하는 스스로를 탓하지 마세요. 다만 당신의 진심을 알아주는 단 한 사람에게만큼은 조금씩 마음의 문을 열어 독기를 빼내는 연습을 시작해 보세요." 
+                },
+                3: { 
+                    img: "tattoo3.png", 
+                    name: "쇄골 아래 검은 장미", 
+                    interpretation: "당신의 내면에는 상실과 지나간 슬픔에 대한 깊고 짙은 집착이 자리 잡고 있습니다. 과거에 받았던 뼈아픈 상처나 실패를 깨끗하게 지워내고 극복하기보다는, 오히려 그것을 비극적으로 아름답게 포장하여 훈장이나 정체성처럼 간직하려 합니다. 우울함이 주는 특유의 깊이 있는 안락함에 기대어 현실의 고통을 외면하려는 심리가 큽니다.", 
+                    advice: "이미 생명력을 잃고 시들어버린 검은 상처에 계속해서 눈물을 흘리며 물을 주려 하지 마세요. 과거의 슬픔을 미화하는 것은 당신이 앞으로 나아가는 발목을 잡는 가장 무거운 족쇄가 될 뿐입니다. 이제는 가슴에 남은 흉터가 그저 과거의 흔적일 뿐임을 덤덤하게 인정하고, 새롭게 피어날 당신의 밝은 미래를 위해 과감히 과거를 묻어두어야 합니다." 
+                },
+                4: { 
+                    img: "tattoo4.png", 
+                    name: "발목의 부서진 자물쇠", 
+                    interpretation: "당신은 현재 숨 막히는 현실의 억압과 강압적인 통제로부터 벗어나고자 하는 강력한 탈주의 열망으로 가득 차 있습니다. 자유를 얻기 위해서라면 기존의 규칙을 깨부수거나 무모하고 파괴적인 행동도 얼마든지 불사할 수 있는 날 선 충동성이 내재되어 있습니다. 오랫동안 억눌려 온 감정이 임계점에 다다라 폭발하기 직전의 불안정한 상태입니다.", 
+                    advice: "눈앞의 자물쇠가 부서졌다고 해서 당신이 온전하고 완벽하게 해방된 것은 결코 아닙니다. 감정적인 폭발과 충동에 휩쓸린 일탈은 또 다른 형태의 족쇄를 만들어 당신을 가둘 뿐입니다. 진정한 탈출과 자유는 무모한 파괴가 아니라, 감정적 동요 없이 차갑고 이성적인 계획을 통해 현실의 굴레를 조용히 끊어낼 때 비로소 완성될 수 있습니다." 
+                }
             }
         };
 
