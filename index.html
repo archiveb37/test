@@ -67,36 +67,48 @@
             padding: 60px 20px 80px; max-width: 600px; width: 100%; z-index: 10; position: relative;
         }
 
-        /* --- 순차적 등장 애니메이션 --- */
+        /* --- 깜빡임 방지 및 순차적 등장 애니메이션 개선 --- */
         .screen { display: none; width: 100%; }
         .screen.active { display: flex; flex-direction: column; align-items: center; }
         
-        .screen.active > * { opacity: 0; animation: staggerFadeUp 0.8s ease-out forwards; }
-        .screen.active > *:nth-child(1) { animation-delay: 0.1s; } 
-        .screen.active > *:nth-child(2) { animation-delay: 0.3s; } 
-        .screen.active > *:nth-child(3) { animation-delay: 0.5s; } 
-        .screen.active > *:nth-child(4) { animation-delay: 0.7s; } 
-        .screen.active > *:nth-child(5) { animation-delay: 0.9s; }
+        /* 요소들이 화면에 배치되기 전까지 완전히 숨겨둠 */
+        .screen > * { opacity: 0; }
         
+        /* active 클래스가 붙으면 순서대로 나타나도록 간격 재조정 */
+        .screen.active > * { animation: staggerFadeUp 0.8s ease-out forwards; }
+        .screen.active > *:nth-child(1) { animation-delay: 0.1s; } 
+        .screen.active > *:nth-child(2) { animation-delay: 0.25s; } 
+        .screen.active > *:nth-child(3) { animation-delay: 0.4s; } 
+        .screen.active > *:nth-child(4) { animation-delay: 0.55s; } 
+        .screen.active > *:nth-child(5) { animation-delay: 0.7s; }
+        .screen.active > *:nth-child(6) { animation-delay: 0.85s; }
+        
+        /* 배너 리스트 순차 등장 */
         .screen.active .banner-item { opacity: 0; animation: staggerFadeUp 0.8s ease-out forwards; }
-        .screen.active .banner-item:nth-child(1) { animation-delay: 0.5s; }
+        .screen.active .banner-item:nth-child(1) { animation-delay: 0.55s; }
         .screen.active .banner-item:nth-child(2) { animation-delay: 0.7s; }
-        .screen.active .banner-item:nth-child(3) { animation-delay: 0.9s; }
+        .screen.active .banner-item:nth-child(3) { animation-delay: 0.85s; }
 
         @keyframes staggerFadeUp {
             from { opacity: 0; transform: translateY(20px); filter: blur(5px); }
             to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
-        /* 공통 스타일 (로고 크기 확대) */
-        .logo-wrapper { margin-bottom: 40px; filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.3)); transition: transform 0.4s; }
+        /* 공통 스타일 */
+        .logo-wrapper { margin-bottom: 30px; filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.3)); transition: transform 0.4s; }
         .logo-wrapper:hover { transform: scale(1.05); }
         .logo-img { width: 220px; height: auto; display: block; margin: 0 auto; }
         .clickable-logo { cursor: pointer; }
         
-        .main-title { font-size: 1.7rem; font-weight: 500; color: #d4af37; margin-bottom: 12px; text-shadow: 0 0 25px rgba(212, 175, 55, 0.4); }
+        /* 첫 화면 타이틀 */
+        .main-title { font-size: 1.7rem; font-weight: 400; color: #e0e0e0; margin-bottom: 12px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .main-title .highlight { font-weight: 700; color: #d4af37; text-shadow: 0 0 25px rgba(212, 175, 55, 0.4); }
         .sub-title { font-size: 1.05rem; font-weight: 300; color: #888899; margin-bottom: 60px; line-height: 1.5; }
         
+        /* 다른 화면 서브 타이틀 (작고 방해되지 않게) */
+        .mini-title { font-size: 0.95rem; font-weight: 300; color: #777788; margin-top: -15px; margin-bottom: 35px; text-shadow: 0 1px 5px rgba(0,0,0,0.5); }
+        .mini-title .highlight { font-weight: 500; color: #a47e3b; }
+
         .btn-start { background: rgba(15, 15, 20, 0.6); color: #d4af37; font-size: 1.05rem; font-weight: 400; padding: 18px 50px; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 30px; cursor: pointer; box-shadow: 0 5px 25px rgba(0, 0, 0, 0.9), inset 0 0 15px rgba(212, 175, 55, 0.1); backdrop-filter: blur(5px); transition: all 0.4s ease; }
         .btn-start:hover { background: rgba(212, 175, 55, 0.15); box-shadow: 0 5px 30px rgba(212, 175, 55, 0.3); border-color: rgba(212, 175, 55, 0.8); }
 
@@ -113,30 +125,40 @@
         
         .group-image-container { position: relative; width: 100%; max-width: 500px; margin: 0 auto 40px; border-radius: 10px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.9); border: 1px solid rgba(212, 175, 55, 0.2); }
         .group-image { width: 100%; height: auto; display: block; opacity: 0.9; }
-        .number-label { position: absolute; width: 28px; height: 28px; background: rgba(212, 175, 55, 0.9); color: #000; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1rem; transform: translate(-50%, -50%); box-shadow: 0 5px 15px rgba(0,0,0,0.9); font-family: 'Times New Roman', serif; border: 1px solid #fff; letter-spacing: 0; backdrop-filter: blur(4px); }
+        
+        /* 이미지 위 숫자 디자인 전면 수정 (배경 없애고 글로우 효과) */
+        .number-label { 
+            position: absolute; 
+            color: #fff4d2; /* 아주 밝은 미색으로 가독성 확보 */
+            font-size: 1.8rem; /* 배경이 없어졌으므로 크기 키움 */
+            font-weight: 800; 
+            font-family: 'Times New Roman', serif; 
+            transform: translate(-50%, -50%); 
+            letter-spacing: 0;
+            -webkit-text-stroke: 1.5px #000; /* 선명한 검은색 테두리 */
+            /* 은은하게 퍼지는 황금빛 발광(Glow) 효과 */
+            text-shadow: 0 0 12px rgba(212, 175, 55, 1), 0 0 25px rgba(212, 175, 55, 0.8); 
+        }
 
         .number-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 40px; width: 100%; }
         .num-btn { width: 50px; height: 50px; flex-shrink: 0; border-radius: 50%; background: linear-gradient(145deg, #181820, #0a0a0d); border: 1px solid rgba(212, 175, 55, 0.3); color: #d4af37; font-size: 1.15rem; font-weight: 500; font-family: 'Times New Roman', serif; cursor: pointer; transition: all 0.3s; box-shadow: inset 0 2px 8px rgba(255,255,255,0.05), 0 8px 20px rgba(0,0,0,0.8); letter-spacing: 0; }
         .num-btn:hover, .num-btn.selected { background: linear-gradient(145deg, #d4af37, #966f1e); color: #0a0a0d; box-shadow: 0 0 25px rgba(212, 175, 55, 0.5); transform: scale(1.1); border-color: #fff; }
 
-        /* 결과창 가운데 정렬 수정 */
         .result-area { display: none; width: 100%; background: linear-gradient(180deg, rgba(15,15,20,0.95), rgba(5,5,10,0.98)); border-top: 1px solid rgba(212, 175, 55, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.4); padding: 50px 20px; margin-top: 10px; animation: staggerFadeUp 0.8s ease forwards; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9); }
         .result-area.active { display: block; }
         .character-img { width: 100%; max-width: 220px; height: auto; aspect-ratio: 3/4; object-fit: cover; margin: 0 auto 35px; display: block; background-color: #000; border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 15px 35px rgba(0,0,0,0.9); filter: grayscale(30%) contrast(115%); border-radius: 4px; }
         .char-name { font-size: 1.4rem; color: #dfba73; margin-bottom: 30px; text-align: center; font-weight: 500; }
         
-        .result-box { margin-bottom: 30px; text-align: center; } /* 텍스트 가운데 정렬 */
+        .result-box { margin-bottom: 30px; text-align: center; } 
         .result-label { font-weight: 600; color: #a47e3b; display: block; margin-bottom: 12px; font-size: 1.15rem; letter-spacing: 0; text-align: center; }
-        .result-desc { color: #b0b0c0; line-height: 1.8; font-size: 1.05rem; font-weight: 300; word-break: keep-all; text-align: center; } /* 설명글 가운데 정렬 */
+        .result-desc { color: #b0b0c0; line-height: 1.8; font-size: 1.05rem; font-weight: 300; word-break: keep-all; text-align: center; } 
 
-        /* '또 다른 심리 더보기' 버튼 스타일 */
         .btn-more { margin-top: 25px; background: rgba(15, 15, 20, 0.6); color: #d4af37; font-size: 1rem; font-weight: 400; padding: 16px 45px; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 30px; cursor: pointer; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7); transition: all 0.3s ease; width: 100%; max-width: 280px; display: inline-block; }
         .btn-more:hover { background: rgba(212, 175, 55, 0.15); box-shadow: 0 5px 25px rgba(212, 175, 55, 0.3); border-color: rgba(212, 175, 55, 0.8); transform: translateY(-2px); }
     </style>
 </head>
 <body>
 
-    <!-- 고정된 배경 효과 -->
     <div class="particles"></div>
     <div class="fog-layer"></div>
 
@@ -146,7 +168,7 @@
             <div class="logo-wrapper">
                 <img src="logo.png" alt="b37 Logo" class="logo-img">
             </div>
-            <h1 class="main-title">당신의 마음 가장 깊은 곳, 지하 37층</h1>
+            <h1 class="main-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></h1>
             <p class="sub-title">어둠 속에서 마주하는 진정한 자아</p>
             <button class="btn-start" onclick="showScreen('list-screen')">내 심리 확인하기</button>
         </div>
@@ -156,6 +178,9 @@
             <div class="logo-wrapper clickable-logo" onclick="showScreen('intro-screen')" title="메인으로 돌아가기">
                 <img src="logo.png" alt="b37 Logo" class="logo-img">
             </div>
+            <!-- 작은 서브 타이틀 추가 -->
+            <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
+            
             <p class="sub-title" style="margin-bottom: 30px; color:#d4af37; opacity: 0.8;">탐구할 에피소드를 선택하세요</p>
             
             <div class="banner-list">
@@ -179,6 +204,9 @@
             <div class="logo-wrapper clickable-logo" onclick="showScreen('list-screen')" title="목록으로 돌아가기">
                 <img src="logo.png" alt="b37 Logo" class="logo-img">
             </div>
+            <!-- 작은 서브 타이틀 추가 -->
+            <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
+            
             <p class="story-text">납치범을 피해 가까스로 내려온 낯선 마을.<br><br>도와달라는 나의 외침에 마을 사람들이 하나 둘 나타난다.<br>한 명을 제외한 이들 모두 납치범과 가까운 관계라는 예감이 든다.<br><br><strong>오직 내가 믿을 수 있는 단 한 사람은?</strong></p>
             <div class="group-image-container">
                 <img src="group.png" alt="마을 사람들" class="group-image">
@@ -211,6 +239,9 @@
             <div class="logo-wrapper clickable-logo" onclick="showScreen('list-screen')" title="목록으로 돌아가기">
                 <img src="logo.png" alt="b37 Logo" class="logo-img">
             </div>
+            <!-- 작은 서브 타이틀 추가 -->
+            <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
+            
             <p class="story-text">끝없는 추격전, 발이 푹푹 빠지는 진흙탕을 지나<br>드디어 인적이 드문 외딴 숲속 공터에 도착했다.<br><br>당신의 눈앞에는 전혀 다른 형태의 세 채의 집이 있다.<br>당장 숨어들어가 <strong>도움을 요청할 집은 어디인가?</strong></p>
             <div class="group-image-container">
                 <img src="house_group.png" alt="세 채의 집" class="group-image">
@@ -237,6 +268,9 @@
             <div class="logo-wrapper clickable-logo" onclick="showScreen('list-screen')" title="목록으로 돌아가기">
                 <img src="logo.png" alt="b37 Logo" class="logo-img">
             </div>
+            <!-- 작은 서브 타이틀 추가 -->
+            <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
+            
             <p class="story-text">결정적 단서를 쥐고 있는 기묘한 분위기의 여성.<br>그녀는 당신에게 위험한 거래를 제안한다.<br><br>대화를 나누던 중, <strong>그녀의 몸에 새겨진 문신 중<br>당신의 눈길을 가장 먼저 끈 것은?</strong></p>
             <div class="group-image-container">
                 <img src="tattoo_group.png" alt="여성의 문신들" class="group-image">
