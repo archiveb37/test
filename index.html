@@ -54,7 +54,7 @@
         .story-text strong { color: #d4af37; font-weight: 500; text-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
         .group-image-container { position: relative; width: 100%; max-width: 500px; margin: 0 auto 40px; border-radius: 10px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.9); border: 1px solid rgba(212, 175, 55, 0.2); }
         .group-image { width: 100%; height: auto; display: block; opacity: 0.9; }
-        .number-label { position: absolute; color: #ffffff; font-size: 1.8rem; font-weight: 800; font-family: "Wanted Sans Variable", "Wanted Sans", sans-serif; transform: translate(-50%, -50%); letter-spacing: 0; -webkit-text-stroke: 1px rgba(0, 0, 0, 0.6); text-shadow: 0 0 10px rgba(0,0,0,1), 0 0 20px rgba(0,0,0,0.9), 0 5px 15px rgba(0,0,0,0.8); }
+        
         .number-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 40px; width: 100%; }
         
         /* 숫자 버튼 - 글래스모피즘 적용 */
@@ -63,10 +63,10 @@
             height: 55px; 
             flex-shrink: 0; 
             border-radius: 50%; 
-            background: rgba(15, 15, 20, 0.35); /* 반투명 유리 */
+            background: rgba(15, 15, 20, 0.35); 
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1); /* 미세한 반사광 테두리 */
+            border: 1px solid rgba(255, 255, 255, 0.1); 
             color: #d4af37; 
             font-size: 1.25rem; 
             font-weight: 400; 
@@ -141,7 +141,7 @@
         }
         .input-wrapper input:focus { 
             border-bottom: 1px solid #d4af37; 
-            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.15); /* 부드러운 골드 빛 반사 */
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.15); 
         }
         .input-wrapper input::placeholder { color: rgba(255, 255, 255, 0.25); font-weight: 300; font-size: 1.05rem; }
 
@@ -163,6 +163,9 @@
         .share-card-desc { color: #cfcfd8; font-size: 0.9rem; line-height: 1.6; word-break: keep-all; font-weight: 300; display: block; }
         .share-card-desc strong { color: #dfba73; font-weight: 600; }
         .share-card-logo { width: 90px; margin: 15px auto 0; filter: drop-shadow(0 0 10px rgba(212,175,55,0.3)); display: block; }
+        
+        /* 공유 캡처 카드 하단 문구 스타일 추가 */
+        .share-card-footer-text { font-size: 0.8rem; margin-top: 10px; text-align: center; font-weight: 300; letter-spacing: -0.05em; }
         
         /* 캡처 결과 모달 전용 하단 아이콘 버튼 */
         .action-buttons { display: flex; justify-content: center; gap: 35px; margin-top: 30px; width: 100%; }
@@ -209,9 +212,8 @@
             <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
             <p class="story-text">납치범을 피해 가까스로 내려온 낯선 마을.<br><br>도와달라는 나의 외침에 마을 사람들이 하나 둘 나타난다.<br>한 명을 제외한 이들 모두 납치범과 가까운 관계라는 예감이 든다.<br><br><strong>오직 내가 믿을 수 있는 단 한 사람은?</strong></p>
             <div class="group-image-container">
-                <img src="group.png" alt="마 마을 사람들" class="group-image">
-                <div class="number-label" style="top: 60%; left: 16%;">1</div><div class="number-label" style="top: 55%; left: 28%;">2</div><div class="number-label" style="top: 65%; left: 48%;">3</div>
-                <div class="number-label" style="top: 60%; left: 63%;">4</div><div class="number-label" style="top: 55%; left: 81%;">5</div><div class="number-label" style="top: 88%; left: 45%;">6</div>
+                <img src="group.png" alt="마을 사람들" class="group-image">
+                <!-- 이미지 위 숫자 라벨 모두 제거됨 -->
             </div>
             <div class="number-grid">
                 <button class="num-btn test1-btn" onclick="showResult('test1', 1, this)">1</button><button class="num-btn test1-btn" onclick="showResult('test1', 2, this)">2</button><button class="num-btn test1-btn" onclick="showResult('test1', 3, this)">3</button>
@@ -240,7 +242,7 @@
             <p class="story-text">끝없는 추격전, 발이 푹푹 빠지는 진흙탕을 지나<br>드디어 인적이 드문 외딴 숲속 공터에 도착했다.<br><br>당신의 눈앞에는 전혀 다른 형태의 세 채의 집이 있다.<br>당장 숨어들어가 <strong>도움을 요청할 집은 어디인가?</strong></p>
             <div class="group-image-container">
                 <img src="house_group.png" alt="세 채의 집" class="group-image">
-                <div class="number-label" style="top: 85%; left: 16%;">1</div><div class="number-label" style="top: 85%; left: 50%;">2</div><div class="number-label" style="top: 85%; left: 84%;">3</div>
+                <!-- 이미지 위 숫자 라벨 모두 제거됨 -->
             </div>
             <div class="number-grid">
                 <button class="num-btn test2-btn" onclick="showResult('test2', 1, this)">1</button><button class="num-btn test2-btn" onclick="showResult('test2', 2, this)">2</button><button class="num-btn test2-btn" onclick="showResult('test2', 3, this)">3</button>
@@ -268,7 +270,7 @@
             <p class="story-text">결정적 단서를 쥐고 있는 기묘한 분위기의 여성.<br>그녀는 당신에게 위험한 거래를 제안한다.<br><br>대화를 나누던 중, <strong>그녀의 몸에 새겨진 문신 중<br>당신의 눈길을 가장 먼저 끈 것은?</strong></p>
             <div class="group-image-container">
                 <img src="tattoo_group.png" alt="여성의 문신들" class="group-image">
-                <div class="number-label" style="top: 15%; left: 25%;">1</div><div class="number-label" style="top: 35%; left: 75%;">2</div><div class="number-label" style="top: 65%; left: 35%;">3</div><div class="number-label" style="top: 85%; left: 65%;">4</div>
+                <!-- 이미지 위 숫자 라벨 모두 제거됨 -->
             </div>
             <div class="number-grid">
                 <button class="num-btn test3-btn" onclick="showResult('test3', 1, this)">1</button><button class="num-btn test3-btn" onclick="showResult('test3', 2, this)">2</button><button class="num-btn test3-btn" onclick="showResult('test3', 3, this)">3</button><button class="num-btn test3-btn" onclick="showResult('test3', 4, this)">4</button>
@@ -307,12 +309,11 @@
         </div>
     </div>
 
-    <!-- 공유 결과 카드 모달 (여기도 글래스모피즘 박스 적용) -->
+    <!-- 공유 결과 카드 모달 -->
     <div id="share-modal" class="modal-overlay">
         <div class="modal-box" style="padding: 25px 20px;">
             <div id="capture-area" class="share-card">
                 <img id="share-img" src="" alt="선택한 결과" class="share-card-img">
-                <!-- 색상이 구분된 제목 구조 -->
                 <h2 id="share-title" class="share-card-title"></h2>
                 
                 <div class="share-card-section">
@@ -325,9 +326,13 @@
                 </div>
                 
                 <img src="logo.png" alt="b37 Logo" class="share-card-logo">
+                <!-- 새롭게 추가된 하단 문구 -->
+                <p class="share-card-footer-text">
+                    <span style="color: #ffffff;">당신의 마음 가장 깊은 곳, </span>
+                    <span style="color: #d4af37; font-weight: 500;">지하 37층</span>
+                </p>
             </div>
             
-            <!-- 아이콘으로 대체된 저장, 공유, 닫기 버튼 -->
             <div class="action-buttons">
                 <!-- 저장 아이콘 (노란색) -->
                 <button class="action-icon-btn action-save-btn" onclick="saveAsImage()" title="저장">
@@ -406,7 +411,7 @@
                 1: { 
                     img: "house1.png", name: "불이 꺼진 낡은 오두막", 
                     interpretation: "당신은 겉보기에 초라하고 소외된 공간에서 오히려 강력한 심리적 방어막을 형성합니다. 화려함 뒤에 숨겨진 함정이나 타인의 날카로운 시선을 극도로 피하며, 아무도 관심을 가지지 않을 법한 직관적인 고요함 속에서 안도감을 느끼는 타입입니다.<br><br>이는 <strong>사람들과 엮이면서 생기는 감정적 피로감과 상처에 대한 깊은 두려움</strong>을 의미합니다. 복잡한 갈등에 휘말리느니 차라리 완벽한 고립이 주는 쓸쓸한 안전을 훨씬 더 선호하고 있으며, 세상으로부터 숨어버리고 싶은 무의식이 강하게 작동하고 있습니다.", 
-                    advice: "때로는 스스로 선택한 완벽한 고립이 당신을 구해주기는커녕 더 큰 위험과 영원한 단절을 초래할 수 있습니다. 아무도 찾지 않는 곳에 철저히 숨는다는 것은, 당신이 <strong>진짜 위기에 처했을 때 그 누구도 당신의 비명을 듣고 도울 수 없다는 것</strong>을 의미하기도 합니다.<br><br>맹목적인 도피와 은둔은 결코 근본적인 해결책이 될 수 없습니다. 무작정 문을 걸어 잠그기보다는 상황의 흐름을 주시하며, 세상과 연결될 수 있는 최소한의 소통 창구를 열어두는 용기가 반드시 필요합니다.",
+                    advice: "때로는 스스로 선택한 완벽한 고립이 당신을 구해주기는커녕 더 큰 위험과 영원한 단절을 초래할 수 있습니다. 아무도 찾지 않는 곳에 철저히 숨는다는 것은, 당신이 <strong>진짜 위기에 처했을 때 그 누구도 당신의 비명을 듣고 도울 수 없다는 것</strong>을 의미하기도 합니다.<br><br>맹목적인 도피와 은둔은 결코 근본적인 해결책이 될 수 কাশী 없습니다. 무작정 문을 걸어 잠그기보다는 상황의 흐름을 주시하며, 세상과 연결될 수 있는 최소한의 소통 창구를 열어두는 용기가 반드시 필요합니다.",
                     shareInterp: "타인과 엮이며 생기는 상처와 감정적 피로감을 극도로 피하며, 화려함보다는 철저한 단절과 소외된 고립 속에서 오히려 강박적인 안도감을 느낍니다.",
                     shareAdvice: "완벽한 고립은 진짜 위기가 닥쳤을 때 나를 구해줄 유일한 빛조차 차단해 버립니다. 두렵더라도 세상과 연결될 수 있는 최소한의 소통 창구는 열어두세요."
                 },
@@ -501,7 +506,6 @@
             
             document.getElementById('share-img').src = data.img;
             
-            // 제목 텍스트 색상 분리 적용 (노란색/흰색 조합)
             document.getElementById('share-title').innerHTML = `<span style="color:#dfba73;">${data.name}</span> <span style="color:#ffffff;">을(를) 선택하신</span><br><span style="color:#dfba73;">${userName}님</span> <span style="color:#ffffff;">의 심리 분석입니다.</span>`;
             
             document.getElementById('share-interp').innerText = data.shareInterp;
