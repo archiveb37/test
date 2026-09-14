@@ -99,6 +99,7 @@
         .check-btn:hover { filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5)); }
         .close-btn:hover { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)); }
         
+        /* 공유용 캡처 카드 스타일 재정비 */
         .share-card { background: #0a0a0f; padding: 30px 20px 25px; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.5); width: 100%; text-align: center; position: relative; overflow: hidden; }
         
         .share-glitter { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; background-image: radial-gradient(circle at 15% 20%, rgba(212,175,55,0.4) 1px, transparent 1px), radial-gradient(circle at 85% 10%, rgba(212,175,55,0.6) 1.5px, transparent 1.5px), radial-gradient(circle at 50% 80%, rgba(212,175,55,0.5) 1px, transparent 1px), radial-gradient(circle at 20% 70%, rgba(255,255,255,0.5) 1px, transparent 1px), radial-gradient(circle at 75% 60%, rgba(212,175,55,0.8) 2px, transparent 2px), radial-gradient(circle at 10% 40%, rgba(212,175,55,0.3) 1px, transparent 1px), radial-gradient(circle at 90% 85%, rgba(255,255,255,0.6) 1.5px, transparent 1.5px), radial-gradient(circle at 40% 30%, rgba(212,175,55,0.7) 1px, transparent 1px); }
@@ -150,9 +151,8 @@
             <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
             <p class="sub-title" style="margin-bottom: 30px; color:#d4af37; opacity: 0.8;">탐구할 에피소드를 선택하세요</p>
             <div class="banner-list">
-                <div class="banner-item" onclick="showScreen('test1-screen')"><h3 class="banner-title">EP 01. 낯선 마을 주민들</h3><p class="banner-desc">오직 내가 믿을 수 있는 단 한 사람은?</p></div>
-                <div class="banner-item" onclick="showScreen('test2-screen')"><h3 class="banner-title">EP 02. 도움을 요청할 집</h3><p class="banner-desc">어둠 속에서 발견한 세 채의 집, 당신의 선택은?</p></div>
-                <div class="banner-item" onclick="showScreen('test3-screen')"><h3 class="banner-title">EP 03. 기묘한 여성의 문신</h3><p class="banner-desc">비밀을 품고 있는 그녀, 가장 먼저 눈에 띈 표식은?</p></div>
+                <!-- 📌 새로운 에피소드를 추가할 때는 항상 이 줄 바로 아래에 코드를 넣으시면 최상단에 배치됩니다. -->
+                <div class="banner-item" onclick="showScreen('test1-screen')"><h3 class="banner-title">낯선 마을 주민들</h3><p class="banner-desc">오직 내가 믿을 수 있는 단 한 사람은?</p></div>
             </div>
         </div>
 
@@ -184,59 +184,6 @@
             </div>
         </div>
 
-        <!-- 3-2. 테스트 2 -->
-        <div id="test2-screen" class="screen test-screen">
-            <div class="logo-wrapper"><img src="logo.png" alt="b37 Logo" class="logo-img"></div>
-            <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
-            <p class="story-text">끝없는 추격전, 발이 푹푹 빠지는 진흙탕을 지나<br>드디어 인적이 드문 외딴 숲속 공터에 도착했다.<br><br>당신의 눈앞에는 전혀 다른 형태의 세 채의 집이 있다.<br>당장 숨어들어가 <strong>도움을 요청할 집은 어디인가?</strong></p>
-            <div class="group-image-container">
-                <img src="house_group.png" alt="세 채의 집" class="group-image">
-            </div>
-            <div class="number-grid">
-                <button class="num-btn test2-btn" onclick="showResult('test2', 1, this)">1</button><button class="num-btn test2-btn" onclick="showResult('test2', 2, this)">2</button><button class="num-btn test2-btn" onclick="showResult('test2', 3, this)">3</button>
-            </div>
-            <div id="test2-result-area" class="result-area">
-                <img id="test2-res-img" src="" alt="결과 이미지" class="character-img">
-                <h2 id="test2-res-name" class="char-name"></h2>
-                <div class="result-box"><span class="result-label">해석</span><p id="test2-res-interpretation" class="result-desc"></p></div>
-                <div class="result-box"><span class="result-label">조언</span><p id="test2-res-advice" class="result-desc"></p></div>
-                <button class="btn-share" onclick="openNameModal()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-                    내 심리 공유하기
-                </button>
-                <button class="btn-more" onclick="window.open('https://instagram.com/여기에_아이디_입력', '_blank')">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                    지하 37층
-                </button>
-            </div>
-        </div>
-
-        <!-- 3-3. 테스트 3 -->
-        <div id="test3-screen" class="screen test-screen">
-            <div class="logo-wrapper"><img src="logo.png" alt="b37 Logo" class="logo-img"></div>
-            <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
-            <p class="story-text">결정적 단서를 쥐고 있는 기묘한 분위기의 여성.<br>그녀는 당신에게 위험한 거래를 제안한다.<br><br>대화를 나누던 중, <strong>그녀의 몸에 새겨진 문신 중<br>당신의 눈길을 가장 먼저 끈 것은?</strong></p>
-            <div class="group-image-container">
-                <img src="tattoo_group.png" alt="여성의 문신들" class="group-image">
-            </div>
-            <div class="number-grid">
-                <button class="num-btn test3-btn" onclick="showResult('test3', 1, this)">1</button><button class="num-btn test3-btn" onclick="showResult('test3', 2, this)">2</button><button class="num-btn test3-btn" onclick="showResult('test3', 3, this)">3</button><button class="num-btn test3-btn" onclick="showResult('test3', 4, this)">4</button>
-            </div>
-            <div id="test3-result-area" class="result-area">
-                <img id="test3-res-img" src="" alt="결과 이미지" class="character-img">
-                <h2 id="test3-res-name" class="char-name"></h2>
-                <div class="result-box"><span class="result-label">해석</span><p id="test3-res-interpretation" class="result-desc"></p></div>
-                <div class="result-box"><span class="result-label">조언</span><p id="test3-res-advice" class="result-desc"></p></div>
-                <button class="btn-share" onclick="openNameModal()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-                    내 심리 공유하기
-                </button>
-                <button class="btn-more" onclick="window.open('https://instagram.com/여기에_아이디_입력', '_blank')">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                    지하 37층
-                </button>
-            </div>
-        </div>
     </div>
 
     <!-- 글래스모피즘 이름 입력 모달 -->
@@ -358,59 +305,6 @@
                     advice: "통제 불가능한 변수에 당신의 모든 운명과 안전을 걸어버리는 도박을 멈추세요. 일확천금과 같은 기적을 바라며 불확실성에 몸을 던지는 것은 용기가 아니라 무책임한 무모함입니다.<br><br><strong>당신에게 지금 당장 필요한 것은 판을 뒤엎는 자극적인 스릴이 아닙니다.</strong> 철저하게 계산되고 발 밑이 단단하게 다져진 안전한 현실의 길입니다. 감각적인 충동을 억누르고 차분하게 다가오는 현실의 무게를 직시해야 정답을 찾을 수 있습니다.",
                     shareInterp: "내면에 억눌린 지루함과 답답함을 해소하기 위해, 파멸의 위험을 알면서도 판을 뒤집을 수 있는 <strong>폭발적인 자극과 예측 불가능성</strong>을 갈망합니다.",
                     shareAdvice: "기적을 바라며 불확실성에 운명을 거는 무모한 도박을 멈추세요. 끓어오르는 충동을 억누르고 <strong>묵묵하고 단단하게 현실의 무게</strong>를 견뎌내야 할 때입니다."
-                }
-            },
-            'test2': {
-                1: { 
-                    img: "house1.png", name: "불이 꺼진 낡은 오두막", 
-                    interpretation: "당신은 겉보기에 초라하고 소외된 공간에서 오히려 강력한 심리적 방어막을 형성합니다. 화려함 뒤에 숨겨진 함정이나 타인의 날카로운 시선을 극도로 피하며, 아무도 관심을 가지지 않을 법한 직관적인 고요함 속에서 안도감을 느끼는 타입입니다.<br><br>이는 <strong>사람들과 엮이면서 생기는 감정적 피로감과 상처에 대한 깊은 두려움</strong>을 의미합니다. 복잡한 갈등에 휘말리느니 차라리 완벽한 고립이 주는 쓸쓸한 안전을 훨씬 더 선호하고 있으며, 세상으로부터 숨어버리고 싶은 무의식이 강하게 작동하고 있습니다.", 
-                    advice: "때로는 스스로 선택한 완벽한 고립이 당신을 구해주기는커녕 더 큰 위험과 영원한 단절을 초래할 수 있습니다. 아무도 찾지 않는 곳에 철저히 숨는다는 것은, 당신이 <strong>진짜 위기에 처했을 때 그 누구도 당신의 비명을 듣고 도울 수 없다는 것</strong>을 의미하기도 합니다.<br><br>맹목적인 도피와 은둔은 결코 근본적인 해결책이 될 수 없습니다. 무작정 문을 걸어 잠그기보다는 상황의 흐름을 주시하며, 세상과 연결될 수 있는 최소한의 소통 창구를 열어두는 용기가 반드시 필요합니다.",
-                    shareInterp: "타인과 엮이며 생기는 상처와 피로감을 극도로 피하며, 화려함보다는 <strong>철저한 단절과 소외된 고립</strong> 속에서 오히려 <strong>강박적인 안도감</strong>을 느낍니다.",
-                    shareAdvice: "완벽한 고립은 진짜 위기가 닥쳤을 때 <strong>나를 구해줄 유일한 빛조차 차단</strong>해 버립니다. 두렵더라도 세상과 연결될 수 있는 <strong>최소한의 소통 창구</strong>는 열어두세요."
-                },
-                2: { 
-                    img: "house2.png", name: "따뜻한 불빛의 양옥집", 
-                    interpretation: "당신은 극한의 혼란스러운 상황 속에서도 인간 본연의 선의와 따뜻한 유대감을 강렬하게 갈망하고 있습니다. 누군가 나를 환대해 주고 위로해 줄 것이라는 희망을 끝까지 버리지 못하며, 타인에게 조건 없이 구조받기를 바라는 내면의 깊은 연약함이 투영되어 있습니다.<br><br>본질적으로 외로움을 많이 타며, <strong>이성적인 생존보다는 관계를 통한 정서적 위안을 최우선으로 삼는 성향</strong>입니다. 자신이 베푼 선의가 타인에게서도 똑같이 돌아올 것이라는 순진한 믿음을 품고 있습니다.", 
-                    advice: "어둠 속에서 빛이 유난히 밝고 따뜻해 보일수록, 그 빛이 만들어내는 이면의 그림자 또한 가장 짙고 어두운 법입니다. 누군가가 무조건적으로 내어주는 따뜻함에 섣불리 안도감을 느끼는 것은 <strong>서바이벌 상황에서 가장 치명적이고 돌이킬 수 없는 약점</strong>이 될 수 있습니다.<br><br>모든 문 뒤에 구원자가 서 있을 것이라는 막연한 기대를 버리세요. 타인의 호의를 무작정 기대하기 전에, 홀로 어둠을 헤쳐나갈 수 있는 자립심과 서늘한 냉정함을 먼저 장착해야만 합니다.",
-                    shareInterp: "혼란 속에서도 누군가 나를 조건 없이 안아줄 것이라는 희망을 품고 있으며, 이성적인 판단보다는 <strong>따뜻한 유대감과 정서적 위안</strong>을 최우선으로 갈망합니다.",
-                    shareAdvice: "어둠 속 무조건적인 환대 뒤에는 치명적인 함정이 숨어있기 마련입니다. 남의 호의에 온전히 기대려 하기보다 <strong>나를 스스로 지킬 냉정함</strong>을 먼저 장착하세요."
-                },
-                3: { 
-                    img: "house3.png", name: "굳게 닫힌 철문을 가진 저택", 
-                    interpretation: "당신은 외부의 불확실성을 철저히 차단할 수 있는 완벽히 통제된 환경을 원합니다. 사람의 변하기 쉬운 얄팍한 감정보다는, 시스템이 주는 물리적인 방어력과 구조적인 견고함을 훨씬 더 맹신하는 편입니다.<br><br>어설픈 타협을 하느니 완벽한 단절을 선택하더라도 나의 영역을 지키려는 <strong>강박적인 이성주의와 방어 기제가 마음 깊은 곳에 굳게 자리 잡고 있습니다.</strong> 당신은 스스로 세운 규율 안에서만 안전함을 느끼며, 예측 범위를 벗어나는 모든 변수를 병적으로 통제하려 합니다.", 
-                    advice: "외부의 위험을 막기 위해 겹겹이 세운 완벽하고 높은 철문은, 결국 당신 자신을 세상과 단절시켜 <strong>스스로를 질식하게 만드는 숨 막히는 감옥</strong>이 되기도 합니다.<br><br>그 견고한 철문 안에 도대체 무엇이 도사리고 있는지, 혹은 그 문이 당신의 숨통을 조이는 장치가 아닌지 다시 한번 냉정하게 판단해보세요. 세상에 완벽한 안전이라는 것은 존재하지 않는 환상임을 깨닫고, 통제 밖의 변수를 수용하는 유연함을 길러야 합니다.",
-                    shareInterp: "불확실한 변수를 극도로 통제하고자 하며, 얄팍한 사람의 마음보다는 <strong>시스템의 물리적 방어력과 견고함</strong>을 맹신하는 <strong>강박적 이성주의</strong>를 보입니다.",
-                    shareAdvice: "위험을 막으려 세운 완벽한 철문이 오히려 <strong>나를 세상과 영원히 단절시키는 감옥</strong>이 될 수 있습니다. 통제할 수 없는 변수를 수용하는 <strong>유연함</strong>이 필요합니다."
-                }
-            },
-            'test3': {
-                1: { 
-                    img: "tattoo1.png", name: "목덜미의 붉은 거미", 
-                    interpretation: "당신은 자신을 서서히 옭아매는 파괴적인 관계나 치명적이고 위험한 유혹에 불가항력적으로 끌리는 억압된 욕망을 품고 있습니다. 평범하고 안전한 일상보다는, 파멸할지도 모른다는 것을 알면서도 아슬아슬한 긴장감과 매혹적인 자극을 무의식적으로 즐기고 갈망합니다.<br><br>이는 평온함 속에 감춰진 깊은 권태로움의 반증이기도 합니다. <strong>당신은 스스로를 위험에 빠뜨림으로써 살아있다는 생생한 감각을 확인</strong>하려는 위험한 충동성을 내면에 조용히 숨기고 있습니다.", 
-                    advice: "독을 품은 가시 돋친 아름다움에 더 이상 무모하게 매료되지 마세요. 당신을 강렬하게 유혹하는 그 화려한 거미줄은, <strong>결국 당신의 생기를 천천히 빨아먹고 파괴하기 위해 정교하게 짜여진 죽음의 함정</strong>일 뿐입니다.<br><br>일시적인 자극이 주는 찰나의 쾌락을 맹렬히 경계하고, 당신의 삶을 스스로 갉아먹는 유해한 관계나 파괴적인 습관으로부터 단호하게 뒤돌아서서 도망쳐야 할 때입니다.",
-                    shareInterp: "평온한 일상에 깊은 권태를 느끼며, 파멸할 것을 알면서도 아슬아슬한 긴장감과 치명적인 자극에 이끌리는 <strong>파괴적인 욕망</strong>을 품고 있습니다.",
-                    shareAdvice: "독을 품은 가시 돋친 아름다움에 속지 마세요. 당신의 삶을 갉아먹고 파괴하는 <strong>유해한 관계와 습관으로부터 단호하게 뒤돌아서 도망</strong>쳐야 합니다."
-                },
-                2: { 
-                    img: "tattoo2.png", name: "손목을 감싼 푸른 뱀", 
-                    interpretation: "비밀과 기만을 상징하는 차가운 뱀은, 당신이 현재 주변 사람들의 진실성을 극도로 의심하며 스스로의 마음을 꽁꽁 얼려두고 있음을 보여줍니다. 과거에 겪었던 뼈아픈 배신이나 상처에 대한 깊고 지독한 트라우마가 엿보입니다.<br><br>그 누구에게도 당신의 약점을 잡히거나 진심을 온전히 내어주지 않으려는 <strong>지독한 자기방어와 불신이 당신의 신경을 곤두서게 만들고 있습니다.</strong> 누군가 다가올 때마다 숨겨진 칼날을 먼저 찾느라 늘 피로한 상태입니다.", 
-                    advice: "모든 친절을 독니를 품은 기만으로 의심하며 살 필요는 없지만, 상황에 따라 자신의 허물을 거침없이 벗어던지며 웃는 얼굴을 바꾸는 사람의 진짜 속내는 철저하게 경계해야 마땅합니다.<br><br>하지만 <strong>사람을 믿지 못하고 밤을 지새우는 스스로를 너무 자책하지는 마세요.</strong> 다만 뱀의 독을 해독해 줄 단 한 사람, 당신의 진심을 알아주는 귀한 인연에게만큼은 아주 천천히 마음의 문을 열어 독기를 빼내는 연습을 시작해 보세요.",
-                    shareInterp: "과거의 뼈아픈 배신으로 인해 <strong>타인의 진실성을 극도로 의심</strong>하며, 누구에게도 진심을 내어주지 않으려는 <strong>차갑고 날 선 자기방어</strong>를 굳히고 있습니다.",
-                    shareAdvice: "모든 친절을 기만으로 의심하며 스스로를 괴롭히지 마세요. 당신의 진심을 알아주는 인연에게만큼은 <strong>천천히 마음의 문을 열고 독기를 빼내야</strong> 합니다."
-                },
-                3: { 
-                    img: "tattoo3.png", name: "쇄골 아래 검은 장미", 
-                    interpretation: "당신의 내면에는 상실과 지나간 슬픔에 대한 깊고 짙은 집착이 똬리를 틀고 있습니다. 과거에 받았던 뼈아픈 상처나 실패를 깨끗하게 지워내고 극복하기보다는, 오히려 그것을 비극적으로 아름답게 포장하여 훈장이나 정체성처럼 간직하려 합니다.<br><br>당신은 <strong>우울함이 주는 특유의 깊이 있는 안락함에 기대어, 앞으로 나아가야 할 현실의 고통과 책임을 무의식적으로 외면</strong>하려는 심리가 큽니다. 슬픔을 음미하는 단계에 멈춰서 있습니다.", 
-                    advice: "이미 생명력을 잃고 까맣게 시들어버린 상처에, 계속해서 미련의 눈물을 흘리며 억지로 물을 주려 하지 마세요. <strong>과거의 슬픔을 미화하고 끌어안는 것은 당신이 앞으로 나아가는 발목을 꺾어버리는 가장 무거운 족쇄</strong>가 될 뿐입니다.<br><br>이제는 가슴에 남은 흉터가 그저 지나간 과거의 흔적일 뿐임을 덤덤하게 인정하십시오. 새롭게 피어날 당신의 밝은 미래를 위해, 과감히 과거의 무덤을 덮고 돌아서야 합니다.",
-                    shareInterp: "과거의 뼈아픈 상처를 훈장처럼 끌어안고, 우울함이 주는 특유의 안락함에 기대어 <strong>앞으로 나아가야 할 현실의 책임을 무의식적으로 외면</strong>하려 합니다.",
-                    shareAdvice: "시들어버린 상처에 미련의 눈물을 주지 마세요. 과거의 슬픔을 비극적으로 아름답게 미화하는 것은 <strong>미래로 나아가는 발목을 꺾는 가장 무거운 족쇄</strong>입니다."
-                },
-                4: { 
-                    img: "tattoo4.png", name: "발목의 부서진 자물쇠", 
-                    interpretation: "당신은 현재 숨 막히는 현실의 억압과 강압적인 타인의 통제로부터 벗어나고자 하는 폭발적인 탈주의 열망으로 가득 차 있습니다. 진정한 자유를 얻기 위해서라면 기존의 규칙을 산산조각 내거나 무모하고 파괴적인 행동도 얼마든지 불사할 수 있는 날 선 충동성이 끓어오르고 있습니다.<br><br>오랫동안 부당하게 <strong>억눌려 온 억울한 감정들이 이미 임계점에 다다라, 언제 터질지 모르는 시한폭탄 같은 불안정한 상태</strong>를 보여줍니다.", 
-                    advice: "눈앞의 자물쇠가 부서졌다고 해서 당신이 온전하고 완벽하게 해방된 것은 결코 아님을 직시해야 합니다. <strong>감정적인 폭발과 분노에 휩쓸린 일탈은 결국 당신을 옭아맬 또 다른 형태의 족쇄</strong>를 만들어 스스로를 가둘 뿐입니다.<br><br>진정한 의미의 탈출과 쟁취는 무모한 파괴가 아닙니다. 감정적 동요를 가라앉히고 차갑고 이성적인 계획을 통해 현실의 굴레를 조용히, 그러나 완벽하게 끊어낼 때 비로소 완성될 수 있습니다.",
-                    shareInterp: "숨 막히는 현실의 억압에서 벗어나고자 하는 <strong>폭발적인 열망</strong>으로 가득 차 있으며, 자유를 위해 기존의 룰을 산산조각 낼 수 있는 <strong>시한폭탄 같은 상태</strong>입니다.",
-                    shareAdvice: "감정적인 폭발과 분노에 휩쓸린 일탈은 <strong>결국 당신을 옭아맬 새로운 족쇄</strong>가 됩니다. 차갑고 이성적인 계획을 통해서만 현실의 굴레를 완벽히 끊어낼 수 있습니다."
                 }
             }
         };
