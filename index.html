@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>b37 | 당신의 마음 가장 깊은 곳</title>
+    <title>당신의 마음 가장 깊은 곳, 지하 37층</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/wanted-sans@v1.0.3/dist/web/static/wanted-sans.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -52,13 +52,17 @@
         .banner-item:hover { transform: translateY(-5px); border-color: rgba(212, 175, 55, 0.6); box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15); background: linear-gradient(180deg, rgba(30,30,35,0.8), rgba(20,20,25,0.9)); }
         .banner-title { font-size: 1.35rem; font-weight: 500; color: #dfba73; margin-bottom: 10px; }
         .banner-desc { font-size: 0.95rem; color: #888899; font-weight: 300; }
-        .story-text { font-size: 1.1rem; color: #cfcfd8; line-height: 1.8; text-align: center; background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(12px); padding: 40px 25px; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.1); box-shadow: 0 15px 40px rgba(0,0,0,0.8); margin-bottom: 35px; word-break: keep-all; font-weight: 300; width: 100%; }
+        
+        /* 타이핑 스토리 텍스트 및 커서 */
+        .story-text { font-size: 1.1rem; color: #cfcfd8; line-height: 1.8; text-align: center; background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(12px); padding: 40px 25px; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.1); box-shadow: 0 15px 40px rgba(0,0,0,0.8); margin-bottom: 35px; word-break: keep-all; font-weight: 300; width: 100%; min-height: 150px; }
         .story-text strong { color: #d4af37; font-weight: 500; text-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+        .cursor { display: inline-block; font-weight: 300; color: #d4af37; margin-left: 2px; animation: blinkCursor 0.9s step-end infinite; }
+        @keyframes blinkCursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
         .group-image-container { position: relative; width: 100%; max-width: 500px; margin: 0 auto 40px; border-radius: 10px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.9); border: 1px solid rgba(212, 175, 55, 0.2); }
         .group-image { width: 100%; height: auto; display: block; opacity: 0.9; }
         
         .number-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 40px; width: 100%; }
-        
         .num-btn { width: 55px; height: 55px; flex-shrink: 0; border-radius: 50%; background: rgba(15, 15, 20, 0.35); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); color: #d4af37; font-size: 1.25rem; font-weight: 400; font-family: 'Times New Roman', serif; cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 25px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05); letter-spacing: 0; }
         .num-btn:hover, .num-btn.selected { background: rgba(212, 175, 55, 0.2); color: #ffffff; border-color: rgba(212, 175, 55, 0.7); box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(212, 175, 55, 0.2); transform: translateY(-5px) scale(1.05); }
 
@@ -70,7 +74,6 @@
         .result-label { font-weight: 600; color: #a47e3b; display: block; margin-bottom: 15px; font-size: 1.15rem; letter-spacing: 0; text-align: center; }
         .result-desc { color: #b0b0c0; line-height: 1.9; font-size: 1.05rem; font-weight: 300; word-break: keep-all; text-align: center; } 
         
-        /* 🌟 본문 및 공유카드 텍스트 강조(하이라이트) 디자인 */
         .result-desc strong { color: #dfba73; font-weight: 600; text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); background: linear-gradient(180deg, transparent 60%, rgba(212, 175, 55, 0.15) 100%); padding: 0 2px; }
         
         .btn-share { margin-top: 15px; background: rgba(15, 15, 20, 0.6); color: #d4af37; font-size: 1rem; font-weight: 400; padding: 16px 0; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 30px; cursor: pointer; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7); transition: all 0.3s ease; width: 100%; max-width: 280px; display: flex; justify-content: center; align-items: center; gap: 8px; margin-left: auto; margin-right: auto; }
@@ -99,7 +102,6 @@
         .check-btn:hover { filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5)); }
         .close-btn:hover { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)); }
         
-        /* 공유용 캡처 카드 스타일 재정비 */
         .share-card { background: #0a0a0f; padding: 30px 20px 25px; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.5); width: 100%; text-align: center; position: relative; overflow: hidden; }
         
         .share-glitter { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; background-image: radial-gradient(circle at 15% 20%, rgba(212,175,55,0.4) 1px, transparent 1px), radial-gradient(circle at 85% 10%, rgba(212,175,55,0.6) 1.5px, transparent 1.5px), radial-gradient(circle at 50% 80%, rgba(212,175,55,0.5) 1px, transparent 1px), radial-gradient(circle at 20% 70%, rgba(255,255,255,0.5) 1px, transparent 1px), radial-gradient(circle at 75% 60%, rgba(212,175,55,0.8) 2px, transparent 2px), radial-gradient(circle at 10% 40%, rgba(212,175,55,0.3) 1px, transparent 1px), radial-gradient(circle at 90% 85%, rgba(255,255,255,0.6) 1.5px, transparent 1.5px), radial-gradient(circle at 40% 30%, rgba(212,175,55,0.7) 1px, transparent 1px); }
@@ -112,7 +114,6 @@
         .share-card-section { margin-bottom: 15px; text-align: center; }
         .share-card-label { color: #a47e3b; font-weight: 600; font-size: 0.95rem; margin-bottom: 8px; display: block; }
         
-        /* 🌟 공유 카드 텍스트 강조(하이라이트) 디자인 */
         .share-card-desc { color: #cfcfd8; font-size: 0.9rem; line-height: 1.7; word-break: keep-all; font-weight: 300; display: block; }
         .share-card-desc strong { color: #dfba73; font-weight: 500; background: linear-gradient(180deg, transparent 60%, rgba(212, 175, 55, 0.25) 100%); padding: 0 2px; }
         
@@ -160,7 +161,9 @@
         <div id="test1-screen" class="screen test-screen">
             <div class="logo-wrapper"><img src="logo.png" alt="b37 Logo" class="logo-img"></div>
             <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
-            <p class="story-text">납치범을 피해 가까스로 내려온 낯선 마을.<br><br>도와달라는 나의 외침에 마을 사람들이 하나 둘 나타난다.<br>한 명을 제외한 이들 모두 납치범과 가까운 관계라는 예감이 든다.<br><br><strong>오직 내가 믿을 수 있는 단 한 사람은?</strong></p>
+            <!-- 🌟 타이핑 효과가 적용될 스토리 텍스트 (내용을 비우고 원본 텍스트는 JS에서 처리하도록 구성) -->
+            <p class="story-text" id="typewriter-text-1">납치범을 피해 가까스로 내려온 낯선 마을.<br><br>도와달라는 나의 외침에 마을 사람들이 하나 둘 나타난다.<br>한 명을 제외한 이들 모두 납치범과 가까운 관계라는 예감이 든다.<br><br><strong>오직 내가 믿을 수 있는 단 한 사람은?</strong></p>
+            
             <div class="group-image-container">
                 <img src="group.png" alt="마을 사람들" class="group-image">
             </div>
@@ -242,6 +245,7 @@
     <script>
         let currentTestId = "";
         let currentNum = "";
+        let typeTimeout; // 타이핑 효과 타이머 제어용 변수
 
         window.onload = () => {
             const urlParams = new URLSearchParams(window.location.search);
@@ -254,12 +258,73 @@
             }
         };
 
+        // 타이핑 효과 실행 함수
+        function startTyping(element, speed = 40) {
+            // 원본 HTML을 처음 한 번만 data 속성에 저장
+            if (!element.hasAttribute('data-original-html')) {
+                element.setAttribute('data-original-html', element.innerHTML);
+            }
+            
+            const htmlString = element.getAttribute('data-original-html');
+            element.innerHTML = '<span class="cursor">|</span>';
+            
+            let i = 0;
+            let isTag = false;
+            let text = "";
+
+            function type() {
+                // 화면이 다른 곳으로 넘어가면 타이핑 중지
+                if (!element.closest('.screen').classList.contains('active')) return;
+
+                if (i < htmlString.length) {
+                    let char = htmlString.charAt(i);
+                    
+                    if (char === '<') isTag = true;
+                    
+                    text += char;
+                    i++;
+                    
+                    if (isTag) {
+                        // 태그 내용(예: <br>, <strong> 등)은 한 번에 출력하여 깨짐 방지
+                        while (i < htmlString.length && htmlString.charAt(i) !== '>') {
+                            text += htmlString.charAt(i);
+                            i++;
+                        }
+                        if (i < htmlString.length) {
+                            text += htmlString.charAt(i); // '>' 기호 추가
+                            i++;
+                        }
+                        isTag = false;
+                        type(); // 태그 출력 후 대기 없이 바로 다음 글자 진행
+                        return;
+                    }
+
+                    element.innerHTML = text + '<span class="cursor">|</span>';
+                    typeTimeout = setTimeout(type, speed);
+                } else {
+                    // 타이핑이 끝나면 커서만 깜빡이도록 유지
+                    element.innerHTML = text + '<span class="cursor">|</span>';
+                }
+            }
+            
+            clearTimeout(typeTimeout);
+            type();
+        }
+
         function showScreen(screenId) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.result-area').forEach(r => r.classList.remove('active'));
             document.querySelectorAll('.num-btn').forEach(b => b.classList.remove('selected'));
-            document.getElementById(screenId).classList.add('active');
+            
+            const targetScreen = document.getElementById(screenId);
+            targetScreen.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // 해당 스크린에 스토리 텍스트가 있다면 타이핑 효과 시작
+            const storyTextEl = targetScreen.querySelector('.story-text');
+            if (storyTextEl) {
+                startTyping(storyTextEl, 40);
+            }
         }
 
         const testData = {
