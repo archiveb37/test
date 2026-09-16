@@ -70,8 +70,8 @@
         .group-image-container { position: relative; width: 100%; max-width: 500px; margin: 0 auto 40px; border-radius: 10px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.9); border: 1px solid rgba(212, 175, 55, 0.2); }
         .group-image { width: 100%; height: auto; display: block; opacity: 0.9; }
         
-        /* 2x2 그리드 스타일 추가 */
-        .selection-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; width: 100%; margin-bottom: 40px; }
+        /* 2x2 그리드 스타일 */
+        .selection-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; width: 100%; margin-bottom: 40px; transition: all 0.5s ease; }
         .selection-item { position: relative; width: 100%; border-radius: 10px; overflow: hidden; cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.7); border: 1px solid rgba(212, 175, 55, 0.2); transition: all 0.3s ease; }
         .selection-item:hover { transform: translateY(-3px); border-color: rgba(212, 175, 55, 0.6); box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2); }
         .selection-item img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; filter: grayscale(10%) contrast(110%); transition: all 0.4s ease; }
@@ -82,10 +82,16 @@
         .selection-item:hover .num-btn { background: rgba(212, 175, 55, 0.2); color: #ffffff; border-color: rgba(212, 175, 55, 0.7); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4), inset 0 0 10px rgba(212, 175, 55, 0.2); transform: scale(1.05); }
         .selection-item.selected .num-btn { background: rgba(212, 175, 55, 0.2); color: #ffffff; border-color: rgba(212, 175, 55, 0.7); box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(212, 175, 55, 0.2); transform: scale(1.05); }
         
-        .number-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 40px; width: 100%; }
+        .number-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 40px; width: 100%; transition: all 0.5s ease; }
         
         .num-btn { width: 55px; height: 55px; flex-shrink: 0; border-radius: 50%; background: rgba(15, 15, 20, 0.35); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); color: #d4af37; font-size: 1.25rem; font-weight: 500; font-family: 'Pretendard', sans-serif; cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 25px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05); letter-spacing: 0; }
         .num-btn:hover, .num-btn.selected { background: rgba(212, 175, 55, 0.2); color: #ffffff; border-color: rgba(212, 175, 55, 0.7); box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(212, 175, 55, 0.2); transform: translateY(-5px) scale(1.05); }
+
+        /* 결과 잠금 효과 (Lock State) */
+        .locked-grid { pointer-events: none; }
+        .locked-grid .selection-item:not(.selected) { opacity: 0.35; filter: grayscale(100%); }
+        .locked-grid .selection-item:not(.selected) img { filter: grayscale(100%); }
+        .locked-grid .num-btn:not(.selected) { opacity: 0.35; }
 
         .result-area { display: none; width: 100%; background: linear-gradient(180deg, rgba(15,15,20,0.95), rgba(5,5,10,0.98)); border-top: 1px solid rgba(212, 175, 55, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.4); padding: 50px 20px; margin-top: 10px; animation: staggerFadeUp 0.8s ease forwards; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9); }
         .result-area.active { display: block; }
@@ -107,8 +113,31 @@
         .modal-overlay.active { display: flex; animation: fadeInModal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         @keyframes fadeInModal { from { opacity: 0; backdrop-filter: blur(0px); } to { opacity: 1; backdrop-filter: blur(5px); } }
         
-        .modal-box { background: rgba(13, 13, 18, 0.45); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 40px 30px 30px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255, 255, 255, 0.1); position: relative; max-height: 90vh; overflow-y: auto; transform: translateY(20px); animation: slideUpModal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        @keyframes slideUpModal { to { transform: translateY(0); } }
+        /* 공통 등장 애니메이션 (투명도 수정완료) */
+        @keyframes slideUpModal {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 그림 확대 모달 전용 스타일 */
+        #zoom-modal { z-index: 200; flex-direction: column; }
+        .zoom-img-container { width: 100%; max-width: 450px; aspect-ratio: 1 / 1; margin-bottom: 25px; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.9); border: 1px solid rgba(212, 175, 55, 0.4); }
+        .zoom-img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes zoomOut { from { transform: scale(1); opacity: 1; } to { transform: scale(0.8); opacity: 0; } }
+        
+        .zoom-btns { display: flex; gap: 15px; width: 100%; max-width: 320px; opacity: 0; transform: translateY(20px); }
+        .modal-overlay.active .zoom-btns { animation: slideUpModal 0.4s 0.1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        
+        .zoom-btn { flex: 1; padding: 16px 0; border-radius: 30px; font-size: 1.1rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; text-align: center; border: none; font-family: "Wanted Sans Variable", sans-serif; backdrop-filter: blur(5px); }
+        .zoom-btn.close { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.3); }
+        .zoom-btn.confirm { background: rgba(212, 175, 55, 0.2); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.8); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+        .zoom-btn:hover { transform: translateY(-3px); }
+        .zoom-btn.close:hover { background: rgba(255, 255, 255, 0.2); }
+        .zoom-btn.confirm:hover { background: rgba(212, 175, 55, 0.3); box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); }
+
+        .modal-box { background: rgba(13, 13, 18, 0.45); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 40px 30px 30px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255, 255, 255, 0.1); position: relative; max-height: 90vh; overflow-y: auto; opacity: 0; transform: translateY(20px); }
+        .modal-overlay.active .modal-box { animation: slideUpModal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
         .input-wrapper { margin-bottom: 35px; margin-top: 10px; width: 100%; position: relative; }
         .input-wrapper input { width: 100%; padding: 12px 0; border: none; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.2); background: transparent; color: #dfba73; font-size: 1.25rem; outline: none; text-align: center; font-family: "Wanted Sans Variable", "Wanted Sans", sans-serif; transition: all 0.4s ease; }
@@ -185,7 +214,7 @@
             </div>
         </div>
 
-        <!-- 3-1. 테스트 2: 창밖의 불청객 (수정된 2x2 배열 반영) -->
+        <!-- 3-1. 테스트 2: 창밖의 불청객 -->
         <div id="test2-screen" class="screen test-screen">
             <div class="logo-wrapper"><img src="logo.png" alt="b37 Logo" class="logo-img"></div>
             <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
@@ -197,20 +226,21 @@
             <p class="story-text" id="typewriter-text-2">깊은 새벽, 서늘한 기분에 눈을 뜬 당신.<br>창밖의 인기척에 본능적으로 몸을 숨긴다.<br>반지하 창문 너머, 어둠 속에서 집 안을 엿보는 한 사람.<br><br><strong>숨소리조차 낼 수 없는 당신을 찾아온 불청객은 대체 누구일까?</strong></p>
             
             <div class="selection-grid">
-                <div class="selection-item" onclick="showResult('test2', 1, this)">
-                    <img src="IMG_1160.png" alt="선택지 1">
+                <!-- 선택 시 줌(Zoom) 모달을 띄우도록 openZoomModal 함수 호출 -->
+                <div class="selection-item" onclick="openZoomModal('test2', 1, 'IMG_1160.jpg', this)">
+                    <img src="IMG_1160.jpg" alt="선택지 1">
                     <button class="num-btn test2-btn">1</button>
                 </div>
-                <div class="selection-item" onclick="showResult('test2', 2, this)">
-                    <img src="IMG_1159.png" alt="선택지 2">
+                <div class="selection-item" onclick="openZoomModal('test2', 2, 'IMG_1159.jpg', this)">
+                    <img src="IMG_1159.jpg" alt="선택지 2">
                     <button class="num-btn test2-btn">2</button>
                 </div>
-                <div class="selection-item" onclick="showResult('test2', 3, this)">
-                    <img src="IMG_1158.png" alt="선택지 3">
+                <div class="selection-item" onclick="openZoomModal('test2', 3, 'IMG_1158.jpg', this)">
+                    <img src="IMG_1158.jpg" alt="선택지 3">
                     <button class="num-btn test2-btn">3</button>
                 </div>
-                <div class="selection-item" onclick="showResult('test2', 4, this)">
-                    <img src="IMG_1157.png" alt="선택지 4">
+                <div class="selection-item" onclick="openZoomModal('test2', 4, 'IMG_1157.jpg', this)">
+                    <img src="IMG_1157.jpg" alt="선택지 4">
                     <button class="num-btn test2-btn">4</button>
                 </div>
             </div>
@@ -240,9 +270,15 @@
             <div class="group-image-container">
                 <img src="group.png" alt="마을 사람들" class="group-image">
             </div>
+            
             <div class="number-grid">
-                <button class="num-btn test1-btn" onclick="showResult('test1', 1, this)">1</button><button class="num-btn test1-btn" onclick="showResult('test1', 2, this)">2</button><button class="num-btn test1-btn" onclick="showResult('test1', 3, this)">3</button>
-                <button class="num-btn test1-btn" onclick="showResult('test1', 4, this)">4</button><button class="num-btn test1-btn" onclick="showResult('test1', 5, this)">5</button><button class="num-btn test1-btn" onclick="showResult('test1', 6, this)">6</button>
+                <!-- 테스트1은 이미지가 없으므로 바로 showResult 호출 (잠금기능은 공통 적용) -->
+                <button class="num-btn test1-btn" onclick="showResult('test1', 1, this)">1</button>
+                <button class="num-btn test1-btn" onclick="showResult('test1', 2, this)">2</button>
+                <button class="num-btn test1-btn" onclick="showResult('test1', 3, this)">3</button>
+                <button class="num-btn test1-btn" onclick="showResult('test1', 4, this)">4</button>
+                <button class="num-btn test1-btn" onclick="showResult('test1', 5, this)">5</button>
+                <button class="num-btn test1-btn" onclick="showResult('test1', 6, this)">6</button>
             </div>
             
             <div id="test1-result-area" class="result-area">
@@ -260,7 +296,17 @@
                 </button>
             </div>
         </div>
+    </div>
 
+    <!-- 🌟 그림 확대 및 확인 모달 🌟 -->
+    <div id="zoom-modal" class="modal-overlay">
+        <div class="zoom-img-container" id="zoom-container">
+            <img id="zoom-image" src="" alt="확대된 이미지">
+        </div>
+        <div class="zoom-btns">
+            <button class="zoom-btn close" onclick="closeZoomModal()">닫기</button>
+            <button class="zoom-btn confirm" onclick="confirmZoomSelection()">선택</button>
+        </div>
     </div>
 
     <!-- 글래스모피즘 이름 입력 모달 -->
@@ -320,6 +366,12 @@
         let currentTestId = "";
         let currentNum = "";
         let typeTimeout; 
+        
+        // 각 테스트의 잠금 상태를 저장하는 객체
+        let lockState = {}; 
+        
+        // 그림 확대 모달을 위한 임시 데이터 저장
+        let tempZoomData = null;
 
         window.onload = () => {
             const urlParams = new URLSearchParams(window.location.search);
@@ -383,8 +435,7 @@
         function showScreen(screenId) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.result-area').forEach(r => r.classList.remove('active'));
-            document.querySelectorAll('.selection-item').forEach(item => item.classList.remove('selected'));
-            document.querySelectorAll('.num-btn').forEach(b => b.classList.remove('selected'));
+            // 화면 전환 시 잠금 상태는 유지되도록 의도함 (새로고침 시 초기화)
             
             const targetScreen = document.getElementById(screenId);
             targetScreen.classList.add('active');
@@ -399,28 +450,28 @@
         const testData = {
             'test2': {
                 1: { 
-                    img: "IMG_1160.png", name: "1번 전남자친구 30살 한준희", 
+                    img: "IMG_1160.jpg", name: "1번 전남자친구 30살 한준희", 
                     interpretation: "당신은 과거의 선택이나 관계에서 파생된 <strong>해결되지 않은 죄책감과 감정적 부채</strong>에 깊이 시달리고 있습니다. 누군가에게 상처를 주었다는 무의식적인 짐이, 언젠가 그 과거가 자신을 덮칠 것이라는 서늘한 불안감으로 둔갑해 내면을 맴돌고 있습니다.<br><br>자신의 성공이나 안정이 타인의 희생 위에 세워졌을지도 모른다는 <strong>은밀한 자기 처벌의 심리</strong>가 숨어있으며, 과거의 망령이 현재의 평온을 깨뜨릴까 봐 늘 긴장 상태를 유지하고 있습니다.", 
                     advice: "과거는 이미 죽어버린 유령입니다. 계속해서 등 뒤를 돌아보며 보이지 않는 과거의 빚을 갚으려 한다면, 당신은 영원히 앞으로 나아갈 수 없습니다.<br><br><strong>스스로에게 가하는 무의식적인 처벌을 멈추세요.</strong> 지난 일에 대한 죄책감을 내려놓고, 당신이 현재 누리고 있는 평온이 온전히 당신의 것임을 당당하게 인정해야 할 때입니다.",
                     shareInterp: "과거의 관계에서 파생된 <strong>해결되지 않은 죄책감과 감정적 부채</strong>에 시달리며, 과거의 상처가 언제든 자신을 덮칠 것이라는 불안과 <strong>은밀한 자기 처벌의 심리</strong>를 품고 있습니다.",
                     shareAdvice: "죽어버린 과거의 유령에게 계속해서 빚을 갚으려 하지 마세요. <strong>스스로에게 가하는 무의식적인 처벌을 멈추고</strong>, 당신의 현재를 당당하게 살아내야 합니다."
                 },
                 2: { 
-                    img: "IMG_1159.png", name: "2번 중학교 동창 28살 배민석", 
+                    img: "IMG_1159.jpg", name: "2번 중학교 동창 28살 배민석", 
                     interpretation: "당신은 자신이 무시하거나 낮게 평가했던 존재들이 언제든 반기를 들고 공격해 올 수 있다는 <strong>관계적 열등감과 피해의식</strong>을 마음 깊은 곳에 품고 있습니다. 겉으로는 타인에게 무심한 척하지만, 실상은 주변의 평가와 보이지 않는 원한에 극도로 예민한 상태입니다.<br><br>이는 <strong>자신보다 약하다고 생각하는 대상에게 투사된 내면의 불안</strong>입니다. 내가 타인을 쉽게 재단하는 만큼, 세상 역시 나의 빈틈을 노려 철저하게 짓밟을 것이라는 서늘한 경계심을 놓지 못하고 있습니다.", 
                     advice: "당신을 향한 세상의 원망을 지나치게 과대평가하지 마세요. 타인이 나를 해칠지도 모른다는 편집증적인 불안은, 역설적으로 <strong>타인의 시선에 당신의 영혼이 완전히 묶여있음</strong>을 의미합니다.<br><br>내가 누군가를 무시했던 과거의 오만함을 반성하는 것을 넘어, <strong>타인의 악의를 지레짐작하며 스스로를 갉아먹는 피해의식</strong>에서 단호하게 벗어나야 합니다.",
                     shareInterp: "자신이 무시했던 존재들이 언제든 공격해 올 수 있다는 <strong>관계적 열등감과 피해의식</strong>을 품고 있으며, 타인의 앙심을 지레짐작하여 끊임없이 경계하는 불안정한 상태입니다.",
                     shareAdvice: "타인이 나를 해칠지도 모른다는 편집증적 불안은 당신을 갉아먹을 뿐입니다. <strong>타인의 시선에서 벗어나 내면의 피해의식을 단호하게 끊어내세요.</strong>"
                 },
                 3: { 
-                    img: "IMG_1158.png", name: "3번 옆집 남자 30살 이재진", 
+                    img: "IMG_1158.jpg", name: "3번 옆집 남자 30살 이재진", 
                     interpretation: "당신은 가장 안전해야 할 개인적인 영역조차 온전히 보호받지 못하고 있다는 <strong>사생활 침해에 대한 극심한 불안과 노출증적 두려움</strong>을 동시에 겪고 있습니다. 익명의 타인, 혹은 세상의 시선이 늘 당신의 약점을 캐내기 위해 엿보고 있다고 느낍니다.<br><br>이러한 심리는 당신이 <strong>타인과의 심리적 경계선을 세우는 데 큰 어려움을 겪고 있음</strong>을 의미합니다. 일상적인 교류조차 때로는 통제할 수 없는 끔찍한 위협으로 다가오며, 완벽한 은신처가 없다는 사실에 만성적인 피로감을 느낍니다.", 
                     advice: "창밖의 시선을 막을 수 없다면, 스스로가 그 시선에 흔들리지 않을 만큼 <strong>내면의 두터운 커튼</strong>을 쳐야 합니다. 세상의 모든 타인을 잠재적인 관음증 환자나 위협으로 간주하는 것은 당신의 삶을 스스로 감옥으로 만드는 행위입니다.<br><br>보이지 않는 시선에 힘을 실어주는 것은 결국 당신 자신의 두려움입니다. <strong>스스로의 공간과 심리적 경계를 단호하게 지키는 법</strong>을 배우세요.",
                     shareInterp: "가장 안전한 영역조차 보호받지 못한다는 <strong>사생활 침해에 대한 극심한 불안</strong>을 느끼며, 타인과의 심리적 경계선을 세우는 데 큰 어려움과 만성적인 피로를 겪고 있습니다.",
                     shareAdvice: "세상의 시선을 모두 막을 수는 없지만, 내면의 두터운 커튼을 칠 수는 있습니다. <strong>보이지 않는 시선에 흔들리지 않는 단호한 심리적 경계</strong>를 세우세요."
                 },
                 4: { 
-                    img: "IMG_1157.png", name: "4번 에어컨 수리공 32살 한진우", 
+                    img: "IMG_1157.jpg", name: "4번 에어컨 수리공 32살 한진우", 
                     interpretation: "당신은 가장 일상적이고 합법적인 방식(서비스, 호의 등)으로 내 삶에 들어온 타인이 가장 끔찍한 위협이 될 수 있다고 믿는 <strong>뿌리 깊은 인간 불신</strong>을 가지고 있습니다. 겉으로 웃고 있는 사람의 등 뒤에 숨겨진 서늘한 칼날을 항상 의심합니다.<br><br>안전하다고 여겼던 공간과 관계에서 겪었던 뼈아픈 배신의 경험이 트라우마로 남아있을 확률이 큽니다. 당신은 <strong>평범함 속에 숨겨진 기만과 악의</strong>를 꿰뚫어 보려 끊임없이 에너지를 소모하며, 그 누구에게도 완벽하게 등을 보이지 않습니다.", 
                     advice: "모든 일상적인 친절과 의무적인 관계 뒤에 악의가 숨어있다고 믿는다면, 당신은 매일 지뢰밭을 걷는 것과 같습니다. 조심성은 당신을 보호하지만, 지나친 의심은 당신의 영혼을 피폐하게 만듭니다.<br><br>당신에게 필요한 것은 완벽한 방어가 아니라, <strong>설령 누군가 당신을 기만하더라도 언제든 털고 일어날 수 있다는 자신에 대한 단단한 믿음</strong>입니다.",
                     shareInterp: "일상적이고 안전해 보이는 타인의 접근조차 기만과 위협으로 의심하는 <strong>뿌리 깊은 인간 불신</strong>을 가졌으며, 평범함 속에 숨은 악의를 찾느라 늘 피로한 상태입니다.",
@@ -474,8 +525,63 @@
             }
         };
 
-        function showResult(testId, num, btnElement) {
+        // 🌟 그림 확대 모달 열기 🌟
+        function openZoomModal(testId, num, imgSrc, btnElement) {
+            // 이미 선택 완료된 테스트면 모달을 띄우지 않음 (잠금)
+            if (lockState[testId]) return;
             
+            tempZoomData = { testId, num, btnElement };
+            
+            const zoomModal = document.getElementById('zoom-modal');
+            const zoomImage = document.getElementById('zoom-image');
+            const zoomContainer = document.getElementById('zoom-container');
+            
+            zoomImage.src = imgSrc;
+            zoomContainer.style.animation = 'zoomIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+            zoomModal.classList.add('active');
+        }
+
+        // 🌟 그림 확대 모달 닫기 🌟
+        function closeZoomModal() {
+            const zoomModal = document.getElementById('zoom-modal');
+            const zoomContainer = document.getElementById('zoom-container');
+            
+            // 닫힐 때 다시 작아지는 애니메이션
+            zoomContainer.style.animation = 'zoomOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+            
+            setTimeout(() => {
+                zoomModal.classList.remove('active');
+                tempZoomData = null;
+            }, 300);
+        }
+
+        // 🌟 모달에서 "선택" 버튼을 눌렀을 때 🌟
+        function confirmZoomSelection() {
+            if (!tempZoomData) return;
+            const { testId, num, btnElement } = tempZoomData;
+            
+            // 모달을 부드럽게 닫은 후 결과 표시
+            closeZoomModal();
+            setTimeout(() => {
+                showResult(testId, num, btnElement);
+            }, 300); 
+        }
+
+        // 🌟 결과 표시 및 잠금 기능 🌟
+        function showResult(testId, num, btnElement) {
+            // 이미 결과가 나온 상태면 중복 선택 방지
+            if (lockState[testId]) return; 
+            
+            // 해당 에피소드 잠금 처리 (다른 답 선택 불가)
+            lockState[testId] = true; 
+            
+            // 1. UI 비활성화 (흐리게 만들기)
+            const selectionGrid = document.querySelector(`#${testId}-screen .selection-grid`);
+            const numberGrid = document.querySelector(`#${testId}-screen .number-grid`);
+            if (selectionGrid) selectionGrid.classList.add('locked-grid');
+            if (numberGrid) numberGrid.classList.add('locked-grid');
+
+            // 2. 선택된 항목 시각적 강조
             if (testId === 'test2') {
                 const items = document.querySelectorAll('.selection-item');
                 items.forEach(item => item.classList.remove('selected'));
@@ -489,12 +595,14 @@
             currentTestId = testId;
             currentNum = num;
 
+            // 3. 결과 데이터 채우기
             const data = testData[testId][num];
             document.getElementById(`${testId}-res-img`).src = data.img;
             document.getElementById(`${testId}-res-name`).innerText = data.name;
             document.getElementById(`${testId}-res-interpretation`).innerHTML = data.interpretation;
             document.getElementById(`${testId}-res-advice`).innerHTML = data.advice;
 
+            // 4. 결과창 스크롤 및 표시
             const resultArea = document.getElementById(`${testId}-result-area`);
             resultArea.classList.remove('active');
             setTimeout(() => {
