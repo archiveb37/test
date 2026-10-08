@@ -34,10 +34,12 @@
         .screen.active > *:nth-child(4) { animation-delay: 0.55s; } 
         .screen.active > *:nth-child(5) { animation-delay: 0.7s; }
         .screen.active > *:nth-child(6) { animation-delay: 0.85s; }
+        .screen.active > *:nth-child(7) { animation-delay: 1.0s; }
         .screen.active .banner-item { opacity: 0; animation: staggerFadeUp 0.8s ease-out forwards; }
         .screen.active .banner-item:nth-child(1) { animation-delay: 0.55s; }
         .screen.active .banner-item:nth-child(2) { animation-delay: 0.7s; }
         .screen.active .banner-item:nth-child(3) { animation-delay: 0.85s; }
+        .screen.active .banner-item:nth-child(4) { animation-delay: 1.0s; }
         @keyframes staggerFadeUp { from { opacity: 0; transform: translateY(20px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
         
         .logo-wrapper { margin-bottom: 30px; filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.3)); transition: transform 0.4s; }
@@ -67,8 +69,13 @@
         .cursor { display: inline-block; font-weight: 300; color: #d4af37; margin-left: 2px; animation: blinkCursor 0.9s step-end infinite; }
         @keyframes blinkCursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        .group-image-container { position: relative; width: 100%; max-width: 500px; margin: 0 auto 40px; border-radius: 10px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.9); border: 1px solid rgba(212, 175, 55, 0.2); }
+        .group-image-container { position: relative; width: 100%; max-width: 500px; margin: 0 auto 35px; border-radius: 10px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.9); border: 1px solid rgba(212, 175, 55, 0.2); }
         .group-image { width: 100%; height: auto; display: block; opacity: 0.9; }
+
+        /* 선택지 상세 설명 박스 (테스트 4 등에서 활용) */
+        .suspect-list { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 12px; margin-bottom: 35px; text-align: left; }
+        .suspect-item { background: rgba(12, 12, 18, 0.75); border: 1px solid rgba(212, 175, 55, 0.18); border-radius: 10px; padding: 18px 20px; font-size: 0.95rem; line-height: 1.65; color: #cfcfd8; font-weight: 300; word-break: keep-all; box-shadow: 0 8px 20px rgba(0,0,0,0.5); backdrop-filter: blur(8px); }
+        .suspect-item strong { color: #dfba73; font-weight: 500; display: block; margin-bottom: 6px; font-size: 1.05rem; }
         
         .number-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 40px; width: 100%; transition: all 0.5s ease; }
         /* 8개 보기일 경우 4개씩 2줄 배치되도록 최대 너비 제한 설정 */
@@ -110,7 +117,6 @@
         .modal-overlay.active { display: flex; animation: fadeInModal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         @keyframes fadeInModal { from { opacity: 0; backdrop-filter: blur(0px); } to { opacity: 1; backdrop-filter: blur(5px); } }
         
-        /* 공통 등장 애니메이션 (투명도 수정완료) */
         @keyframes slideUpModal {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -143,7 +149,7 @@
         .share-psycho-score { display: none; margin-bottom: 20px; background: rgba(212, 175, 55, 0.1); padding: 10px; border-radius: 8px; border: 1px solid rgba(212, 175, 55, 0.4); }
         .share-psycho-score.active { display: block; }
         .share-psycho-label { color: #a47e3b; font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 5px; }
-        .share-psycho-value { color: #d4af37; font-size: 1.8rem; font-weight: 700; display: block; }
+        .share-psycho-value { color: #d4af37; font-size: 1.8rem; font-weight: 700; display: block; font-family: 'Pretendard', sans-serif; letter-spacing: 0; }
 
         .share-card-section { margin-bottom: 15px; text-align: center; }
         .share-card-label { color: #a47e3b; font-weight: 600; font-size: 0.95rem; margin-bottom: 8px; display: block; }
@@ -185,6 +191,11 @@
             <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
             <p class="sub-title" style="margin-bottom: 30px; color:#d4af37; opacity: 0.8;">탐구할 에피소드를 선택하세요</p>
             <div class="banner-list">
+
+                <div class="banner-item" onclick="showScreen('test4-screen')">
+                    <h3 class="banner-title">결혼식장의 여사친들</h3>
+                    <p class="banner-desc">내 남편을 빼앗을 단 한 명의 진짜 불륜녀는 누구일까?</p>
+                </div>
                 
                 <div class="banner-item" onclick="showScreen('test3-screen')">
                     <h3 class="banner-title">교실 살인사건</h3>
@@ -200,6 +211,70 @@
                     <h3 class="banner-title">낯선 마을 주민들</h3>
                     <p class="banner-desc">오직 내가 믿을 수 있는 단 한 사람은?</p>
                 </div>
+            </div>
+        </div>
+
+        <!-- 3-4. 테스트 4: 결혼식장의 여사친들 (쎄믈리에 테스트) -->
+        <div id="test4-screen" class="screen test-screen">
+            <div class="logo-wrapper"><img src="logo.png" alt="b37 Logo" class="logo-img"></div>
+            <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
+            
+            <p class="story-text" id="typewriter-text-4">결혼 전, 쎄한 기분을 지울 수 없어 탐정에게 예비신랑의 뒤를 캐본 나.<br>의뢰 결과, 오늘 결혼식장에 찾아온 5명의 여사친 중 한 명과 <strong>아주 깊은 내연 관계</strong>라고 한다.<br><br><strong>이들 중 내 남편을 빼앗을 단 한 명의 진짜 불륜녀는 누구일까?</strong></p>
+            
+            <div class="group-image-container">
+                <img src="fivewomen.jpg" alt="결혼식장의 여사친들" class="group-image">
+            </div>
+
+            <div class="suspect-list">
+                <div class="suspect-item">
+                    <strong>1번 검은 미니스커트 여사친 🎀</strong>
+                    가장 왼쪽에 서서 손을 다소곳이 모은 채 부드럽게 웃고 있는 그녀. "드디어 이 오빠가 장가를 가네! 아침잠도 많고 속이 여려서 네가 고생 좀 할 거야~ 은근히 손이 많이 가거든."이라며 나보다 남편을 더 잘 안다는 듯 은근한 아는 체를 한다.
+                </div>
+                <div class="suspect-item">
+                    <strong>2번 오프숄더 여사친 💃</strong>
+                    과감한 오프숄더 상의를 입고 활짝 웃고 있는 그녀. "어머~ 신부님 오늘 너무 예쁘시다! 아 참, 어제 신랑이 야근하느라 엄청 피곤해하던데 오늘 컨디션은 괜찮대요? 어제 늦게까지 고생 많았거든요."라며 밤늦게까지 둘이 함께 있었다는 사실을 굳이 내 앞에서 어필한다.
+                </div>
+                <div class="suspect-item">
+                    <strong>3번 분홍 원피스 여사친 🌸</strong>
+                    화사한 핑크색 레이스 원피스를 입고 가장 환하게 웃고 있는 그녀. "언니, 축하드려요! 이거 오빠가 제일 좋아하는 우디향 향수인데, 신혼여행 가서 같이 쓰세요~ 오빠가 땀이 많아서 향에 엄청 민감한 거 아시죠?"라며 남자의 은밀한 취향을 꿰뚫고 있다는 듯 선물 상자를 내민다.
+                </div>
+                <div class="suspect-item">
+                    <strong>4번 눈물 흘리는 여사친 😭</strong>
+                    가방을 든 채 손수건으로 연신 눈물을 훔치며 감정이 북받친 표정을 짓고 있는 그녀. "흐흑, 드디어 장가를 가다니 믿기지가 않아서... 내가 다 눈물이 나네. 둘이 정말 행복해야 해!"라며 신부보다 더 서럽고 과하게 울며 감정을 주체하지 못한다.
+                </div>
+                <div class="suspect-item">
+                    <strong>5번 검은 셔츠 여사친 🖤</strong>
+                    화려하거나 감정이 격한 다른 이들과 달리, 가장 어두운 차림으로 굳은 표정을 짓고 있는 그녀. 축하한다는 인사도 거의 없이, 내가 평소 쓰는 것과 똑같은 한정판 핸드크림 향을 은은히 풍기며 구석에서 조용히 상황을 살피다가 사진만 찍고 빠르게 사라진다.
+                </div>
+            </div>
+            
+            <div class="number-grid">
+                <button class="num-btn test4-btn" onclick="showResult('test4', 1, this)">1</button>
+                <button class="num-btn test4-btn" onclick="showResult('test4', 2, this)">2</button>
+                <button class="num-btn test4-btn" onclick="showResult('test4', 3, this)">3</button>
+                <button class="num-btn test4-btn" onclick="showResult('test4', 4, this)">4</button>
+                <button class="num-btn test4-btn" onclick="showResult('test4', 5, this)">5</button>
+            </div>
+            
+            <div id="test4-result-area" class="result-area">
+                <img id="test4-res-img" src="" alt="결과 이미지" class="character-img">
+                <h2 id="test4-res-name" class="char-name"></h2>
+                
+                <div class="psycho-score-box" id="test4-psycho-box">
+                    <span class="psycho-score-label" id="test4-score-label">쎄믈리에 지수</span>
+                    <span class="psycho-score-value" id="test4-res-score"></span>
+                </div>
+
+                <div class="result-box"><span class="result-label">해석</span><p id="test4-res-interpretation" class="result-desc"></p></div>
+                <div class="result-box"><span class="result-label">조언</span><p id="test4-res-advice" class="result-desc"></p></div>
+                <button class="btn-share" onclick="openNameModal()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                    내 심리 공유하기
+                </button>
+                <button class="btn-more" onclick="window.open('https://www.instagram.com/archive_b37?stkn=Zmg5M2d3bmRodDg1&utm_source=qr', '_blank')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    지하 37층
+                </button>
             </div>
         </div>
 
@@ -230,7 +305,7 @@
                 <h2 id="test3-res-name" class="char-name"></h2>
                 
                 <div class="psycho-score-box" id="test3-psycho-box">
-                    <span class="psycho-score-label">싸이코패스 성향</span>
+                    <span class="psycho-score-label" id="test3-score-label">싸이코패스 성향</span>
                     <span class="psycho-score-value" id="test3-res-score"></span>
                 </div>
 
@@ -270,7 +345,7 @@
                 <h2 id="test2-res-name" class="char-name"></h2>
                 
                 <div class="psycho-score-box" id="test2-psycho-box" style="display: none;">
-                    <span class="psycho-score-label">싸이코패스 성향</span>
+                    <span class="psycho-score-label" id="test2-score-label">싸이코패스 성향</span>
                     <span class="psycho-score-value" id="test2-res-score"></span>
                 </div>
 
@@ -311,7 +386,7 @@
                 <h2 id="test1-res-name" class="char-name"></h2>
                 
                 <div class="psycho-score-box" id="test1-psycho-box" style="display: none;">
-                    <span class="psycho-score-label">싸이코패스 성향</span>
+                    <span class="psycho-score-label" id="test1-score-label">싸이코패스 성향</span>
                     <span class="psycho-score-value" id="test1-res-score"></span>
                 </div>
 
@@ -356,7 +431,7 @@
                     <h2 id="share-title" class="share-card-title"></h2>
                     
                     <div id="share-psycho-box" class="share-psycho-score">
-                        <span class="share-psycho-label">싸이코패스 성향</span>
+                        <span id="share-psycho-label" class="share-psycho-label">싸이코패스 성향</span>
                         <span id="share-psycho-value" class="share-psycho-value"></span>
                     </div>
 
@@ -377,7 +452,6 @@
             </div>
             
             <div class="action-buttons">
-                <!-- 다운로드(저장) 버튼이 삭제되고 공유, 닫기 버튼만 남았습니다 -->
                 <button class="action-icon-btn action-share-btn" onclick="shareImage()" title="공유">
                     <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
                 </button>
@@ -458,7 +532,6 @@
         function showScreen(screenId) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.result-area').forEach(r => r.classList.remove('active'));
-            // 화면 전환 시 잠금 상태는 유지되도록 의도함 (새로고침 시 초기화)
             
             const targetScreen = document.getElementById(screenId);
             targetScreen.classList.add('active');
@@ -471,58 +544,95 @@
         }
 
         const testData = {
+            'test4': {
+                1: {
+                    name: "1번 검은 미니스커트 여사친", scoreLabel: "쎄믈리에 지수", score: "50%",
+                    interpretation: "진짜 불륜녀가 아닙니다. 1번은 그저 오지랖이 넓고, 오랫동안 알고 지낸 편한 남사친을 다른 여자에게 뺏긴 것 같아 은근한 서운함을 느끼는 전형적인 '여사친' 유형입니다.<br><br>신부 앞에서 자신이 신랑의 사소한 습관까지 다 알고 있다는 듯이 말해 영역 표시를 하고 기선을 제압하려 했지만, 이는 <strong>얄미운 질투심과 과시욕에서 비롯된 행동</strong>일 뿐입니다. 정말 치명적이고 은밀한 내연 관계를 이어가는 사람은 결혼식이라는 결정적인 장소에서 신부의 경계심을 직접적으로 자극하는 어리석은 행동을 하지 않습니다.",
+                    advice: "당신은 타인의 선 넘는 무례함이나 미묘한 기싸움은 잘 캐치하는 편이지만, 정작 <strong>어둠 속에 숨어있는 진짜 치밀한 적</strong>은 놓치기 쉽습니다.<br><br>인간관계에서 대놓고 얄미운 행동을 하는 사람에게 에너지를 쏟기보다, 겉으로는 아무렇지 않은 척하며 뒤에서 조용히 실속을 챙기거나 딴마음을 품는 사람들을 더 경계할 필요가 있습니다.",
+                    shareInterp: "오지랖과 얄미운 과시욕에서 비롯된 여사친의 기싸움에 반응했습니다. 미묘한 무례함은 잘 캐치하지만 <strong>진짜 치밀하게 숨어있는 적</strong>은 놓치기 쉽습니다.",
+                    shareAdvice: "대놓고 얄미운 행동을 하는 사람보다, <strong>뒤에서 조용히 딴마음을 품는 사람</strong>들을 더 경계하세요."
+                },
+                2: {
+                    name: "2번 오프숄더 여사친", scoreLabel: "쎄믈리에 지수", score: "20%",
+                    interpretation: "겉으로 드러난 함정에 시선이 묶였습니다. 2번은 불륜녀가 아니라, 남의 결혼식에서도 자신이 가장 돋보이고 싶어 하는 <strong>과시형 민폐 하객</strong>입니다.<br><br>신부 대기실에 어울리지 않는 노출 있는 의상을 입고 온 것이나, 어제 늦게까지 야근을 같이 했다며 굳이 신부 앞에서 친분을 과시하는 행동 모두 '나 이 남자에게 꽤 특별한 동료야'라는 우월감을 느끼고 싶어서 하는 얕은 수작에 불과합니다. 실제로 어제 야근을 함께한 것은 단순한 업무 때문이었으며, 신랑 입장에서도 그저 피곤하고 부담스러운 직장 동료일 가능성이 큽니다.",
+                    advice: "겉으로 화려하게 드러나는 도발에 시선을 빼앗겨 정작 가장 위험한 본질을 보지 못했습니다. 평소에도 목소리가 크거나 화려한 언변으로 자신을 포장하는 사람에게 쉽게 신경을 뺏기는 경향이 있을 수 있습니다.<br><br>눈앞에 보이는 자극적인 말이나 행동 너머에 있는 <strong>상대방의 진짜 의도를 한 번 더 차분하게 의심해 보는 연습</strong>이 필요합니다.",
+                    shareInterp: "겉으로 드러난 화려한 도발과 함정에 시선이 묶였습니다. 자극적인 포장이나 얕은 과시에 신경을 빼앗겨 <strong>가장 위험한 본질</strong>을 놓치는 경향이 있습니다.",
+                    shareAdvice: "눈앞에 보이는 자극적인 언행 너머에 있는 <strong>상대방의 진짜 의도를 차분하게 의심</strong>해 보세요."
+                },
+                3: {
+                    name: "3번 분홍 원피스 여사친", scoreLabel: "쎄믈리에 지수", score: "70%",
+                    interpretation: "꽤 예리한 눈썰미를 가졌지만, 정답 문턱에서 비껴갔습니다. 3번은 현재 진행형인 내연녀가 아니라, 과거에 신랑을 깊게 짝사랑했거나 짧게 썸을 탔다가 정리된 인물입니다.<br><br>남자의 체질이나 은밀한 취향인 향수까지 정확히 알고 선물하며 묘한 여운을 남긴 것은, 결혼식 날 신부의 기분을 미묘하게 망쳐놓고 신랑의 머릿속에 자신의 존재감을 마지막으로 각인시키려는 <strong>미련의 발로</strong>입니다. 가장 환하게 웃고 있는 얼굴 뒤에는 '그 자리에 내가 있었어야 했는데'라는 씁쓸한 패배감이 숨겨져 있습니다.",
+                    advice: "과거의 인연이나 숨겨진 미묘한 감정선을 읽는 감각은 상당히 뛰어납니다. 하지만 이미 끝난 과거의 흔적에 집중하느라, 현재 진행형으로 벌어지고 있는 더 큰 위험을 놓칠 수 있습니다.<br><br>때로는 상대방이 던지는 의미심장한 미끼에 반응하기보다, <strong>아예 아무런 단서도 남기지 않으려 애쓰는 부자연스러운 침묵</strong>에 주목해야 합니다.",
+                    shareInterp: "과거의 미련이나 숨겨진 미묘한 감정선을 읽는 감각은 뛰어나지만, 끝난 과거의 흔적에 집중하느라 <strong>현재 진행형인 더 큰 위험</strong>을 놓쳤습니다.",
+                    shareAdvice: "상대가 던지는 의미심장한 미끼보다, <strong>단서를 숨기려는 부자연스러운 침묵</strong>에 주목하세요."
+                },
+                4: {
+                    name: "4번 눈물 흘리는 여사친", scoreLabel: "쎄믈리에 지수", score: "30%",
+                    interpretation: "눈앞의 극적인 연출에 판단력이 흐려졌습니다. 결혼식장에서 신부보다 더 서럽게 우는 여사친은 드라마나 클리셰에서는 단골 불륜녀로 등장하지만, 현실에서는 그저 감수성이 지나치게 과잉된 하객일 뿐입니다.<br><br>오랜 친구가 결혼한다는 사실에 혼자 감동하고 분위기에 취해 눈물을 흘리는, 이른바 <strong>'주인공 병'에 걸린 상태</strong>라고 볼 수 있습니다. 만약 정말로 신랑과 깊은 내연 관계였다면, 주변 하객들과 신부의 시선이 일제히 쏠리는 이런 돌발 행동은 절대 하지 못합니다. 죄책감과 들통날지 모른다는 극도의 긴장감 때문에 오히려 감정을 철저히 죽이는 것이 진짜 범인의 심리입니다.",
+                    advice: "당신은 타인의 극적인 감정 표현이나 눈물에 마음이 쉽게 흔들리고 공감하는 성향을 가지고 있습니다. 다정하고 직관적인 성격이지만, 반대로 말하면 작정하고 불쌍한 척하거나 감정적으로 호소하는 사람에게 속아 넘어가기 쉽습니다.<br><br>중요한 판단을 내려야 할 때는 상대방의 감정선이 아닌, <strong>객관적인 사실과 정황을 먼저 따져보는 냉철함</strong>을 길러야 합니다.",
+                    shareInterp: "타인의 극적인 감정 표현이나 눈물에 마음이 쉽게 흔들리는 성향입니다. 다정하지만 <strong>감정적으로 호소하는 연출에 판단력이 흐려지기</strong> 쉽습니다.",
+                    shareAdvice: "중요한 판단을 내릴 때는 감정선이 아닌, <strong>객관적인 사실과 정황을 따져보는 냉철함</strong>을 기르세요."
+                },
+                5: {
+                    name: "5번 검은 셔츠 여사친", scoreLabel: "쎄믈리에 지수", score: "100% (정답)",
+                    interpretation: "서늘할 정도로 정확한 직감입니다. 내 남편을 빼앗을 단 한 명의 진짜 불륜녀는 바로 5번입니다. 정말 깊고 은밀한 관계일수록 결혼식 당일에는 신부의 의심 레이더망을 피하기 위해 본능적으로 존재감을 지웁니다. 다른 여사친들이 웃으며 말을 걸고 감정을 드러낼 때, 혼자만 어두운 옷을 입고 굳은 표정으로 거리를 둔 것은 자신의 복잡한 감정(질투, 죄책감, 분노)이 새어 나갈까 봐 철저히 방어기제를 작동시킨 것입니다.<br><br>결정적인 증거는 바로 <strong>'나와 똑같은 한정판 핸드크림'</strong>입니다. 예비신랑이 밀회를 즐기면서, 집에 돌아왔을 때 몸에 밴 다른 여자의 살냄새를 들키지 않기 위해 예비신부와 내연녀 두 사람에게 똑같은 향의 핸드크림을 사주어 완벽한 알리바이를 만든 것입니다.",
+                    advice: "가장 조용한 그림자 속에 숨어있던 치명적인 단서를 단번에 꿰뚫어 본 당신의 감각은 매우 예리합니다. 겉으로 드러나는 화려한 말이나 행동에 현혹되지 않고, <strong>상황의 이면과 미세한 위화감을 읽어내는 통찰력</strong>이 상당히 뛰어납니다.<br><br>평소에도 누군가 당신을 속이려 해도 금방 눈치채는 편일 것입니다. 지금처럼 당신의 그 차분하고 날카로운 육감과 판단력을 믿고 나아가도 좋습니다.",
+                    shareInterp: "가장 조용한 그림자 속에 숨어있던 치명적인 단서를 단번에 꿰뚫어 보았습니다. 화려한 언행에 현혹되지 않고 <strong>상황의 이면과 위화감을 읽어내는 통찰력</strong>이 탁월합니다.",
+                    shareAdvice: "누군가 당신을 속이려 해도 금방 눈치채는 예리한 감각을 지녔습니다. <strong>당신의 날카로운 육감과 판단력을 믿으세요.</strong>"
+                }
+            },
             'test3': {
                 1: {
-                    name: "1번 텀블러", score: "35%",
+                    name: "1번 텀블러", scoreLabel: "싸이코패스 성향", score: "35%",
                     interpretation: "무겁고 둔탁한 텀블러를 무기로 선택한 당신은, <strong>억눌린 감정이 폭발할 때 물리적인 파괴력으로 상황을 압도하려는 충동</strong>을 가지고 있습니다. 정교한 계획보다는 우발적이고 즉각적인 분노 표출에 더 익숙하며, 겉으로 보이는 평온함 아래에 꽤나 거친 본성이 잠재되어 있습니다.",
                     advice: "순간적인 분노는 가장 파괴적인 결과를 낳습니다. 감정이 격해질 때 물리적인 행동으로 이어지기 전, 스스로를 통제하고 잠시 멈출 수 있는 이성적인 브레이크를 마련해야 합니다.",
                     shareInterp: "정교한 계획보다는 우발적이고 거친 <strong>물리적 힘을 통해 상황을 통제</strong>하려는 무의식적 충동을 지니고 있습니다.",
                     shareAdvice: "순간적인 폭발은 걷잡을 수 없는 결과를 낳습니다. 이성적인 브레이크를 마련하세요."
                 },
                 2: {
-                    name: "2번 샤프", score: "75%",
+                    name: "2번 샤프", scoreLabel: "싸이코패스 성향", score: "75%",
                     interpretation: "가장 흔하고 일상적인 물건을 치명적인 흉기로 둔갑시키는 상상력. 당신은 <strong>평범함 속에 악의를 숨기고, 치밀하고 은밀하게 상대를 공격하려는 성향</strong>이 다분합니다. 일상적인 관계망 속에서도 상대의 가장 취약한 급소를 정확히 찌를 수 있는 날카롭고 냉혹한 관찰력을 지니고 있습니다.",
                     advice: "당신의 예리한 지능과 관찰력을 타인을 깎아내리거나 공격하는 데 사용하지 마세요. 타인의 약점을 쥐고 흔드는 것은 일시적인 우월감일 뿐, 결국 당신의 내면을 병들게 합니다.",
                     shareInterp: "가장 평범한 것으로 치명적인 타격을 입히는, <strong>은밀하고 치밀한 악의와 날카로운 관찰력</strong>을 지니고 있습니다.",
                     shareAdvice: "예리함을 타인을 공격하는 무기로 쓰지 말고 스스로를 지키는 방패로 사용하세요."
                 },
                 3: {
-                    name: "3번 조각칼", score: "99%",
+                    name: "3번 조각칼", scoreLabel: "싸이코패스 성향", score: "99%",
                     interpretation: "살상 목적이 분명한 날카로운 도구. 당신은 목표를 향해 조금의 망설임도 없이 직진하는 <strong>극단적인 목표 지향성과 잔혹함</strong>을 숨기고 있습니다. 상대가 겪을 고통보다는 자신이 원하는 바를 이루는 성취감에 훨씬 더 큰 가치를 두며, 타인의 감정에 깊이 공감하지 못하는 서늘한 성향을 보입니다.",
                     advice: "목적 달성만을 위해 수단과 방법을 가리지 않는 태도는 주변을 폐허로 만듭니다. 타인의 고통을 이해하려는 의도적인 노력이 없다면, 당신은 철저하게 고립될 수밖에 없습니다.",
                     shareInterp: "목표를 위해서라면 타인의 고통쯤은 가볍게 무시하는 <strong>서늘한 잔혹함과 극단적 성취욕</strong>을 가지고 있습니다.",
                     shareAdvice: "수단과 방법을 가리지 않는 태도는 당신마저 집어삼킬 것입니다. 공감 능력을 기르세요."
                 },
                 4: {
-                    name: "4번 다색 볼펜", score: "1%",
+                    name: "4번 다색 볼펜", scoreLabel: "싸이코패스 성향", score: "1%",
                     interpretation: "다양한 색깔로 이루어진 아기자기한 볼펜을 선택한 당신. 폭력성이나 억눌린 악의와는 거리가 매우 멉니다. 오히려 <strong>갈등 상황을 유머나 창의적인 방법으로 유연하게 넘기려는 평화주의자적 성향</strong>이 짙습니다. 타인에게 상처를 주기보다는 이해하고 포용하려는 따뜻한 마음이 훨씬 큽니다.",
                     advice: "당신의 선하고 유연한 태도는 훌륭한 장점입니다. 하지만 때로는 악의를 가진 사람들의 표적이 될 수도 있으니, 무조건적인 수용보다는 단호하게 선을 긋는 법도 함께 배워야 합니다.",
                     shareInterp: "폭력성과는 거리가 먼, 갈등을 부드럽고 창의적으로 넘기려는 <strong>따뜻한 평화주의자</strong>입니다.",
                     shareAdvice: "당신의 선함을 지키기 위해, 때로는 단호하게 선을 긋고 거절하는 용기도 필요합니다."
                 },
                 5: {
-                    name: "5번 커터칼", score: "75%",
+                    name: "5번 커터칼", scoreLabel: "싸이코패스 성향", score: "75%",
                     interpretation: "쉽게 날을 꺾어 새것처럼 쓸 수 있는 커터칼. 당신은 <strong>관계에서 맺고 끊음이 매우 차갑고 단호한 성향</strong>을 가지고 있습니다. 자신에게 필요 없는 사람이나 방해되는 존재는 미련 없이 잘라낼 수 있는 냉혹함을 숨기고 있으며, 언제든 상황을 예리하게 통제할 준비가 되어 있습니다.",
                     advice: "인간관계는 물건을 쓰다 버리는 것과는 다릅니다. 지나치게 효율적이고 계산적인 인간관계는 훗날 깊은 공허함을 남길 수 있음을 명심해야 합니다.",
                     shareInterp: "자신에게 불필요한 존재를 언제든 가차 없이 잘라낼 수 있는 <strong>차갑고 냉혹한 단호함</strong>을 지녔습니다.",
                     shareAdvice: "지나치게 효율적이고 계산적인 관계 맺기는 결국 공허함을 낳습니다."
                 },
                 6: {
-                    name: "6번 컴퍼스", score: "49%",
+                    name: "6번 컴퍼스", scoreLabel: "싸이코패스 성향", score: "49%",
                     interpretation: "정확한 원을 그리는 도구인 컴퍼스. 당신은 자신의 영역과 규칙을 철저하게 지키려는 <strong>완벽주의적이고 통제적인 성향</strong>이 강합니다. '질투심'이라는 감정조차도 자신이 그어놓은 선을 타인이 침범했을 때 발생하는 궤도 이탈에 대한 분노로 해석할 확률이 큽니다. 감정적이기보단 매우 계산적입니다.",
                     advice: "모든 것을 당신의 통제 하에 둘 수는 없습니다. 타인의 실수나 예상치 못한 변수를 유연하게 받아들이지 못하면, 팽팽하게 당겨진 활시위처럼 결국 스스로 끊어지고 말 것입니다.",
                     shareInterp: "자신의 영역과 규칙이 침범당하는 것을 극도로 혐오하는 <strong>계산적이고 통제적인 완벽주의자</strong>입니다.",
                     shareAdvice: "세상의 변수를 억지로 통제하려 하지 말고, 조금은 유연하게 받아들이는 연습을 하세요."
                 },
                 7: {
-                    name: "7번 포크", score: "51%",
+                    name: "7번 포크", scoreLabel: "싸이코패스 성향", score: "51%",
                     interpretation: "음식을 찍어 먹는 도구를 흉기로 상상한 당신. 무의식 깊은 곳에 <strong>타인의 장점이나 성취를 빼앗아 내 것으로 만들고 싶어 하는 소유욕과 탐욕</strong>이 자리 잡고 있습니다. 질투심을 긍정적인 원동력으로 쓰기보다는, 상대방을 깎아내려 자신이 그 자리를 차지하려는 다소 비틀린 욕망을 조심해야 합니다.",
                     advice: "타인의 성취를 질투하며 뺏으려는 마음은 당신의 밑 빠진 독을 영원히 채울 수 없습니다. 시선을 남이 아닌 '나 자신'의 성장에 온전히 집중해야 할 때입니다.",
                     shareInterp: "타인의 성취를 질투하고 그것을 빼앗아 내 것으로 만들고자 하는 <strong>비틀린 소유욕과 탐욕</strong>을 숨기고 있습니다.",
                     shareAdvice: "타인을 깎아내리려는 마음을 버리고, 오직 당신 자신의 성장에 집중하세요."
                 },
                 8: {
-                    name: "8번 단소", score: "35%",
+                    name: "8번 단소", scoreLabel: "싸이코패스 성향", score: "35%",
                     interpretation: "속이 텅 빈 악기인 단소를 선택한 당신. 폭력적인 상황에서도 다소 <strong>비현실적이고 극적인 환상에 빠지려는 기질</strong>이 있습니다. 현실적인 해결책보다는 상황 자체를 회피하거나, 자신의 상처를 과장하여 연출함으로써 타인의 동정심과 관심을 유도해 상황을 모면하려는 성향이 엿보입니다.",
                     advice: "문제를 직시하지 않고 극적인 감정 연출 뒤에 숨으려는 태도는 본질적인 해결을 가로막습니다. 현실의 문제를 당신의 두 발로 단단히 딛고 마주하는 용기가 필요합니다.",
                     shareInterp: "갈등 상황을 회피하고 극적인 연출을 통해 동정을 유발하려는 <strong>비현실적이고 연극적인 성향</strong>을 지녔습니다.",
@@ -624,7 +734,7 @@
 
             const data = testData[testId][num];
             
-            // 이미지 처리 (test3이나 test1처럼 이미지가 없으면 빈 값으로 속성만 남김)
+            // 이미지 처리
             const imgEl = document.getElementById(`${testId}-res-img`);
             if (data.img) {
                 imgEl.src = data.img;
@@ -637,10 +747,12 @@
             document.getElementById(`${testId}-res-interpretation`).innerHTML = data.interpretation;
             document.getElementById(`${testId}-res-advice`).innerHTML = data.advice;
 
-            // 싸이코패스 점수 처리
+            // 점수 박스 처리 (싸이코패스 성향 / 쎄믈리에 지수 등 라벨 동적 변경)
             const psychoBox = document.getElementById(`${testId}-psycho-box`);
             if (psychoBox) {
                 if (data.score) {
+                    const labelEl = document.getElementById(`${testId}-score-label`);
+                    if (labelEl) labelEl.innerText = data.scoreLabel || '싸이코패스 성향';
                     document.getElementById(`${testId}-res-score`).innerText = data.score;
                     psychoBox.style.display = 'block';
                 } else {
@@ -678,9 +790,10 @@
             
             document.getElementById('share-title').innerHTML = `<span style="color:#dfba73;">${data.name}</span> <span style="color:#ffffff;">을(를) 선택하신</span><br><span style="color:#dfba73;">${userName}님</span> <span style="color:#ffffff;">의 심리 분석입니다.</span>`;
             
-            // 공유 카드 싸이코패스 점수 처리
+            // 공유 카드 점수 및 라벨 동적 처리
             const sharePsychoBox = document.getElementById('share-psycho-box');
             if (data.score) {
+                document.getElementById('share-psycho-label').innerText = data.scoreLabel || '싸이코패스 성향';
                 document.getElementById('share-psycho-value').innerText = data.score;
                 sharePsychoBox.classList.add('active');
             } else {
@@ -698,7 +811,6 @@
             const currentUrl = window.location.href; 
             
             try {
-                // html2canvas 옵션에 backgroundColor 지정하여 래퍼의 여백 색상을 검정색으로 일치시킴
                 const canvas = await html2canvas(captureArea, { backgroundColor: '#0a0a0f', scale: 2, useCORS: true });
                 canvas.toBlob(async (blob) => {
                     const file = new File([blob], 'b37_result.png', { type: 'image/png' });
