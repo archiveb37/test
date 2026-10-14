@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="인간의 심연을 파헤치는 심리테스트. 결혼식장의 5명의 여사친 중 진짜 불륜녀를 찾아보세요. 당신의 무의식 속에 숨겨진 쎄믈리에 지수를 분석해 드립니다.">
+    <meta name="keywords" content="심리테스트, 싸이코패스 테스트, 성향 테스트, 지하37층, 불륜녀, 쎄믈리에">
+    <title>결혼식장의 여사친들 - 지하 37층</title>
+    
+    <link rel="icon" href="logo.png?v=2" type="image/png">
+    
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/wanted-sans@v1.0.3/dist/web/static/wanted-sans.min.css" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Wanted Sans Variable", "Wanted Sans", sans-serif; letter-spacing: -0.1em; }
+        body { background-color: #050508; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; color: #eaeaea; overflow-x: hidden; position: relative; }
+        .fog-layer { position: fixed; bottom: 0; left: 0; width: 100vw; height: 50vh; background: linear-gradient(to top, rgba(35, 25, 15, 0.8) 0%, rgba(20, 15, 20, 0.3) 50%, transparent 100%); filter: blur(20px); pointer-events: none; z-index: 0; animation: fogSway 8s ease-in-out infinite alternate; }
+        @keyframes fogSway { 0% { transform: translateY(0) scale(1); opacity: 0.7; } 100% { transform: translateY(-25px) scale(1.08); opacity: 1; } }
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        .particles::before, .particles::after { content: ""; position: absolute; top: 0; width: 2px; height: 2px; background: transparent; box-shadow: 15vw 20vh 1px rgba(212, 175, 55, 0.9), 35vw 50vh 2px rgba(212, 175, 55, 0.6), 75vw 30vh 1px rgba(212, 175, 55, 0.8), 55vw 80vh 2px rgba(212, 175, 55, 0.5), 10vw 70vh 2px rgba(212, 175, 55, 0.9), 90vw 10vh 2px rgba(212, 175, 55, 0.7), 80vw 90vh 1px rgba(212, 175, 55, 0.9), 25vw 15vh 1px rgba(212, 175, 55, 0.6), 45vw 40vh 2px rgba(212, 175, 55, 0.8), 65vw 60vh 1px rgba(212, 175, 55, 0.9), 5vw 45vh 1px rgba(212, 175, 55, 0.8), 50vw 25vh 2px rgba(212, 175, 55, 0.6), 85vw 65vh 1px rgba(212, 175, 55, 0.9), 30vw 85vh 2px rgba(212, 175, 55, 0.5), 70vw 15vh 1px rgba(212, 175, 55, 0.7); animation: floatUp 20s linear infinite; border-radius: 50%; }
+        .particles::after { width: 3px; height: 3px; box-shadow: 20vw 40vh 1px rgba(212, 175, 55, 0.7), 60vw 20vh 2px rgba(212, 175, 55, 0.9), 40vw 90vh 2px rgba(212, 175, 55, 0.6), 85vw 50vh 2px rgba(212, 175, 55, 0.9), 15vw 85vh 1px rgba(212, 175, 55, 0.8), 95vw 75vh 2px rgba(212, 175, 55, 0.5), 10vw 30vh 2px rgba(212, 175, 55, 0.8), 75vw 85vh 1px rgba(212, 175, 55, 0.9), 50vw 10vh 2px rgba(212, 175, 55, 0.7); animation: floatUp 25s linear infinite; animation-delay: -10s; }
+        @keyframes floatUp { 0% { transform: translateY(100vh); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-20vh); opacity: 0; } }
+        
+        .container { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 60px 20px 80px; max-width: 600px; width: 100%; z-index: 10; position: relative; }
+        .screen { display: flex; flex-direction: column; align-items: center; width: 100%; }
+        .screen > * { opacity: 0; animation: staggerFadeUp 0.8s ease-out forwards; }
+        .screen > *:nth-child(1) { animation-delay: 0.1s; } 
+        .screen > *:nth-child(2) { animation-delay: 0.25s; } 
+        .screen > *:nth-child(3) { animation-delay: 0.4s; } 
+        .screen > *:nth-child(4) { animation-delay: 0.55s; } 
+        .screen > *:nth-child(5) { animation-delay: 0.7s; }
+        .screen > *:nth-child(6) { animation-delay: 0.85s; }
+        @keyframes staggerFadeUp { from { opacity: 0; transform: translateY(20px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+        
+        .logo-wrapper { margin-bottom: 30px; filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.3)); transition: transform 0.4s; cursor: pointer; }
+        .logo-wrapper:hover { transform: scale(1.05); }
+        .logo-img { width: 220px; height: auto; display: block; margin: 0 auto; }
+        
+        .mini-title { font-size: 0.95rem; font-weight: 300; color: #777788; margin-top: -15px; margin-bottom: 35px; text-shadow: 0 1px 5px rgba(0,0,0,0.5); }
+        .mini-title .highlight { font-weight: 500; color: #a47e3b; }
+        
+        .story-text { font-size: 1.1rem; color: #cfcfd8; line-height: 1.8; text-align: center; background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(12px); padding: 40px 25px; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.1); box-shadow: 0 15px 40px rgba(0,0,0,0.8); margin-bottom: 35px; word-break: keep-all; font-weight: 300; width: 100%; min-height: 150px; }
+        .story-text strong { color: #d4af37; font-weight: 500; text-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+        .cursor { display: inline-block; font-weight: 300; color: #d4af37; margin-left: 2px; animation: blinkCursor 0.9s step-end infinite; }
+        @keyframes blinkCursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .group-image-container { position: relative; width: 100%; max-width: 500px; margin: 0 auto 35px; border-radius: 10px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.9); border: 1px solid rgba(212, 175, 55, 0.2); }
+        .group-image { width: 100%; height: auto; display: block; opacity: 0.9; }
+
+        .suspect-list { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 12px; margin-bottom: 35px; text-align: left; }
+        .suspect-item { background: rgba(12, 12, 18, 0.75); border: 1px solid rgba(212, 175, 55, 0.18); border-radius: 10px; padding: 18px 20px; font-size: 0.95rem; line-height: 1.65; color: #cfcfd8; font-weight: 300; word-break: keep-all; box-shadow: 0 8px 20px rgba(0,0,0,0.5); backdrop-filter: blur(8px); }
+        .suspect-item strong { color: #dfba73; font-weight: 500; display: block; margin-bottom: 6px; font-size: 1.05rem; }
+        
+        .number-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 40px; width: 100%; transition: all 0.5s ease; }
+        .number-grid:has(> .num-btn:nth-child(8):last-child) { max-width: 250px; }
+        
+        .num-btn { width: 48px; height: 48px; flex-shrink: 0; border-radius: 50%; background: rgba(15, 15, 20, 0.35); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); color: #d4af37; font-size: 1.15rem; font-weight: 500; font-family: 'Pretendard', sans-serif; cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 25px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05); }
+        .num-btn:hover, .num-btn.selected { background: rgba(212, 175, 55, 0.2); color: #ffffff; border-color: rgba(212, 175, 55, 0.7); box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(212, 175, 55, 0.2); transform: translateY(-5px) scale(1.05); }
+
+        .locked-grid { pointer-events: none; }
+        .locked-grid .num-btn:not(.selected) { opacity: 0.35; filter: grayscale(100%); }
+
+        .result-area { display: none; width: 100%; background: linear-gradient(180deg, rgba(15,15,20,0.95), rgba(5,5,10,0.98)); border-top: 1px solid rgba(212, 175, 55, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.4); padding: 50px 20px; margin-top: 10px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9); }
+        .result-area.active { display: block; animation: staggerFadeUp 0.6s ease forwards; }
+        
+        .individual-result { display: none; }
+        .individual-result.active { display: block; }
+        
+        @keyframes textRevealSequence {
+            0% { opacity: 0; transform: translateY(15px); filter: blur(3px); }
+            100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+        .individual-result.active > *:nth-child(1) { opacity: 0; animation: textRevealSequence 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 0.2s; } /* 이름 */
+        .individual-result.active > *:nth-child(2) { opacity: 0; animation: textRevealSequence 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 0.6s; } /* 지수 */
+        .individual-result.active > *:nth-child(3) { opacity: 0; animation: textRevealSequence 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 1.2s; } /* 해석 */
+        .individual-result.active > *:nth-child(4) { opacity: 0; animation: textRevealSequence 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 1.8s; } /* 조언 */
+        
+        .result-area.active .common-buttons { opacity: 0; animation: textRevealSequence 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 2.3s; }
+        
+        .char-name { font-size: 1.4rem; color: #dfba73; margin-bottom: 30px; text-align: center; font-weight: 500; }
+        
+        .psycho-score-box { margin-bottom: 35px; text-align: center; background: rgba(212, 175, 55, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); padding: 20px; border-radius: 8px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); }
+        .psycho-score-label { display: block; font-size: 1.05rem; color: #a47e3b; margin-bottom: 8px; font-weight: 500; }
+        .psycho-score-value { display: block; font-size: 2.2rem; color: #d4af37; font-weight: 700; text-shadow: 0 0 15px rgba(212, 175, 55, 0.5); font-family: 'Pretendard', sans-serif; letter-spacing: 0; }
+
+        .result-box { margin-bottom: 40px; text-align: center; } 
+        .result-label { font-weight: 600; color: #a47e3b; display: block; margin-bottom: 15px; font-size: 1.15rem; letter-spacing: 0; text-align: center; }
+        .result-desc { color: #b0b0c0; line-height: 1.9; font-size: 1.05rem; font-weight: 300; word-break: keep-all; text-align: center; } 
+        .result-desc strong { color: #dfba73; font-weight: 600; text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); background: linear-gradient(180deg, transparent 60%, rgba(212, 175, 55, 0.15) 100%); padding: 0 2px; }
+        
+        .btn-share { margin-top: 15px; background: rgba(15, 15, 20, 0.6); color: #d4af37; font-size: 1rem; font-weight: 400; padding: 16px 0; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 30px; cursor: pointer; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7); transition: all 0.3s ease; width: 100%; max-width: 280px; display: flex; justify-content: center; align-items: center; gap: 8px; margin-left: auto; margin-right: auto; }
+        .btn-share:hover { background: rgba(212, 175, 55, 0.15); box-shadow: 0 5px 25px rgba(212, 175, 55, 0.3); border-color: rgba(212, 175, 55, 0.8); transform: translateY(-2px); }
+        
+        .btn-more { margin-top: 15px; background: rgba(15, 15, 20, 0.6); color: #ffffff; font-size: 1rem; font-weight: 400; padding: 16px 0; border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 30px; cursor: pointer; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7); transition: all 0.3s ease; width: 100%; max-width: 280px; display: flex; justify-content: center; align-items: center; gap: 8px; margin-left: auto; margin-right: auto; }
+        .btn-more:hover { background: rgba(255, 255, 255, 0.15); box-shadow: 0 5px 25px rgba(255, 255, 255, 0.3); border-color: rgba(255, 255, 255, 0.8); transform: translateY(-2px); }
+
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.85); z-index: 100; justify-content: center; align-items: center; padding: 20px; perspective: 1000px; }
+        .modal-overlay.active { display: flex; animation: fadeInModal 0.4s forwards; }
+        @keyframes fadeInModal { from { opacity: 0; backdrop-filter: blur(0px); } to { opacity: 1; backdrop-filter: blur(5px); } }
+        
+        @keyframes slideUpModal { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+
+        .modal-box { background: rgba(13, 13, 18, 0.45); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 40px 30px 30px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255, 255, 255, 0.1); position: relative; max-height: 90vh; overflow-y: auto; opacity: 0; transform: translateY(20px); }
+        .modal-overlay.active .modal-box { animation: slideUpModal 0.4s forwards; }
+        
+        .input-wrapper { margin-bottom: 35px; margin-top: 10px; width: 100%; position: relative; }
+        .input-wrapper input { width: 100%; padding: 12px 0; border: none; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.2); background: transparent; color: #dfba73; font-size: 1.25rem; outline: none; text-align: center; transition: all 0.4s ease; }
+        .input-wrapper input:focus { border-bottom: 1px solid #d4af37; box-shadow: 0 2px 10px rgba(212, 175, 55, 0.15); }
+        .input-wrapper input::placeholder { color: rgba(255, 255, 255, 0.25); font-weight: 300; font-size: 1.05rem; }
+
+        .icon-buttons { display: flex; justify-content: center; gap: 40px; }
+        .icon-btn { background: transparent; border: none; cursor: pointer; padding: 10px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: transform 0.3s ease, filter 0.3s ease; }
+        .icon-btn:hover { transform: scale(1.15); }
+        .check-btn svg { stroke: #d4af37; }
+        .close-btn svg { stroke: rgba(255, 255, 255, 0.8); }
+        
+        .capture-wrapper { padding: 2px; background-color: #0a0a0f; }
+
+        .share-card { background: #0a0a0f; padding: 30px 20px 25px; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.5); width: 100%; text-align: center; position: relative; overflow: hidden; }
+        .share-glitter { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; background-image: radial-gradient(circle at 15% 20%, rgba(212,175,55,0.4) 1px, transparent 1px), radial-gradient(circle at 85% 10%, rgba(212,175,55,0.6) 1.5px, transparent 1.5px); }
+        .share-card > * { position: relative; z-index: 1; }
+        .share-card-title { font-size: 1.1rem; font-weight: 400; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 15px; line-height: 1.6; }
+        
+        .share-psycho-score { display: none; margin-bottom: 20px; background: rgba(212, 175, 55, 0.1); padding: 10px; border-radius: 8px; border: 1px solid rgba(212, 175, 55, 0.4); }
+        .share-psycho-score.active { display: block; }
+        .share-psycho-label { color: #a47e3b; font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 5px; }
+        .share-psycho-value { color: #d4af37; font-size: 1.8rem; font-weight: 700; display: block; font-family: 'Pretendard', sans-serif; letter-spacing: 0; }
+
+        .share-card-section { margin-bottom: 15px; text-align: center; }
+        .share-card-label { color: #a47e3b; font-weight: 600; font-size: 0.95rem; margin-bottom: 8px; display: block; }
+        .share-card-desc { color: #cfcfd8; font-size: 0.9rem; line-height: 1.7; word-break: keep-all; font-weight: 300; display: block; }
+        .share-card-desc strong { color: #dfba73; font-weight: 500; background: linear-gradient(180deg, transparent 60%, rgba(212, 175, 55, 0.25) 100%); padding: 0 2px; }
+        
+        .share-card-logo { width: 90px; margin: 20px auto 0; filter: drop-shadow(0 0 10px rgba(212,175,55,0.3)); display: block; }
+        .share-card-footer-text { font-size: 0.8rem; margin-top: 10px; text-align: center; font-weight: 300; }
+        
+        .action-buttons { display: flex; justify-content: center; gap: 40px; margin-top: 30px; width: 100%; }
+        .action-icon-btn { background: transparent; border: none; cursor: pointer; padding: 10px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: transform 0.3s ease, filter 0.3s ease; }
+        .action-icon-btn:hover { transform: scale(1.15); }
+    </style>
+</head>
+<body>
+    <div class="particles"></div>
+    <div class="fog-layer"></div>
+    <div class="container">
+        
+        <!-- 테스트 4 화면 시작 -->
+        <div class="screen test-screen">
+            <div class="logo-wrapper" onclick="location.href='index.html'"><img src="logo.png" alt="b37 Logo" class="logo-img"></div>
+            <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
+            
+            <p class="story-text" id="typewriter-text-4">결혼 전, 쎄한 기분을 지울 수 없어 탐정에게 예비신랑의 뒤를 캐본 나.<br>의뢰 결과, 오늘 결혼식장에 찾아온 5명의 여사친 중 한 명과 <strong>아주 깊은 내연 관계</strong>라고 한다.<br><br><strong>이들 중 내 남편을 빼앗을 단 한 명의 진짜 불륜녀는 누구일까?</strong></p>
+            
+            <div class="group-image-container">
+                <img src="fivewomen.jpg" alt="결혼식장의 여사친들" class="group-image">
+            </div>
+
+            <div class="suspect-list">
+                <div class="suspect-item"><strong>1번 검은 미니스커트 여사친 🎀</strong> 가장 왼쪽에 서서 손을 다소곳이 모은 채 부드럽게 웃고 있는 그녀. "드디어 이 오빠가 장가를 가네! 아침잠도 많고 속이 여려서 네가 고생 좀 할 거야~ 은근히 손이 많이 가거든."이라며 나보다 남편을 더 잘 안다는 듯 은근한 아는 체를 한다.</div>
+                <div class="suspect-item"><strong>2번 오프숄더 여사친 💃</strong> 과감한 오프숄더 상의를 입고 활짝 웃고 있는 그녀. "어머~ 신부님 오늘 너무 예쁘시다! 아 참, 어제 신랑이 야근하느라 엄청 피곤해하던데 오늘 컨디션은 괜찮대요? 어제 늦게까지 고생 많았거든요."라며 밤늦게까지 둘이 함께 있었다는 사실을 굳이 내 앞에서 어필한다.</div>
+                <div class="suspect-item"><strong>3번 분홍 원피스 여사친 🌸</strong> 화사한 핑크색 레이스 원피스를 입고 가장 환하게 웃고 있는 그녀. "언니, 축하드려요! 이거 오빠가 제일 좋아하는 우디향 향수인데, 신혼여행 가서 같이 쓰세요~ 오빠가 땀이 많아서 향에 엄청 민감한 거 아시죠?"라며 남자의 은밀한 취향을 꿰뚫고 있다는 듯 선물 상자를 내민다.</div>
+                <div class="suspect-item"><strong>4번 눈물 흘리는 여사친 😭</strong> 가방을 든 채 손수건으로 연신 눈물을 훔치며 감정이 북받친 표정을 짓고 있는 그녀. "흐흑, 드디어 장가를 가다니 믿기지가 않아서... 내가 다 눈물이 나네. 둘이 정말 행복해야 해!"라며 신부보다 더 서럽고 과하게 울며 감정을 주체하지 못한다.</div>
+                <div class="suspect-item"><strong>5번 검은 셔츠 여사친 🖤</strong> 화려하거나 감정이 격한 다른 이들과 달리, 가장 어두운 차림으로 굳은 표정을 짓고 있는 그녀. 축하한다는 인사도 거의 없이, 내가 평소 쓰는 것과 똑같은 한정판 핸드크림 향을 은은히 풍기며 구석에서 조용히 상황을 살피다가 사진만 찍고 빠르게 사라진다.</div>
+            </div>
+            
+            <div class="number-grid">
+                <button class="num-btn" onclick="showResultDOM(1, this)">1</button>
+                <button class="num-btn" onclick="showResultDOM(2, this)">2</button>
+                <button class="num-btn" onclick="showResultDOM(3, this)">3</button>
+                <button class="num-btn" onclick="showResultDOM(4, this)">4</button>
+                <button class="num-btn" onclick="showResultDOM(5, this)">5</button>
+            </div>
+            
+            <!-- 결과 영역 -->
+            <div id="result-area" class="result-area">
+                
+                <div id="res-1" class="individual-result" data-name="1번 검은 미니스커트 여사친" data-score-label="쎄믈리에 지수" data-score-value="50%" data-share-interp="오지랖과 얄미운 과시욕에서 비롯된 여사친의 기싸움에 반응했습니다. 미묘한 무례함은 잘 캐치하지만 <strong>진짜 치밀하게 숨어있는 적</strong>은 놓치기 쉽습니다." data-share-advice="대놓고 얄미운 행동을 하는 사람보다, <strong>뒤에서 조용히 딴마음을 품는 사람</strong>들을 더 경계하세요.">
+                    <h2 class="char-name">1번 검은 미니스커트 여사친</h2>
+                    <div class="psycho-score-box"><span class="psycho-score-label">쎄믈리에 지수</span><span class="psycho-score-value">50%</span></div>
+                    <div class="result-box"><span class="result-label">해석</span><p class="result-desc">진짜 불륜녀가 아닙니다. 1번은 그저 오지랖이 넓고, 오랫동안 알고 지낸 편한 남사친을 다른 여자에게 뺏긴 것 같아 은근한 서운함을 느끼는 전형적인 '여사친' 유형입니다.<br><br>신부 앞에서 자신이 신랑의 사소한 습관까지 다 알고 있다는 듯이 말해 영역 표시를 하고 기선을 제압하려 했지만, 이는 <strong>얄미운 질투심과 과시욕에서 비롯된 행동</strong>일 뿐입니다. 정말 치명적이고 은밀한 내연 관계를 이어가는 사람은 결혼식이라는 결정적인 장소에서 신부의 경계심을 직접적으로 자극하는 어리석은 행동을 하지 않습니다.</p></div>
+                    <div class="result-box"><span class="result-label">조언</span><p class="result-desc">당신은 타인의 선 넘는 무례함이나 미묘한 기싸움은 잘 캐치하는 편이지만, 정작 <strong>어둠 속에 숨어있는 진짜 치밀한 적</strong>은 놓치기 쉽습니다.<br><br>인간관계에서 대놓고 얄미운 행동을 하는 사람에게 에너지를 쏟기보다, 겉으로는 아무렇지 않은 척하며 뒤에서 조용히 실속을 챙기거나 딴마음을 품는 사람들을 더 경계할 필요가 있습니다.</p></div>
+                </div>
+
+                <div id="res-2" class="individual-result" data-name="2번 오프숄더 여사친" data-score-label="쎄믈리에 지수" data-score-value="20%" data-share-interp="겉으로 드러난 화려한 도발과 함정에 시선이 묶였습니다. 자극적인 포장이나 얕은 과시에 신경을 빼앗겨 <strong>가장 위험한 본질</strong>을 놓치는 경향이 있습니다." data-share-advice="눈앞에 보이는 자극적인 언행 너머에 있는 <strong>상대방의 진짜 의도를 차분하게 의심</strong>해 보세요.">
+                    <h2 class="char-name">2번 오프숄더 여사친</h2>
+                    <div class="psycho-score-box"><span class="psycho-score-label">쎄믈리에 지수</span><span class="psycho-score-value">20%</span></div>
+                    <div class="result-box"><span class="result-label">해석</span><p class="result-desc">겉으로 드러난 함정에 시선이 묶였습니다. 2번은 불륜녀가 아니라, 남의 결혼식에서도 자신이 가장 돋보이고 싶어 하는 <strong>과시형 민폐 하객</strong>입니다.<br><br>신부 대기실에 어울리지 않는 노출 있는 의상을 입고 온 것이나, 어제 늦게까지 야근을 같이 했다며 굳이 신부 앞에서 친분을 과시하는 행동 모두 '나 이 남자에게 꽤 특별한 동료야'라는 우월감을 느끼고 싶어서 하는 얕은 수작에 불과합니다. 실제로 어제 야근을 함께한 것은 단순한 업무 때문이었으며, 신랑 입장에서도 그저 피곤하고 부담스러운 직장 동료일 가능성이 큽니다.</p></div>
+                    <div class="result-box"><span class="result-label">조언</span><p class="result-desc">겉으로 화려하게 드러나는 도발에 시선을 빼앗겨 정작 가장 위험한 본질을 보지 못했습니다. 평소에도 목소리가 크거나 화려한 언변으로 자신을 포장하는 사람에게 쉽게 신경을 뺏기는 경향이 있을 수 있습니다.<br><br>눈앞에 보이는 자극적인 말이나 행동 너머에 있는 <strong>상대방의 진짜 의도를 한 번 더 차분하게 의심해 보는 연습</strong>이 필요합니다.</p></div>
+                </div>
+
+                <div id="res-3" class="individual-result" data-name="3번 분홍 원피스 여사친" data-score-label="쎄믈리에 지수" data-score-value="70%" data-share-interp="과거의 미련이나 숨겨진 미묘한 감정선을 읽는 감각은 뛰어나지만, 끝난 과거의 흔적에 집중하느라 <strong>현재 진행형인 더 큰 위험</strong>을 놓쳤습니다." data-share-advice="상대가 던지는 의미심장한 미끼보다, <strong>단서를 숨기려는 부자연스러운 침묵</strong>에 주목하세요.">
+                    <h2 class="char-name">3번 분홍 원피스 여사친</h2>
+                    <div class="psycho-score-box"><span class="psycho-score-label">쎄믈리에 지수</span><span class="psycho-score-value">70%</span></div>
+                    <div class="result-box"><span class="result-label">해석</span><p class="result-desc">꽤 예리한 눈썰미를 가졌지만, 정답 문턱에서 비껴갔습니다. 3번은 현재 진행형인 내연녀가 아니라, 과거에 신랑을 깊게 짝사랑했거나 짧게 썸을 탔다가 정리된 인물입니다.<br><br>남자의 체질이나 은밀한 취향인 향수까지 정확히 알고 선물하며 묘한 여운을 남긴 것은, 결혼식 날 신부의 기분을 미묘하게 망쳐놓고 신랑의 머릿속에 자신의 존재감을 마지막으로 각인시키려는 <strong>미련의 발로</strong>입니다. 가장 환하게 웃고 있는 얼굴 뒤에는 '그 자리에 내가 있었어야 했는데'라는 씁쓸한 패배감이 숨겨져 있습니다.</p></div>
+                    <div class="result-box"><span class="result-label">조언</span><p class="result-desc">과거의 인연이나 숨겨진 미묘한 감정선을 읽는 감각은 상당히 뛰어납니다. 하지만 이미 끝난 과거의 흔적에 집중하느라, 현재 진행형으로 벌어지고 있는 더 큰 위험을 놓칠 수 있습니다.<br><br>때로는 상대방이 던지는 의미심장한 미끼에 반응하기보다, <strong>아예 아무런 단서도 남기지 않으려 애쓰는 부자연스러운 침묵</strong>에 주목해야 합니다.</p></div>
+                </div>
+
+                <div id="res-4" class="individual-result" data-name="4번 눈물 흘리는 여사친" data-score-label="쎄믈리에 지수" data-score-value="30%" data-share-interp="타인의 극적인 감정 표현이나 눈물에 마음이 쉽게 흔들리는 성향입니다. 다정하지만 <strong>감정적으로 호소하는 연출에 판단력이 흐려지기</strong> 쉽습니다." data-share-advice="중요한 판단을 내릴 때는 감정선이 아닌, <strong>객관적인 사실과 정황을 따져보는 냉철함</strong>을 기르세요.">
+                    <h2 class="char-name">4번 눈물 흘리는 여사친</h2>
+                    <div class="psycho-score-box"><span class="psycho-score-label">쎄믈리에 지수</span><span class="psycho-score-value">30%</span></div>
+                    <div class="result-box"><span class="result-label">해석</span><p class="result-desc">눈앞의 극적인 연출에 판단력이 흐려졌습니다. 결혼식장에서 신부보다 더 서럽게 우는 여사친은 드라마나 클리셰에서는 단골 불륜녀로 등장하지만, 현실에서는 그저 감수성이 지나치게 과잉된 하객일 뿐입니다.<br><br>오랜 친구가 결혼한다는 사실에 혼자 감동하고 분위기에 취해 눈물을 흘리는, 이른바 <strong>'주인공 병'에 걸린 상태</strong>라고 볼 수 있습니다. 만약 정말로 신랑과 깊은 내연 관계였다면, 주변 하객들과 신부의 시선이 일제히 쏠리는 이런 돌발 행동은 절대 하지 못합니다. 죄책감과 들통날지 모른다는 극도의 긴장감 때문에 오히려 감정을 철저히 죽이는 것이 진짜 범인의 심리입니다.</p></div>
+                    <div class="result-box"><span class="result-label">조언</span><p class="result-desc">당신은 타인의 극적인 감정 표현이나 눈물에 마음이 쉽게 흔들리고 공감하는 성향을 가지고 있습니다. 다정하고 직관적인 성격이지만, 반대로 말하면 작정하고 불쌍한 척하거나 감정적으로 호소하는 사람에게 속아 넘어가기 쉽습니다.<br><br>중요한 판단을 내려야 할 때는 상대방의 감정선이 아닌, <strong>객관적인 사실과 정황을 먼저 따져보는 냉철함</strong>을 길러야 합니다.</p></div>
+                </div>
+
+                <div id="res-5" class="individual-result" data-name="5번 검은 셔츠 여사친" data-score-label="쎄믈리에 지수" data-score-value="100% (정답)" data-share-interp="가장 조용한 그림자 속에 숨어있던 치명적인 단서를 단번에 꿰뚫어 보았습니다. 화려한 언행에 현혹되지 않고 <strong>상황의 이면과 위화감을 읽어내는 통찰력</strong>이 탁월합니다." data-share-advice="누군가 당신을 속이려 해도 금방 눈치채는 예리한 감각을 지녔습니다. <strong>당신의 날카로운 육감과 판단력을 믿으세요.</strong>">
+                    <h2 class="char-name">5번 검은 셔츠 여사친</h2>
+                    <div class="psycho-score-box"><span class="psycho-score-label">쎄믈리에 지수</span><span class="psycho-score-value">100% (정답)</span></div>
+                    <div class="result-box"><span class="result-label">해석</span><p class="result-desc">서늘할 정도로 정확한 직감입니다. 내 남편을 빼앗을 단 한 명의 진짜 불륜녀는 바로 5번입니다. 정말 깊고 은밀한 관계일수록 결혼식 당일에는 신부의 의심 레이더망을 피하기 위해 본능적으로 존재감을 지웁니다. 다른 여사친들이 웃으며 말을 걸고 감정을 드러낼 때, 혼자만 어두운 옷을 입고 굳은 표정으로 거리를 둔 것은 자신의 복잡한 감정(질투, 죄책감, 분노)이 새어 나갈까 봐 철저히 방어기제를 작동시킨 것입니다.<br><br>결정적인 증거는 바로 <strong>'나와 똑같은 한정판 핸드크림'</strong>입니다. 예비신랑이 밀회를 즐기면서, 집에 돌아왔을 때 몸에 밴 다른 여자의 살냄새를 들키지 않기 위해 예비신부와 내연녀 두 사람에게 똑같은 향의 핸드크림을 사주어 완벽한 알리바이를 만든 것입니다.</p></div>
+                    <div class="result-box"><span class="result-label">조언</span><p class="result-desc">가장 조용한 그림자 속에 숨어있던 치명적인 단서를 단번에 꿰뚫어 본 당신의 감각은 매우 예리합니다. 겉으로 드러나는 화려한 말이나 행동에 현혹되지 않고, <strong>상황의 이면과 미세한 위화감을 읽어내는 통찰력</strong>이 상당히 뛰어납니다.<br><br>평소에도 누군가 당신을 속이려 해도 금방 눈치채는 편일 것입니다. 지금처럼 당신의 그 차분하고 날카로운 육감과 판단력을 믿고 나아가도 좋습니다.</p></div>
+                </div>
+
+                <div class="common-buttons">
+                    <button class="btn-share" onclick="openNameModal()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                        내 심리 공유하기
+                    </button>
+                    <button class="btn-more" onclick="window.open('https://www.instagram.com/archive_b37?stkn=Zmg5M2d3bmRodDg1&utm_source=qr', '_blank')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        지하 37층
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 모달 영역 -->
+    <div id="name-modal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="input-wrapper">
+                <input type="text" id="user-name" placeholder="닉네임을 입력하세요" autocomplete="off">
+            </div>
+            <div class="icon-buttons">
+                <button class="icon-btn check-btn" onclick="generateShareCard()" title="확인"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></button>
+                <button class="icon-btn close-btn" onclick="closeModal('name-modal')" title="닫기"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="share-modal" class="modal-overlay">
+        <div class="modal-box" style="padding: 25px 20px;">
+            <div class="capture-wrapper" id="capture-area">
+                <div class="share-card">
+                    <div class="share-glitter"></div>
+                    <h2 id="share-title" class="share-card-title"></h2>
+                    <div id="share-psycho-box" class="share-psycho-score">
+                        <span id="share-psycho-label" class="share-psycho-label"></span>
+                        <span id="share-psycho-value" class="share-psycho-value"></span>
+                    </div>
+                    <div class="share-card-section">
+                        <span class="share-card-label">해석</span>
+                        <p id="share-interp" class="share-card-desc"></p>
+                    </div>
+                    <div class="share-card-section">
+                        <span class="share-card-label">조언</span>
+                        <p id="share-advice" class="share-card-desc"></p>
+                    </div>
+                    <img src="logo.png" alt="b37 Logo" class="share-card-logo">
+                    <p class="share-card-footer-text">
+                        <span style="color: #ffffff;">당신의 마음 가장 깊은 곳, </span>
+                        <span style="color: #d4af37; font-weight: 500;">지하 37층</span>
+                    </p>
+                </div>
+            </div>
+            <div class="action-buttons">
+                <button class="action-icon-btn action-share-btn" onclick="shareImage()" title="공유"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
+                <button class="action-icon-btn action-close-btn" onclick="closeModal('share-modal')" title="닫기"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentNum = "";
+        let lockState = false; 
+
+        window.onload = () => {
+            const storyTextEl = document.getElementById('typewriter-text-4');
+            if (storyTextEl) startTyping(storyTextEl, 40);
+        };
+
+        function startTyping(element, speed) {
+            const htmlString = element.innerHTML;
+            element.setAttribute('data-original-html', htmlString);
+            element.innerHTML = '<span class="cursor">|</span>';
+            
+            let i = 0;
+            let isTag = false;
+            let text = "";
+
+            function type() {
+                if (i < htmlString.length) {
+                    let char = htmlString.charAt(i);
+                    if (char === '<') isTag = true;
+                    text += char;
+                    i++;
+                    if (isTag) {
+                        while (i < htmlString.length && htmlString.charAt(i) !== '>') { text += htmlString.charAt(i); i++; }
+                        if (i < htmlString.length) { text += htmlString.charAt(i); i++; }
+                        isTag = false;
+                        type(); 
+                        return;
+                    }
+                    element.innerHTML = text + '<span class="cursor">|</span>';
+                    setTimeout(type, speed);
+                } else {
+                    element.innerHTML = text + '<span class="cursor">|</span>';
+                }
+            }
+            type();
+        }
+
+        function showResultDOM(num, btnElement) {
+            if (lockState) return; 
+            lockState = true; 
+            
+            document.querySelector('.number-grid').classList.add('locked-grid');
+            document.querySelectorAll('.num-btn').forEach(btn => btn.classList.remove('selected'));
+            btnElement.classList.add('selected');
+
+            currentNum = num;
+
+            document.querySelectorAll('.individual-result').forEach(el => el.classList.remove('active'));
+            document.getElementById(`res-${num}`).classList.add('active');
+
+            const resultArea = document.getElementById('result-area');
+            resultArea.classList.remove('active');
+            setTimeout(() => {
+                resultArea.classList.add('active');
+                resultArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
+        }
+
+        function openNameModal() {
+            document.getElementById('user-name').value = '';
+            document.getElementById('name-modal').classList.add('active');
+            setTimeout(() => document.getElementById('user-name').focus(), 100);
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function generateShareCard() {
+            const userName = document.getElementById('user-name').value.trim();
+            if (!userName) return alert("닉네임을 입력해주세요.");
+            closeModal('name-modal');
+            
+            const activeResult = document.getElementById(`res-${currentNum}`);
+            document.getElementById('share-title').innerHTML = `<span style="color:#dfba73;">${activeResult.dataset.name}</span> <span style="color:#ffffff;">을(를) 선택하신</span><br><span style="color:#dfba73;">${userName}님</span> <span style="color:#ffffff;">의 심리 분석입니다.</span>`;
+            
+            if (activeResult.dataset.scoreValue) {
+                document.getElementById('share-psycho-label').innerText = activeResult.dataset.scoreLabel;
+                document.getElementById('share-psycho-value').innerText = activeResult.dataset.scoreValue;
+                document.getElementById('share-psycho-box').classList.add('active');
+            } else {
+                document.getElementById('share-psycho-box').classList.remove('active');
+            }
+
+            document.getElementById('share-interp').innerHTML = activeResult.dataset.shareInterp;
+            document.getElementById('share-advice').innerHTML = activeResult.dataset.shareAdvice;
+            document.getElementById('share-modal').classList.add('active');
+        }
+        
+        async function shareImage() {
+            try {
+                const canvas = await html2canvas(document.getElementById('capture-area'), { backgroundColor: '#0a0a0f', scale: 2, useCORS: true });
+                canvas.toBlob(async (blob) => {
+                    const file = new File([blob], 'b37_result.png', { type: 'image/png' });
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        await navigator.share({ text: '당신의 마음 가장 깊은 곳, 지하 37층\n' + window.location.href.split('?')[0], files: [file] });
+                    } else { alert('현재 브라우저에서는 공유 기능을 지원하지 않습니다. 캡처 기능을 이용해주세요.'); }
+                });
+            } catch (error) { alert('공유하는 중 오류가 발생했습니다.'); }
+        }
+        
+        document.getElementById('user-name').addEventListener('keypress', e => { if (e.key === 'Enter') generateShareCard(); });
+    </script>
+</body>
+</html>
