@@ -7,19 +7,19 @@
     <meta name="keywords" content="심리테스트, 싸이코패스 테스트, 성향 테스트, 지하37층, 무의식, 심리분석">
     <title>당신의 마음 가장 깊은 곳, 지하 37층</title>
     
-    <link rel="icon" href="logo.png?v=2" type="image/png">
-    <link rel="shortcut icon" href="logo.png?v=2" type="image/png">
-    <link rel="apple-touch-icon" href="logo.png?v=2">
+    <!-- ★ 구글 애드센스 심사 코드 ★ -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1509891167558173" crossorigin="anonymous"></script>
 
-    <!-- ★ 자동 길잡이(리다이렉트) 스크립트: 가장 먼저 실행되도록 상단에 배치 ★ -->
+    <!-- ★ 자동 길잡이(리다이렉트) 스크립트 ★ -->
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const ep = urlParams.get('ep');
-        if (ep) {
-            // 과거 주소 파라미터가 감지되면, 해당 이름의 html 파일로 즉시 화면을 교체
-            window.location.replace(ep + '.html'); 
-        }
+        if (ep) { window.location.replace(ep + '.html'); }
     </script>
+
+    <link rel="icon" href="logo.png?v=2" type="image/png">
+    <link rel="shortcut icon" href="logo.png?v=2" type="image/png">
+    <link rel="apple-touch-icon" href="logo.png?v=2">
 
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/wanted-sans@v1.0.3/dist/web/static/wanted-sans.min.css" />
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -75,7 +75,6 @@
         .banner-title { font-size: 1.35rem; font-weight: 500; color: #dfba73; margin-bottom: 10px; }
         .banner-desc { font-size: 0.95rem; color: #888899; font-weight: 300; }
 
-        /* 바닥글(Footer) 스타일 */
         .site-footer { margin-top: auto; padding-top: 60px; width: 100%; text-align: center; z-index: 10; position: relative; opacity: 0; animation: staggerFadeUp 0.8s ease-out forwards; animation-delay: 1.2s; }
         .site-footer::before { content: ''; display: block; width: 50px; height: 1px; background: rgba(212, 175, 55, 0.3); margin: 0 auto 25px; }
         .site-footer p { font-size: 0.8rem; color: #666677; font-weight: 300; margin-bottom: 8px; line-height: 1.5; letter-spacing: 0; }
@@ -89,7 +88,6 @@
     
     <div class="container">
         
-        <!-- 첫 화면 (메인) -->
         <div id="intro-screen" class="screen active">
             <div class="logo-wrapper"><img src="logo.png" alt="b37 Logo" class="logo-img"></div>
             <h1 class="main-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></h1>
@@ -103,7 +101,6 @@
             </div>
         </div>
 
-        <!-- 에피소드 목록 -->
         <div id="list-screen" class="screen">
             <div class="logo-wrapper clickable-logo" onclick="showScreen('intro-screen')"><img src="logo.png" alt="b37 Logo" class="logo-img"></div>
             <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
@@ -132,7 +129,6 @@
             </div>
         </div>
 
-        <!-- 바닥글 (SEO 및 애드센스 신뢰도용) -->
         <footer class="site-footer">
             <p>본 사이트는 이용자의 개인정보를 수집 및 저장하지 않습니다.</p>
             <p>
