@@ -7,6 +7,9 @@
     <meta name="keywords" content="심리테스트, 싸이코패스 테스트, 성향 테스트, 지하37층, 불륜녀, 쎄믈리에">
     <title>결혼식장의 여사친들 - 지하 37층</title>
     
+    <!-- ★ 구글 애드센스 심사 코드 ★ -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1509891167558173" crossorigin="anonymous"></script>
+
     <link rel="icon" href="logo.png?v=2" type="image/png">
     
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/wanted-sans@v1.0.3/dist/web/static/wanted-sans.min.css" />
@@ -55,7 +58,7 @@
         .number-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 40px; width: 100%; transition: all 0.5s ease; }
         .number-grid:has(> .num-btn:nth-child(8):last-child) { max-width: 250px; }
         
-        .num-btn { width: 48px; height: 48px; flex-shrink: 0; border-radius: 50%; background: rgba(15, 15, 20, 0.35); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); color: #d4af37; font-size: 1.15rem; font-weight: 500; font-family: 'Pretendard', sans-serif; cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 25px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05); }
+        .num-btn { width: 48px; height: 48px; flex-shrink: 0; border-radius: 50%; background: rgba(15, 15, 20, 0.35); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); color: #d4af37; font-size: 1.15rem; font-weight: 500; font-family: 'Pretendard', sans-serif; cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 25px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05); }
         .num-btn:hover, .num-btn.selected { background: rgba(212, 175, 55, 0.2); color: #ffffff; border-color: rgba(212, 175, 55, 0.7); box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(212, 175, 55, 0.2); transform: translateY(-5px) scale(1.05); }
 
         .locked-grid { pointer-events: none; }
@@ -71,10 +74,10 @@
             0% { opacity: 0; transform: translateY(15px); filter: blur(3px); }
             100% { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
-        .individual-result.active > *:nth-child(1) { opacity: 0; animation: textRevealSequence 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 0.2s; } /* 이름 */
-        .individual-result.active > *:nth-child(2) { opacity: 0; animation: textRevealSequence 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 0.6s; } /* 지수 */
-        .individual-result.active > *:nth-child(3) { opacity: 0; animation: textRevealSequence 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 1.2s; } /* 해석 */
-        .individual-result.active > *:nth-child(4) { opacity: 0; animation: textRevealSequence 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 1.8s; } /* 조언 */
+        .individual-result.active > *:nth-child(1) { opacity: 0; animation: textRevealSequence 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 0.2s; } 
+        .individual-result.active > *:nth-child(2) { opacity: 0; animation: textRevealSequence 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 0.6s; } 
+        .individual-result.active > *:nth-child(3) { opacity: 0; animation: textRevealSequence 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 1.2s; } 
+        .individual-result.active > *:nth-child(4) { opacity: 0; animation: textRevealSequence 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 1.8s; } 
         
         .result-area.active .common-buttons { opacity: 0; animation: textRevealSequence 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 2.3s; }
         
@@ -145,8 +148,7 @@
     <div class="fog-layer"></div>
     <div class="container">
         
-        <!-- 테스트 4 화면 시작 -->
-        <div class="screen test-screen">
+        <div class="screen test-screen active">
             <div class="logo-wrapper" onclick="location.href='index.html'"><img src="logo.png" alt="b37 Logo" class="logo-img"></div>
             <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
             
@@ -172,7 +174,6 @@
                 <button class="num-btn" onclick="showResultDOM(5, this)">5</button>
             </div>
             
-            <!-- 결과 영역 -->
             <div id="result-area" class="result-area">
                 
                 <div id="res-1" class="individual-result" data-name="1번 검은 미니스커트 여사친" data-score-label="쎄믈리에 지수" data-score-value="50%" data-share-interp="오지랖과 얄미운 과시욕에서 비롯된 여사친의 기싸움에 반응했습니다. 미묘한 무례함은 잘 캐치하지만 <strong>진짜 치밀하게 숨어있는 적</strong>은 놓치기 쉽습니다." data-share-advice="대놓고 얄미운 행동을 하는 사람보다, <strong>뒤에서 조용히 딴마음을 품는 사람</strong>들을 더 경계하세요.">
