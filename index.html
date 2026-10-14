@@ -33,8 +33,8 @@
         .particles::after { width: 3px; height: 3px; box-shadow: 20vw 40vh 1px rgba(212, 175, 55, 0.7), 60vw 20vh 2px rgba(212, 175, 55, 0.9), 40vw 90vh 2px rgba(212, 175, 55, 0.6), 85vw 50vh 2px rgba(212, 175, 55, 0.9), 15vw 85vh 1px rgba(212, 175, 55, 0.8), 95vw 75vh 2px rgba(212, 175, 55, 0.5), 10vw 30vh 2px rgba(212, 175, 55, 0.8), 75vw 85vh 1px rgba(212, 175, 55, 0.9), 50vw 10vh 2px rgba(212, 175, 55, 0.7); animation: floatUp 25s linear infinite; animation-delay: -10s; }
         @keyframes floatUp { 0% { transform: translateY(100vh); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-20vh); opacity: 0; } }
         
-        .container { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 60px 20px 80px; max-width: 600px; width: 100%; z-index: 10; position: relative; }
-        .screen { display: none; width: 100%; }
+        .container { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 60px 20px 40px; max-width: 600px; width: 100%; z-index: 10; position: relative; min-height: 100vh; }
+        .screen { display: none; width: 100%; flex: 1; }
         .screen.active { display: flex; flex-direction: column; align-items: center; }
         .screen > * { opacity: 0; }
         .screen.active > * { animation: staggerFadeUp 0.8s ease-out forwards; }
@@ -62,6 +62,7 @@
         .sub-title { font-size: 1.05rem; font-weight: 300; color: #888899; margin-bottom: 50px; line-height: 1.5; }
         .mini-title { font-size: 0.95rem; font-weight: 300; color: #777788; margin-top: -15px; margin-bottom: 35px; text-shadow: 0 1px 5px rgba(0,0,0,0.5); }
         .mini-title .highlight { font-weight: 500; color: #a47e3b; }
+        
         .intro-btns { display: flex; flex-direction: column; gap: 15px; align-items: center; width: 100%; }
         .btn-start { background: rgba(15, 15, 20, 0.6); color: #d4af37; font-size: 1.05rem; font-weight: 400; padding: 18px 0; width: 260px; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 30px; cursor: pointer; box-shadow: 0 5px 25px rgba(0, 0, 0, 0.9), inset 0 0 15px rgba(212, 175, 55, 0.1); backdrop-filter: blur(5px); transition: all 0.4s ease; display: flex; justify-content: center; align-items: center; gap: 8px; }
         .btn-start:hover { background: rgba(212, 175, 55, 0.15); box-shadow: 0 5px 30px rgba(212, 175, 55, 0.3); border-color: rgba(212, 175, 55, 0.8); }
@@ -73,11 +74,19 @@
         .banner-item:hover { transform: translateY(-5px); border-color: rgba(212, 175, 55, 0.6); box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15); background: linear-gradient(180deg, rgba(30,30,35,0.8), rgba(20,20,25,0.9)); }
         .banner-title { font-size: 1.35rem; font-weight: 500; color: #dfba73; margin-bottom: 10px; }
         .banner-desc { font-size: 0.95rem; color: #888899; font-weight: 300; }
+
+        /* 바닥글(Footer) 스타일 */
+        .site-footer { margin-top: auto; padding-top: 60px; width: 100%; text-align: center; z-index: 10; position: relative; opacity: 0; animation: staggerFadeUp 0.8s ease-out forwards; animation-delay: 1.2s; }
+        .site-footer::before { content: ''; display: block; width: 50px; height: 1px; background: rgba(212, 175, 55, 0.3); margin: 0 auto 25px; }
+        .site-footer p { font-size: 0.8rem; color: #666677; font-weight: 300; margin-bottom: 8px; line-height: 1.5; letter-spacing: 0; }
+        .site-footer a { color: #888899; text-decoration: none; transition: color 0.3s ease; border-bottom: 1px solid rgba(136, 136, 153, 0.3); padding-bottom: 1px; }
+        .site-footer a:hover { color: #d4af37; border-color: #d4af37; }
     </style>
 </head>
 <body>
     <div class="particles"></div>
     <div class="fog-layer"></div>
+    
     <div class="container">
         
         <!-- 첫 화면 (메인) -->
@@ -122,6 +131,17 @@
                 </div>
             </div>
         </div>
+
+        <!-- 바닥글 (SEO 및 애드센스 신뢰도용) -->
+        <footer class="site-footer">
+            <p>본 사이트는 이용자의 개인정보를 수집 및 저장하지 않습니다.</p>
+            <p>
+                <a href="#" onclick="alert('[개인정보처리방침]\n\n지하 37층은 심리테스트 결과를 비롯한 어떠한 개인정보(이름, IP, 쿠키 등)도 서버에 수집하거나 저장하지 않는 안전한 무설치형 정보 제공 웹사이트입니다.'); return false;">개인정보처리방침(Privacy Policy)</a> 
+                &nbsp;|&nbsp; 
+                Contact: <a href="mailto:jojoarchivecs@gmail.com">jojoarchivecs@gmail.com</a>
+            </p>
+            <p>© 2026 지하 37층. All rights reserved.</p>
+        </footer>
 
     </div>
 
