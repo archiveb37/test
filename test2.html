@@ -7,6 +7,9 @@
     <meta name="keywords" content="심리테스트, 성향 테스트, 지하37층, 무의식, 심리분석, 창밖의 불청객">
     <title>창밖의 불청객 - 지하 37층</title>
     
+    <!-- ★ 구글 애드센스 심사 코드 ★ -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1509891167558173" crossorigin="anonymous"></script>
+
     <link rel="icon" href="logo.png?v=2" type="image/png">
     <link rel="shortcut icon" href="logo.png?v=2" type="image/png">
     <link rel="apple-touch-icon" href="logo.png?v=2">
@@ -67,7 +70,7 @@
         .individual-result { display: none; }
         .individual-result.active { display: block; animation: fadeInModal 0.5s ease forwards; }
 
-        /* 결과 영역의 캐릭터 이미지 스타일 숨김 (이번 에피소드에서는 미사용) */
+        /* 결과 영역의 캐릭터 이미지 숨김 */
         .character-img { display: none; }
         
         .char-name { font-size: 1.4rem; color: #dfba73; margin-bottom: 30px; text-align: center; font-weight: 500; }
@@ -146,7 +149,7 @@
                 <img src="image_5.png" alt="반지하 창밖의 불청객" class="group-image">
             </div>
             
-            <!-- 번호 버튼 대신 이미지 그리드로 변경 -->
+            <!-- 이미지 그리드 영역 -->
             <div class="image-grid">
                 <div class="image-btn" onclick="showResultDOM(1, this)">
                     <span class="num-label">1</span>
@@ -307,7 +310,7 @@
             type();
         }
 
-        // 버튼 대신 이미지 클릭으로 변경된 로직
+        // 이미지 클릭 로직
         function showResultDOM(num, btnElement) {
             if (lockState) return; 
             lockState = true; 
