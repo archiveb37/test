@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="인간의 심연을 파헤치는 심리테스트. 당신의 무의식 속에 숨겨진 성향을 분석해 드립니다. 어둠 속에서 마주하는 진정한 자아, 지하 37층.">
+    <meta name="keywords" content="심리테스트, 성향 테스트, 지하37층, 무의식, 심리분석, 창밖의 불청객">
+    <title>창밖의 불청객 - 지하 37층</title>
+    
+    <link rel="icon" href="logo.png?v=2" type="image/png">
+    <link rel="shortcut icon" href="logo.png?v=2" type="image/png">
+    <link rel="apple-touch-icon" href="logo.png?v=2">
+
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/wanted-sans@v1.0.3/dist/web/static/wanted-sans.min.css" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Wanted Sans Variable", "Wanted Sans", sans-serif; letter-spacing: -0.1em; }
+        body { background-color: #050508; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; color: #eaeaea; overflow-x: hidden; position: relative; }
+        .fog-layer { position: fixed; bottom: 0; left: 0; width: 100vw; height: 50vh; background: linear-gradient(to top, rgba(35, 25, 15, 0.8) 0%, rgba(20, 15, 20, 0.3) 50%, transparent 100%); filter: blur(20px); pointer-events: none; z-index: 0; animation: fogSway 8s ease-in-out infinite alternate; }
+        @keyframes fogSway { 0% { transform: translateY(0) scale(1); opacity: 0.7; } 100% { transform: translateY(-25px) scale(1.08); opacity: 1; } }
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        .particles::before, .particles::after { content: ""; position: absolute; top: 0; width: 2px; height: 2px; background: transparent; box-shadow: 15vw 20vh 1px rgba(212, 175, 55, 0.9), 35vw 50vh 2px rgba(212, 175, 55, 0.6), 75vw 30vh 1px rgba(212, 175, 55, 0.8), 55vw 80vh 2px rgba(212, 175, 55, 0.5), 10vw 70vh 2px rgba(212, 175, 55, 0.9), 90vw 10vh 2px rgba(212, 175, 55, 0.7), 80vw 90vh 1px rgba(212, 175, 55, 0.9), 25vw 15vh 1px rgba(212, 175, 55, 0.6), 45vw 40vh 2px rgba(212, 175, 55, 0.8), 65vw 60vh 1px rgba(212, 175, 55, 0.9), 5vw 45vh 1px rgba(212, 175, 55, 0.8), 50vw 25vh 2px rgba(212, 175, 55, 0.6), 85vw 65vh 1px rgba(212, 175, 55, 0.9), 30vw 85vh 2px rgba(212, 175, 55, 0.5), 70vw 15vh 1px rgba(212, 175, 55, 0.7); animation: floatUp 20s linear infinite; border-radius: 50%; }
+        .particles::after { width: 3px; height: 3px; box-shadow: 20vw 40vh 1px rgba(212, 175, 55, 0.7), 60vw 20vh 2px rgba(212, 175, 55, 0.9), 40vw 90vh 2px rgba(212, 175, 55, 0.6), 85vw 50vh 2px rgba(212, 175, 55, 0.9), 15vw 85vh 1px rgba(212, 175, 55, 0.8), 95vw 75vh 2px rgba(212, 175, 55, 0.5), 10vw 30vh 2px rgba(212, 175, 55, 0.8), 75vw 85vh 1px rgba(212, 175, 55, 0.9), 50vw 10vh 2px rgba(212, 175, 55, 0.7); animation: floatUp 25s linear infinite; animation-delay: -10s; }
+        @keyframes floatUp { 0% { transform: translateY(100vh); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-20vh); opacity: 0; } }
+        
+        .container { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 60px 20px 80px; max-width: 600px; width: 100%; z-index: 10; position: relative; }
+        .screen { display: flex; flex-direction: column; align-items: center; width: 100%; }
+        .screen > * { opacity: 0; animation: staggerFadeUp 0.8s ease-out forwards; }
+        .screen > *:nth-child(1) { animation-delay: 0.1s; } 
+        .screen > *:nth-child(2) { animation-delay: 0.25s; } 
+        .screen > *:nth-child(3) { animation-delay: 0.4s; } 
+        .screen > *:nth-child(4) { animation-delay: 0.55s; } 
+        .screen > *:nth-child(5) { animation-delay: 0.7s; }
+        .screen > *:nth-child(6) { animation-delay: 0.85s; }
+        @keyframes staggerFadeUp { from { opacity: 0; transform: translateY(20px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+        
+        .logo-wrapper { margin-bottom: 30px; filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.3)); transition: transform 0.4s; cursor: pointer; }
+        .logo-wrapper:hover { transform: scale(1.05); }
+        .logo-img { width: 220px; height: auto; display: block; margin: 0 auto; }
+        
+        .mini-title { font-size: 0.95rem; font-weight: 300; color: #777788; margin-top: -15px; margin-bottom: 35px; text-shadow: 0 1px 5px rgba(0,0,0,0.5); }
+        .mini-title .highlight { font-weight: 500; color: #a47e3b; }
+        
+        .story-text { font-size: 1.1rem; color: #cfcfd8; line-height: 1.8; text-align: center; background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(12px); padding: 40px 25px; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.1); box-shadow: 0 15px 40px rgba(0,0,0,0.8); margin-bottom: 35px; word-break: keep-all; font-weight: 300; width: 100%; min-height: 150px; }
+        .story-text strong { color: #d4af37; font-weight: 500; text-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+        .cursor { display: inline-block; font-weight: 300; color: #d4af37; margin-left: 2px; animation: blinkCursor 0.9s step-end infinite; }
+        @keyframes blinkCursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .group-image-container { position: relative; width: 100%; max-width: 500px; margin: 0 auto 35px; border-radius: 10px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.9); border: 1px solid rgba(212, 175, 55, 0.2); }
+        .group-image { width: 100%; height: auto; display: block; opacity: 0.9; }
+
+        .number-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 40px; width: 100%; transition: all 0.5s ease; }
+        .number-grid:has(> .num-btn:nth-child(8):last-child) { max-width: 250px; }
+        
+        .num-btn { width: 48px; height: 48px; flex-shrink: 0; border-radius: 50%; background: rgba(15, 15, 20, 0.35); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); color: #d4af37; font-size: 1.15rem; font-weight: 500; font-family: 'Pretendard', sans-serif; cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 25px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05); letter-spacing: 0; }
+        .num-btn:hover, .num-btn.selected { background: rgba(212, 175, 55, 0.2); color: #ffffff; border-color: rgba(212, 175, 55, 0.7); box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(212, 175, 55, 0.2); transform: translateY(-5px) scale(1.05); }
+
+        .locked-grid { pointer-events: none; }
+        .locked-grid .num-btn:not(.selected) { opacity: 0.35; filter: grayscale(100%); }
+
+        .result-area { display: none; width: 100%; background: linear-gradient(180deg, rgba(15,15,20,0.95), rgba(5,5,10,0.98)); border-top: 1px solid rgba(212, 175, 55, 0.4); border-bottom: 1px solid rgba(212, 175, 55, 0.4); padding: 50px 20px; margin-top: 10px; animation: staggerFadeUp 0.8s ease forwards; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9); }
+        .result-area.active { display: block; }
+        
+        .individual-result { display: none; }
+        .individual-result.active { display: block; animation: fadeInModal 0.5s ease forwards; }
+
+        .character-img { width: 100%; max-width: 220px; height: auto; aspect-ratio: auto; margin: 0 auto 35px; display: block; background-color: transparent; border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 15px 35px rgba(0,0,0,0.9); border-radius: 4px; }
+        
+        .char-name { font-size: 1.4rem; color: #dfba73; margin-bottom: 30px; text-align: center; font-weight: 500; }
+        
+        .result-box { margin-bottom: 40px; text-align: center; } 
+        .result-label { font-weight: 600; color: #a47e3b; display: block; margin-bottom: 15px; font-size: 1.15rem; letter-spacing: 0; text-align: center; }
+        .result-desc { color: #b0b0c0; line-height: 1.9; font-size: 1.05rem; font-weight: 300; word-break: keep-all; text-align: center; } 
+        .result-desc strong { color: #dfba73; font-weight: 600; text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); background: linear-gradient(180deg, transparent 60%, rgba(212, 175, 55, 0.15) 100%); padding: 0 2px; }
+        
+        .btn-share { margin-top: 15px; background: rgba(15, 15, 20, 0.6); color: #d4af37; font-size: 1rem; font-weight: 400; padding: 16px 0; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 30px; cursor: pointer; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7); transition: all 0.3s ease; width: 100%; max-width: 280px; display: flex; justify-content: center; align-items: center; gap: 8px; margin-left: auto; margin-right: auto; }
+        .btn-share:hover { background: rgba(212, 175, 55, 0.15); box-shadow: 0 5px 25px rgba(212, 175, 55, 0.3); border-color: rgba(212, 175, 55, 0.8); transform: translateY(-2px); }
+        
+        .btn-more { margin-top: 15px; background: rgba(15, 15, 20, 0.6); color: #ffffff; font-size: 1rem; font-weight: 400; padding: 16px 0; border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 30px; cursor: pointer; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7); transition: all 0.3s ease; width: 100%; max-width: 280px; display: flex; justify-content: center; align-items: center; gap: 8px; margin-left: auto; margin-right: auto; }
+        .btn-more:hover { background: rgba(255, 255, 255, 0.15); box-shadow: 0 5px 25px rgba(255, 255, 255, 0.3); border-color: rgba(255, 255, 255, 0.8); transform: translateY(-2px); }
+
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.85); z-index: 100; justify-content: center; align-items: center; padding: 20px; perspective: 1000px; }
+        .modal-overlay.active { display: flex; animation: fadeInModal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes fadeInModal { from { opacity: 0; backdrop-filter: blur(0px); } to { opacity: 1; backdrop-filter: blur(5px); } }
+        @keyframes slideUpModal { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+
+        .modal-box { background: rgba(13, 13, 18, 0.45); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 40px 30px 30px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255, 255, 255, 0.1); position: relative; max-height: 90vh; overflow-y: auto; opacity: 0; transform: translateY(20px); }
+        .modal-overlay.active .modal-box { animation: slideUpModal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        
+        .input-wrapper { margin-bottom: 35px; margin-top: 10px; width: 100%; position: relative; }
+        .input-wrapper input { width: 100%; padding: 12px 0; border: none; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.2); background: transparent; color: #dfba73; font-size: 1.25rem; outline: none; text-align: center; font-family: "Wanted Sans Variable", "Wanted Sans", sans-serif; transition: all 0.4s ease; }
+        .input-wrapper input:focus { border-bottom: 1px solid #d4af37; box-shadow: 0 2px 10px rgba(212, 175, 55, 0.15); }
+        .input-wrapper input::placeholder { color: rgba(255, 255, 255, 0.25); font-weight: 300; font-size: 1.05rem; }
+
+        .icon-buttons { display: flex; justify-content: center; gap: 40px; }
+        .icon-btn { background: transparent; border: none; cursor: pointer; padding: 10px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: transform 0.3s ease, filter 0.3s ease; }
+        .icon-btn:hover { transform: scale(1.15); }
+        .check-btn svg { stroke: #d4af37; }
+        .close-btn svg { stroke: rgba(255, 255, 255, 0.8); }
+        .check-btn:hover { filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5)); }
+        .close-btn:hover { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)); }
+        
+        .capture-wrapper { padding: 2px; background-color: #0a0a0f; }
+
+        .share-card { background: #0a0a0f; padding: 30px 20px 25px; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.5); width: 100%; text-align: center; position: relative; overflow: hidden; }
+        .share-glitter { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; background-image: radial-gradient(circle at 15% 20%, rgba(212,175,55,0.4) 1px, transparent 1px), radial-gradient(circle at 85% 10%, rgba(212,175,55,0.6) 1.5px, transparent 1.5px); }
+        .share-card > * { position: relative; z-index: 1; }
+        .share-card-title { font-size: 1.1rem; font-weight: 400; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 15px; line-height: 1.6; }
+        
+        .share-psycho-score { display: none; margin-bottom: 20px; background: rgba(212, 175, 55, 0.1); padding: 10px; border-radius: 8px; border: 1px solid rgba(212, 175, 55, 0.4); }
+        .share-psycho-score.active { display: block; }
+        .share-psycho-label { color: #a47e3b; font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 5px; }
+        .share-psycho-value { color: #d4af37; font-size: 1.8rem; font-weight: 700; display: block; font-family: 'Pretendard', sans-serif; letter-spacing: 0; }
+
+        .share-card-section { margin-bottom: 15px; text-align: center; }
+        .share-card-label { color: #a47e3b; font-weight: 600; font-size: 0.95rem; margin-bottom: 8px; display: block; }
+        .share-card-desc { color: #cfcfd8; font-size: 0.9rem; line-height: 1.7; word-break: keep-all; font-weight: 300; display: block; }
+        .share-card-desc strong { color: #dfba73; font-weight: 500; background: linear-gradient(180deg, transparent 60%, rgba(212, 175, 55, 0.25) 100%); padding: 0 2px; }
+        
+        .share-card-logo { width: 90px; margin: 20px auto 0; filter: drop-shadow(0 0 10px rgba(212,175,55,0.3)); display: block; }
+        .share-card-footer-text { font-size: 0.8rem; margin-top: 10px; text-align: center; font-weight: 300; letter-spacing: -0.05em; }
+        
+        .action-buttons { display: flex; justify-content: center; gap: 40px; margin-top: 30px; width: 100%; }
+        .action-icon-btn { background: transparent; border: none; cursor: pointer; padding: 10px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: transform 0.3s ease, filter 0.3s ease; }
+        .action-icon-btn:hover { transform: scale(1.15); }
+        .action-share-btn:hover { filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5)); }
+        .action-close-btn:hover { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)); }
+    </style>
+</head>
+<body>
+    <div class="particles"></div>
+    <div class="fog-layer"></div>
+    <div class="container">
+        
+        <div class="screen test-screen active">
+            <div class="logo-wrapper" onclick="location.href='index.html'"><img src="logo.png" alt="b37 Logo" class="logo-img"></div>
+            <p class="mini-title">당신의 마음 가장 깊은 곳, <span class="highlight">지하 37층</span></p>
+            
+            <p class="story-text">깊은 새벽, 서늘한 기분에 눈을 뜬 당신.<br>창밖의 인기척에 본능적으로 몸을 숨긴다.<br>반지하 창문 너머, 어둠 속에서 집 안을 엿보는 한 사람.<br><br><strong>숨소리조차 낼 수 없는 당신을 찾아온 불청객은 대체 누구일까?</strong></p>
+            
+            <div class="group-image-container">
+                <img src="image_5.png" alt="반지하 창밖의 불청객" class="group-image">
+            </div>
+            
+            <div class="number-grid">
+                <button class="num-btn" onclick="showResultDOM(1, this)">1</button>
+                <button class="num-btn" onclick="showResultDOM(2, this)">2</button>
+                <button class="num-btn" onclick="showResultDOM(3, this)">3</button>
+                <button class="num-btn" onclick="showResultDOM(4, this)">4</button>
+            </div>
+            
+            <div id="result-area" class="result-area">
+                
+                <div id="res-1" class="individual-result" data-name="1번 전남자친구 30살 한준희" data-share-interp="과거의 관계에서 파생된 <strong>해결되지 않은 죄책감과 감정적 부채</strong>에 시달리며, 과거의 상처가 언제든 자신을 덮칠 것이라는 불안과 <strong>은밀한 자기 처벌의 심리</strong>를 품고 있습니다." data-share-advice="죽어버린 과거의 유령에게 계속해서 빚을 갚으려 하지 마세요. <strong>스스로에게 가하는 무의식적인 처벌을 멈추고</strong>, 당신의 현재를 당당하게 살아내야 합니다.">
+                    <img src="IMG_1160.jpg" class="character-img" alt="결과 이미지">
+                    <h2 class="char-name">1번 전남자친구 30살 한준희</h2>
+                    <div class="result-box"><span class="result-label">해석</span><p class="result-desc">당신은 과거의 선택이나 관계에서 파생된 <strong>해결되지 않은 죄책감과 감정적 부채</strong>에 깊이 시달리고 있습니다. 누군가에게 상처를 주었다는 무의식적인 짐이, 언젠가 그 과거가 자신을 덮칠 것이라는 서늘한 불안감으로 둔갑해 내면을 맴돌고 있습니다.<br><br>자신의 성공이나 안정이 타인의 희생 위에 세워졌을지도 모른다는 <strong>은밀한 자기 처벌의 심리</strong>가 숨어있으며, 과거의 망령이 현재의 평온을 깨뜨릴까 봐 늘 긴장 상태를 유지하고 있습니다.</p></div>
+                    <div class="result-box"><span class="result-label">조언</span><p class="result-desc">과거는 이미 죽어버린 유령입니다. 계속해서 등 뒤를 돌아보며 보이지 않는 과거의 빚을 갚으려 한다면, 당신은 영원히 앞으로 나아갈 수 없습니다.<br><br><strong>스스로에게 가하는 무의식적인 처벌을 멈추세요.</strong> 지난 일에 대한 죄책감을 내려놓고, 당신이 현재 누리고 있는 평온이 온전히 당신의 것임을 당당하게 인정해야 할 때입니다.</p></div>
+                </div>
+
+                <div id="res-2" class="individual-result" data-name="2번 중학교 동창 28살 배민석" data-share-interp="자신이 무시했던 존재들이 언제든 공격해 올 수 있다는 <strong>관계적 열등감과 피해의식</strong>을 품고 있으며, 타인의 앙심을 지레짐작하여 끊임없이 경계하는 불안정한 상태입니다." data-share-advice="타인이 나를 해칠지도 모른다는 편집증적 불안은 당신을 갉아먹을 뿐입니다. <strong>타인의 시선에서 벗어나 내면의 피해의식을 단호하게 끊어내세요.</strong>">
+                    <img src="IMG_1159.jpg" class="character-img" alt="결과 이미지">
+                    <h2 class="char-name">2번 중학교 동창 28살 배민석</h2>
+                    <div class="result-box"><span class="result-label">해석</span><p class="result-desc">당신은 자신이 무시하거나 낮게 평가했던 존재들이 언제든 반기를 들고 공격해 올 수 있다는 <strong>관계적 열등감과 피해의식</strong>을 마음 깊은 곳에 품고 있습니다. 겉으로는 타인에게 무심한 척하지만, 실상은 주변의 평가와 보이지 않는 원한에 극도로 예민한 상태입니다.<br><br>이는 <strong>자신보다 약하다고 생각하는 대상에게 투사된 내면의 불안</strong>입니다. 내가 타인을 쉽게 재단하는 만큼, 세상 역시 나의 빈틈을 노려 철저하게 짓밟을 것이라는 서늘한 경계심을 놓지 못하고 있습니다.</p></div>
+                    <div class="result-box"><span class="result-label">조언</span><p class="result-desc">당신을 향한 세상의 원망을 지나치게 과대평가하지 마세요. 타인이 나를 해칠지도 모른다는 편집증적인 불안은, 역설적으로 <strong>타인의 시선에 당신의 영혼이 완전히 묶여있음</strong>을 의미합니다.<br><br>내가 누군가를 무시했던 과거의 오만함을 반성하는 것을 넘어, <strong>타인의 악의를 지레짐작하며 스스로를 갉아먹는 피해의식</strong>에서 단호하게 벗어나야 합니다.</p></div>
+                </div>
+
+                <div id="res-3" class="individual-result" data-name="3번 옆집 남자 30살 이재진" data-share-interp="가장 안전한 영역조차 보호받지 못한다는 <strong>사생활 침해에 대한 극심한 불안</strong>을 느끼며, 타인과의 심리적 경계선을 세우는 데 큰 어려움과 만성적인 피로를 겪고 있습니다." data-share-advice="세상의 시선을 모두 막을 수는 없지만, 내면의 두터운 커튼을 칠 수는 있습니다. <strong>보이지 않는 시선에 흔들리지 않는 단호한 심리적 경계</strong>를 세우세요.">
+                    <img src="IMG_1158.jpg" class="character-img" alt="결과 이미지">
+                    <h2 class="char-name">3번 옆집 남자 30살 이재진</h2>
+                    <div class="result-box"><span class="result-label">해석</span><p class="result-desc">당신은 가장 안전해야 할 개인적인 영역조차 온전히 보호받지 못하고 있다는 <strong>사생활 침해에 대한 극심한 불안과 노출증적 두려움</strong>을 동시에 겪고 있습니다. 익명의 타인, 혹은 세상의 시선이 늘 당신의 약점을 캐내기 위해 엿보고 있다고 느낍니다.<br><br>이러한 심리는 당신이 <strong>타인과의 심리적 경계선을 세우는 데 큰 어려움을 겪고 있음</strong>을 의미합니다. 일상적인 교류조차 때로는 통제할 수 없는 끔찍한 위협으로 다가오며, 완벽한 은신처가 없다는 사실에 만성적인 피로감을 느낍니다.</p></div>
+                    <div class="result-box"><span class="result-label">조언</span><p class="result-desc">창밖의 시선을 막을 수 없다면, 스스로가 그 시선에 흔들리지 않을 만큼 <strong>내면의 두터운 커튼</strong>을 쳐야 합니다. 세상의 모든 타인을 잠재적인 관음증 환자나 위협으로 간주하는 것은 당신의 삶을 스스로 감옥으로 만드는 행위입니다.<br><br>보이지 않는 시선에 힘 실어주는 것은 결국 당신 자신의 두려움입니다. <strong>스스로의 공간과 심리적 경계를 단호하게 지키는 법</strong>을 배우세요.</p></div>
+                </div>
+
+                <div id="res-4" class="individual-result" data-name="4번 에어컨 수리공 32살 한진우" data-share-interp="일상적이고 안전해 보이는 타인의 접근조차 기만과 위협으로 의심하는 <strong>뿌리 깊은 인간 불신</strong>을 가졌으며, 평범함 속에 숨은 악의를 찾느라 늘 피로한 상태입니다." data-share-advice="모든 친절을 지뢰밭처럼 의심하며 스스로의 영혼을 피폐하게 만들지 마세요. 완벽한 방어보다는, <strong>설령 상처받더라도 다시 일어설 수 있다는 스스로에 대한 믿음</strong>이 필요합니다.">
+                    <img src="IMG_1157.jpg" class="character-img" alt="결과 이미지">
+                    <h2 class="char-name">4번 에어컨 수리공 32살 한진우</h2>
+                    <div class="result-box"><span class="result-label">해석</span><p class="result-desc">당신은 가장 일상적이고 합법적인 방식(서비스, 호의 등)으로 내 삶에 들어온 타인이 가장 끔찍한 위협이 될 수 있다고 믿는 <strong>뿌리 깊은 인간 불신</strong>을 가지고 있습니다. 겉으로 웃고 있는 사람의 등 뒤에 숨겨진 서늘한 칼날을 항상 의심합니다.<br><br>안전하다고 여겼던 공간과 관계에서 겪었던 뼈아픈 배신의 경험이 트라우마로 남아있을 확률이 큽니다. 당신은 <strong>평범함 속에 숨겨진 기만과 악의</strong>를 꿰뚫어 보려 끊임없이 에너지를 소모하며, 그 누구에게도 완벽하게 등을 보이지 않습니다.</p></div>
+                    <div class="result-box"><span class="result-label">조언</span><p class="result-desc">모든 일상적인 친절과 의무적인 관계 뒤에 악의가 숨어있다고 믿는다면, 당신은 매일 지뢰밭을 걷는 것과 같습니다. 조심성은 당신을 보호하지만, 지나친 의심은 당신의 영혼을 피폐하게 만듭니다.<br><br>당신에게 필요한 것은 완벽한 방어가 아니라, <strong>설령 누군가 당신을 기만하더라도 언제든 털고 일어날 수 있다는 자신에 대한 단단한 믿음</strong>입니다.</p></div>
+                </div>
+
+                <div class="common-buttons">
+                    <button class="btn-share" onclick="openNameModal()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                        내 심리 공유하기
+                    </button>
+                    <button class="btn-more" onclick="window.open('https://www.instagram.com/archive_b37?stkn=Zmg5M2d3bmRodDg1&utm_source=qr', '_blank')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        지하 37층
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 모달 영역 -->
+    <div id="name-modal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="input-wrapper">
+                <input type="text" id="user-name" placeholder="닉네임을 입력하세요" autocomplete="off">
+            </div>
+            <div class="icon-buttons">
+                <button class="icon-btn check-btn" onclick="generateShareCard()" title="확인">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </button>
+                <button class="icon-btn close-btn" onclick="closeModal('name-modal')" title="닫기">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="share-modal" class="modal-overlay">
+        <div class="modal-box" style="padding: 25px 20px;">
+            <div class="capture-wrapper" id="capture-area">
+                <div class="share-card">
+                    <div class="share-glitter"></div>
+                    <h2 id="share-title" class="share-card-title"></h2>
+                    
+                    <div id="share-psycho-box" class="share-psycho-score">
+                        <span id="share-psycho-label" class="share-psycho-label"></span>
+                        <span id="share-psycho-value" class="share-psycho-value"></span>
+                    </div>
+
+                    <div class="share-card-section">
+                        <span class="share-card-label">해석</span>
+                        <p id="share-interp" class="share-card-desc"></p>
+                    </div>
+                    <div class="share-card-section">
+                        <span class="share-card-label">조언</span>
+                        <p id="share-advice" class="share-card-desc"></p>
+                    </div>
+                    <img src="logo.png" alt="b37 Logo" class="share-card-logo">
+                    <p class="share-card-footer-text">
+                        <span style="color: #ffffff;">당신의 마음 가장 깊은 곳, </span>
+                        <span style="color: #d4af37; font-weight: 500;">지하 37층</span>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="action-icon-btn action-share-btn" onclick="shareImage()" title="공유">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                </button>
+                <button class="action-icon-btn action-close-btn" onclick="closeModal('share-modal')" title="닫기">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentNum = "";
+        let lockState = false; 
+
+        window.onload = () => {
+            const storyTextEl = document.querySelector('.story-text');
+            if (storyTextEl) startTyping(storyTextEl, 40);
+        };
+
+        function startTyping(element, speed) {
+            if (!element.hasAttribute('data-original-html')) {
+                element.setAttribute('data-original-html', element.innerHTML);
+            }
+            const htmlString = element.getAttribute('data-original-html');
+            element.innerHTML = '<span class="cursor">|</span>';
+            
+            let i = 0;
+            let isTag = false;
+            let text = "";
+
+            function type() {
+                if (i < htmlString.length) {
+                    let char = htmlString.charAt(i);
+                    if (char === '<') isTag = true;
+                    text += char;
+                    i++;
+                    if (isTag) {
+                        while (i < htmlString.length && htmlString.charAt(i) !== '>') {
+                            text += htmlString.charAt(i); i++;
+                        }
+                        if (i < htmlString.length) { text += htmlString.charAt(i); i++; }
+                        isTag = false;
+                        type(); 
+                        return;
+                    }
+                    element.innerHTML = text + '<span class="cursor">|</span>';
+                    setTimeout(type, speed);
+                } else {
+                    element.innerHTML = text + '<span class="cursor">|</span>';
+                }
+            }
+            type();
+        }
+
+        function showResultDOM(num, btnElement) {
+            if (lockState) return; 
+            lockState = true; 
+            
+            const numberGrid = document.querySelector('.number-grid');
+            if (numberGrid) numberGrid.classList.add('locked-grid');
+
+            const btns = document.querySelectorAll('.num-btn');
+            btns.forEach(btn => btn.classList.remove('selected'));
+            btnElement.classList.add('selected');
+
+            currentNum = num;
+
+            const allResults = document.querySelectorAll('.individual-result');
+            allResults.forEach(el => el.classList.remove('active'));
+
+            const targetResult = document.getElementById(`res-${num}`);
+            if(targetResult) targetResult.classList.add('active');
+
+            const resultArea = document.getElementById('result-area');
+            resultArea.classList.remove('active');
+            setTimeout(() => {
+                resultArea.classList.add('active');
+                resultArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
+        }
+
+        function openNameModal() {
+            document.getElementById('user-name').value = '';
+            document.getElementById('name-modal').classList.add('active');
+            setTimeout(() => document.getElementById('user-name').focus(), 100);
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function generateShareCard() {
+            const userName = document.getElementById('user-name').value.trim();
+            if (!userName) {
+                alert("닉네임을 입력해주세요.");
+                document.getElementById('user-name').focus();
+                return;
+            }
+            closeModal('name-modal');
+            
+            const activeResult = document.getElementById(`res-${currentNum}`);
+            if(!activeResult) return;
+
+            const name = activeResult.dataset.name;
+            const shareInterp = activeResult.dataset.shareInterp;
+            const shareAdvice = activeResult.dataset.shareAdvice;
+            const scoreLabel = activeResult.dataset.scoreLabel;
+            const scoreValue = activeResult.dataset.scoreValue;
+            
+            document.getElementById('share-title').innerHTML = `<span style="color:#dfba73;">${name}</span> <span style="color:#ffffff;">을(를) 선택하신</span><br><span style="color:#dfba73;">${userName}님</span> <span style="color:#ffffff;">의 심리 분석입니다.</span>`;
+            
+            const sharePsychoBox = document.getElementById('share-psycho-box');
+            if (scoreValue) {
+                document.getElementById('share-psycho-label').innerText = scoreLabel;
+                document.getElementById('share-psycho-value').innerText = scoreValue;
+                sharePsychoBox.classList.add('active');
+            } else {
+                sharePsychoBox.classList.remove('active');
+            }
+
+            document.getElementById('share-interp').innerHTML = shareInterp;
+            document.getElementById('share-advice').innerHTML = shareAdvice;
+            document.getElementById('share-modal').classList.add('active');
+        }
+        
+        async function shareImage() {
+            const captureArea = document.getElementById('capture-area');
+            const currentUrl = window.location.href.split('?')[0]; 
+            try {
+                const canvas = await html2canvas(captureArea, { backgroundColor: '#0a0a0f', scale: 2, useCORS: true });
+                canvas.toBlob(async (blob) => {
+                    const file = new File([blob], 'b37_result.png', { type: 'image/png' });
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        await navigator.share({
+                            text: '당신의 마음 가장 깊은 곳, 지하 37층\n' + currentUrl,
+                            files: [file]
+                        });
+                    } else { alert('현재 브라우저에서는 공유 기능을 지원하지 않습니다. 캡처 기능을 이용해주세요.'); }
+                });
+            } catch (error) { alert('공유하는 중 오류가 발생했습니다.'); }
+        }
+        
+        document.getElementById('user-name').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') generateShareCard();
+        });
+    </script>
+</body>
+</html>
